@@ -15,6 +15,8 @@ export const emailService = {
   getUnreadMails,
   sortMail,
   put,
+  toggleRead,
+  toggleStar,
 }
 
 // const loggedinUser = {
@@ -24,11 +26,11 @@ export const emailService = {
 
 function getDefaultCriteria() {
   return {
-    status: 'inbox',
-    txt: 'puki',
-    isRead: true,
-    isStarred: true,
-    labels: ['important, romantic'],
+    txt: '',
+    status: null,
+    isRead: null,
+    isStarred: null,
+    labels: [],
   }
 }
 
@@ -44,30 +46,27 @@ function query(filterBy = getDefaultCriteria()) {
           regex.test(mail.subject)
       )
     }
-    if (filterBy.status) {
-      mails = mails.filter((mail) => mail.status.includes(filterBy.status))
-    }
-    if (filterBy.isRead !== '') {
-      mails = mails.filter((mail) => mail.isRead === filterBy.isRead)
-    }
-    if (filterBy.isStarred) {
-      mails = mails.filter((mail) => mail.isStarred === filterBy.isStarred)
-    }
-    if (filterBy.labels.length) {
-      mails = mails.filter((mail) =>
-        filterBy.labels.some((currLabel) => mail.labels.includes(currLabel))
-      )
-    }
+    // if (filterBy.status) {
+    //   mails = mails.filter((mail) => mail.status.includes(filterBy.status))
+    // }
+    // if (filterBy.isRead !== '') {
+    //   mails = mails.filter((mail) => mail.isRead === filterBy.isRead)
+    // }
+    // if (filterBy.isStarred) {
+    //   mails = mails.filter((mail) => mail.isStarred === filterBy.isStarred)
+    // }
+    // if (filterBy.labels.length) {
+    //   mails = mails.filter((mail) =>
+    //     filterBy.labels.some((currLabel) => mail.labels.includes(currLabel))
+    //   )
+    // }
+
     return mails
   })
 }
 
 function get(mailId) {
   return storageService.get(MAIL_KEY, mailId)
-}
-
-function remove(mailId) {
-  return storageService.remove(MAIL_KEY, mailId)
 }
 
 function getNearbyMailIds(mailId) {
@@ -111,6 +110,20 @@ function sortMail(sortBy, change) {
       })
     }
     return mails
+  })
+}
+
+function toggleRead(mailId) {
+  return get(mailId).then((mail) => {
+    mail.isRead = !mail.isRead
+    return save(mail)
+  })
+}
+
+function toggleStar(mailId) {
+  return get(mailId).then((mail) => {
+    mail.isStar = !mail.isStar
+    return save(mail)
   })
 }
 

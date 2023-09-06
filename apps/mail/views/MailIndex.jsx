@@ -2,9 +2,7 @@ const { useState, useEffect } = React
 import { MailList } from '../cmps/MailList.jsx'
 import { emailService } from '../services/mail.service.js'
 
-// email index component //
-
-export function EmailIndex() {
+export function MailIndex() {
   const [emails, setEmails] = useState([])
 
   useEffect(() => {
@@ -12,7 +10,7 @@ export function EmailIndex() {
   }, [])
 
   const onDeleteEmail = (id) => {
-    emailService.deleteEmail(id).then(() => {
+    emailService.remove(id).then(() => {
       const updatedEmails = emails.filter((email) => email.id !== id)
       setEmails(updatedEmails)
     })

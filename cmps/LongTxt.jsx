@@ -1,3 +1,4 @@
+
 const { useState } = React
 
 export function LongTxt({ txt, length = 100 }) {
@@ -19,9 +20,7 @@ export function LongTxt({ txt, length = 100 }) {
     <div>
       {getTxtToShow()}
       {txt.length > length && (
-        <button onClick={handleClick}>
-          {!isShowMore ? 'Show More' : 'Show Less'}
-        </button>
+        <button onClick={handleClick}>{!isShowMore ? 'Show More' : 'Show Less'}</button>
       )}
     </div>
   )
