@@ -1,6 +1,9 @@
-function getDemoNotes() {
+export const demoDataService = {
+    getDemoNotes
+}
 
-    return notes = [
+function getDemoNotes() {
+    const notes = [
         {
             id: 'n101',
             createdAt: 1630950000,
@@ -189,4 +192,6 @@ function getDemoNotes() {
             }
         }
     ]
+
+    return notes
 }
