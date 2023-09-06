@@ -1,10 +1,20 @@
-const { Fragment } = React
+const { useNavigate, Link } = ReactRouterDOM
 
 export function NotePreview({ note, onRemoveNote }) {
-    return <article className={"note-preview " + note.id}>
+
+    const navigate = useNavigate()
+
+    function onEditNoteClick(note) {
+        navigate(`/note/edit/${note.id}`)
+    }
+
+    return <article className={"note-preview " + note.id} onClick={() => onEditNoteClick(note)}>
+        <div className="pin-card">
+            <i className="fa-solid fa-thumbtack btn btn-pin"></i>
+        </div>
         <DynamicCmp note={note} />
         <div className="note-controls">
-            <i className=" fa-solid fa-trash btn btn-remove" onClick={() => onRemoveNote(note.id)}></i>
+            <i className="fa-solid fa-trash btn btn-remove" onClick={() => onRemoveNote(note.id)}></i>
             <i className="fa-solid fa-image btn btn-add-img"></i>
             <i className="fa-solid fa-list btn btn-add-list"></i>
             <i className="fa-solid fa-microphone btn btn-add-audio"></i>

@@ -47,7 +47,7 @@
 }
 
 .note-preview .note-controls .btn:hover {
-    cursor: pointer;
+    color: rgb(181, 181, 181);
 }
 
 .note-preview .loading .image,
