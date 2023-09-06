@@ -12,8 +12,8 @@ export const noteService = {
     get,
     remove,
     save,
+    getEmptyNote
     // getDefaultFilter,
-    // getEmptyNote,
 }
 
 function query(filterBy = {}) {
@@ -51,5 +51,20 @@ function _createDemoNotes() {
     if (!notes || !notes.length) {
         notes = demoDataService.getDemoNotes()
         SyncStorageService.saveToStorage(STORAGE_KEY, notes)
+    }
+}
+
+function getEmptyNote() {
+    return {
+        id: '',
+        createdAt: Date.now(),
+        type: 'NoteTxt',
+        isPinned: false,
+        style: {
+            backgroundColor: '#00d'
+        },
+        info: {
+            txt: ''
+        }
     }
 }

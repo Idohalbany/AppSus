@@ -1,7 +1,7 @@
 const { Fragment } = React
 
 export function NotePreview({ note, onRemoveNote }) {
-
+    console.log('note from preview:', note)
     return <article className={"note-preview " + note.id}>
         <DynamicCmp note={note} />
         <button className="btn-remove" onClick={() => onRemoveNote(note.id)}>Delete</button>
