@@ -15,6 +15,16 @@ export function NoteIndex() {
         noteService.query().then(setNotes)
     }, [])
 
+    function findPinned(notes, pinned = true) {
+        return notes.filter(note => note.isPinned === pinned)
+    }
+
+    function onRemoveNote(noteId) {
+        noteService.remove(noteId).then(() => {
+            setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
+            // showSuccessMessage('Note Removed')
+        })
+    }
 
     console.log('RENDER')
 
@@ -25,9 +35,13 @@ export function NoteIndex() {
             <AddNote />
         </section>
         <section className="notes-container">
-            <section className="pinned-notes-container">Pinned Here</section>
+            <section className="pinned-notes-container">
+                <h1>PINNED!!!</h1>
+                <NoteList notes={findPinned(notes, true)} onRemoveNote={onRemoveNote} />
+            </section>
             <section className="note-list-container">
-                <NoteList notes={notes} />
+                <h1>UNPINNED!!!</h1>
+                <NoteList notes={findPinned(notes, false)} onRemoveNote={onRemoveNote} />
             </section>
         </section>
     </main>
