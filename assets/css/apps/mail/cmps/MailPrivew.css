@@ -28,6 +28,10 @@
   margin: 0 15px;
 }
 
+.email-content > * {
+  margin-right: 5px;
+}
+
 .icon-actions {
   margin-left: auto;
 }

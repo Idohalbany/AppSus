@@ -6,6 +6,7 @@ import { MenuNav } from './cmps/MenuNav.jsx'
 import { About } from './views/About.jsx'
 import { Home } from './views/Home.jsx'
 import { MailIndex } from './apps/mail/views/MailIndex.jsx'
+import { MailDetails } from './apps/mail/cmps/MailDetails.jsx'
 import { NoteIndex } from './apps/note/views/NoteIndex.jsx'
 
 export function App() {
@@ -17,6 +18,7 @@ export function App() {
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/mail' element={<MailIndex />} />
+          <Route path='/mail/:id' element={<MailDetails />} />
           <Route path='/note' element={<NoteIndex />} />
           <Route path='/note/edit/:id' element={<NoteIndex />} />
         </Routes>

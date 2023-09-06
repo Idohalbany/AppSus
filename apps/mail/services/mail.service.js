@@ -13,6 +13,7 @@ export const emailService = {
   getEmptyMail,
   getNearbyMailIds,
   getUnreadMails,
+  getDefaultCriteria,
   sortMail,
   put,
   toggleRead,
@@ -27,7 +28,7 @@ export const emailService = {
 function getDefaultCriteria() {
   return {
     txt: '',
-    status: null,
+    status: 'All',
     isRead: null,
     isStarred: null,
     labels: [],
@@ -35,34 +36,51 @@ function getDefaultCriteria() {
 }
 
 function query(filterBy = getDefaultCriteria()) {
+  console.log(filterBy)
   return storageService.query(MAIL_KEY).then((mails) => {
     if (filterBy.txt) {
       const regex = new RegExp(filterBy.txt, 'i')
-      mails = mails.filter(
-        (mail) =>
-          regex.test(mail.to) ||
-          regex.test(mail.from) ||
-          regex.test(mail.body) ||
-          regex.test(mail.subject)
-      )
+      mails = filterByText(mails, regex)
     }
-    // if (filterBy.status) {
-    //   mails = mails.filter((mail) => mail.status.includes(filterBy.status))
-    // }
-    // if (filterBy.isRead !== '') {
-    //   mails = mails.filter((mail) => mail.isRead === filterBy.isRead)
-    // }
-    // if (filterBy.isStarred) {
-    //   mails = mails.filter((mail) => mail.isStarred === filterBy.isStarred)
-    // }
-    // if (filterBy.labels.length) {
-    //   mails = mails.filter((mail) =>
-    //     filterBy.labels.some((currLabel) => mail.labels.includes(currLabel))
-    //   )
-    // }
-
+    if (filterBy.status === 'Sent') {
+      mails = filterByStatus(mails, filterBy.status)
+      // console.log('mailsssssssssss', mails)
+    }
+    if (filterBy.status && filterBy.status !== 'All') {
+      mails = filterByStatus(mails, filterBy.status)
+      // console.log('mails', mails)
+    }
+    if (filterBy.isRead !== null) {
+      mails = filterByIsRead(mails, filterBy.isRead)
+    }
+    if (filterBy.isStarred !== null) {
+      mails = filterByIsStarred(mails, filterBy.isStarred)
+    }
     return mails
   })
+}
+
+function filterByText(mails, regex) {
+  return mails.filter(
+    (mail) =>
+      regex.test(mail.to) ||
+      regex.test(mail.from) ||
+      regex.test(mail.body) ||
+      regex.test(mail.subject)
+  )
+}
+
+function filterByStatus(mails, status) {
+  // console.log(status)
+  return console.log(mails.filter((mail) => mail.status === status))
+}
+
+function filterByIsRead(mails, isRead) {
+  return mails.filter((mail) => mail.isRead === isRead)
+}
+
+function filterByIsStarred(mails, isStarred) {
+  return mails.filter((mail) => mail.isStarred === isStarred)
 }
 
 function get(mailId) {
@@ -122,7 +140,7 @@ function toggleRead(mailId) {
 
 function toggleStar(mailId) {
   return get(mailId).then((mail) => {
-    mail.isStar = !mail.isStar
+    mail.isStarred = !mail.isStarred
     return save(mail)
   })
 }
@@ -146,7 +164,7 @@ function put(mail) {
 }
 
 function _createMails() {
-  let mails = storageService.loadFromStorage(MAIL_KEY)
+  let mails = storageService.loadFromStorage(MAIL_KEY) || []
   if (!mails || !mails.length) {
     mails = []
     mails.push(
