@@ -1,4 +1,5 @@
 import { LongTxt } from '../../../cmps/LongTxt.jsx'
+const { Link } = ReactRouterDOM
 
 export function MailPrivew({ email, onDeleteEmail, onMarkEmail, onSetIsStarred }) {
   const { id, isRead, isStar, subject, body, sentAt, removedAt, to, from, status, labels } = email
@@ -12,37 +13,40 @@ export function MailPrivew({ email, onDeleteEmail, onMarkEmail, onSetIsStarred }
   }
 
   return (
-    <div className='email-preview' style={{ backgroundColor: grayBg }}>
-      {/* Checkbox */}
-      <input type='checkbox' className='mail-checkbox' />
+    <Link to={`/mail/${email.id}`}>
+      <div className='email-preview' style={{ backgroundColor: grayBg }}>
+        {/* Checkbox */}
+        <input type='checkbox' className='mail-checkbox' />
 
-      {/* Star icon */}
-      <button onClick={() => onSetIsStarred(id)} className='star-btn'>
-        <i className='fa fa-star' style={{ color: starBg }}></i>
-      </button>
-
-      {/* Email sender */}
-      <span className='email-sender'>{from}</span>
-
-      {/* Subject and Body */}
-      <span className='email-content'>
-        <LongTxt txt={`${subject} - ${body}`} length={80} />
-      </span>
-
-      {/* Date */}
-      <span className='email-date'>{getSentDate(sentAt)}</span>
-
-      {/* Icons */}
-      <div className='icon-actions'>
-        <button onClick={() => onDeleteEmail(id)} className='trash-btn'>
-          <i className='fa fa-trash'></i>
+        {/* Star icon */}
+        <button onClick={() => onSetIsStarred(id)} className='star-btn'>
+          <i className='fa fa-star' style={{ color: starBg }}></i>
         </button>
-        <button onClick={() => onMarkEmail(id)} className='read-btn'>
-          <i className={isRead ? 'fa fa-envelope-open' : 'fa fa-envelope'}></i>
-        </button>
-        {/* Labeling option icon goes here if needed */}
+
+        {/* Email sender */}
+        <span className='email-sender'>{from}</span>
+
+        {/* Subject and Body */}
+        <div className='email-content' style={{ display: 'flex', alignItems: 'center' }}>
+          <strong>{subject}</strong>
+          <span> - </span>
+          <LongTxt txt={body} length={70} />
+        </div>
+
+        {/* Date */}
+        <span className='email-date'>{getSentDate(sentAt)}</span>
+
+        {/* Icons */}
+        <div className='icon-actions'>
+          <button onClick={() => onDeleteEmail(id)} className='trash-btn'>
+            <i className='fa fa-trash'></i>
+          </button>
+          <button onClick={() => onMarkEmail(id)} className='read-btn'>
+            <i className={isRead ? 'fa fa-envelope-open' : 'fa fa-envelope'}></i>
+          </button>
+        </div>
       </div>
-    </div>
+    </Link>
   )
 }
 
