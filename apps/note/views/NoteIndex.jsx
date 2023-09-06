@@ -19,6 +19,15 @@ export function NoteIndex() {
         return notes.filter(note => note.isPinned === pinned)
     }
 
+    function onAddNote(txt) {
+        // if note.type = ...
+        const note = noteService.getEmptyNote()
+        note.info.txt = txt
+        noteService.save(note).then((newNote) => {
+            setNotes(prevNotes => [...prevNotes, newNote])
+        })
+    }
+
     function onRemoveNote(noteId) {
         noteService.remove(noteId).then(() => {
             setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
@@ -32,7 +41,7 @@ export function NoteIndex() {
 
     return <main className="main-container">
         <section className="note-input">
-            <AddNote />
+            <AddNote onAddNote={onAddNote} />
         </section>
         <section className="notes-container">
             <section className="pinned-notes-container">

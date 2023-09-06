@@ -1,0 +1,82 @@
+.note-preview {
+    width: 320px;
+    background-color: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, .12);
+    padding: 1em;
+    margin: 1em;
+    transition: box-shadow .3s ease-in-out;
+}
+
+.note-preview:hover {
+    cursor: pointer;
+    box-shadow: 0px 4px 6px 4px rgba(0, 0, 0, .12);
+
+}
+
+.note-preview .image {
+    height: 200px;
+}
+
+.note-preview .image img {
+    display: block;
+    width: 100%;
+    height: inherit;
+    object-fit: cover;
+}
+
+.note-preview .content {
+    padding: 2rem 1.8rem;
+}
+
+.note-preview h4 {
+    margin: 0 0 1rem;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+}
+
+.note-preview .note-controls {
+    display: flex;
+    font-size: 1rem;
+    line-height: 1.4rem;
+}
+
+.note-preview .note-controls .btn {
+    margin: 0 0.5em;
+}
+
+.note-preview .note-controls .btn:hover {
+    cursor: pointer;
+}
+
+.note-preview .loading .image,
+.note-preview .loading h4,
+.note-preview .loading .description {
+    background-color: var(--loading-grey);
+    background: linear-gradient(100deg,
+            rgba(255, 255, 255, 0) 40%,
+            rgba(255, 255, 255, .5) 50%,
+            rgba(255, 255, 255, 0) 60%) var(--loading-grey);
+    background-size: 200% 100%;
+    background-position-x: 180%;
+    animation: 1s loading ease-in-out infinite;
+}
+
+@keyframes loading {
+    to {
+        background-position-x: -20%;
+    }
+}
+
+.note-preview .loading h4 {
+    min-height: 1.6rem;
+    border-radius: 4px;
+    animation-delay: .05s;
+}
+
+.note-preview .loading .description {
+    min-height: 4rem;
+    border-radius: 4px;
+    animation-delay: .06s;
+}

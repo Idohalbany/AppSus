@@ -1,39 +1,40 @@
 const { Fragment } = React
 
 export function NotePreview({ note, onRemoveNote }) {
-
     return <article className={"note-preview " + note.id}>
         <DynamicCmp note={note} />
-        <button className="btn-remove" onClick={() => onRemoveNote(note.id)}>Delete</button>
-        <button className="btn-add-img">Add Image</button>
-        <button className="btn-add-list">Make List</button>
-        <button className="btn-add-audio">Add Audio</button>
-        <button className="btn-clr-change">Change Color</button>
+        <div className="note-controls">
+            <i className=" fa-solid fa-trash btn btn-remove" onClick={() => onRemoveNote(note.id)}></i>
+            <i className="fa-solid fa-image btn btn-add-img"></i>
+            <i className="fa-solid fa-list btn btn-add-list"></i>
+            <i className="fa-solid fa-microphone btn btn-add-audio"></i>
+            <i className="fa-solid fa-palette btn btn-clr-change"></i>
+        </div>
     </article>
 }
 
 function NoteTxt({ note }) {
-    return <Fragment>
-        <h1>{note.info.txt}</h1>
+    return <div className="content">
+        <h4>{note.info.txt}</h4>
         <h2>{note.createdAt}</h2>
-    </Fragment>
+    </div>
 
 }
 
 function NoteImg({ note }) {
-    return <Fragment>
-        <h1>{note.info.title}</h1>
-        <img src={note.info.url} alt="image" />
-    </Fragment>
+    return <div className="content">
+        <img className="image" src={note.info.url} alt="image" />
+        <h4>{note.info.title}</h4>
+    </div>
 }
 
 function NoteTodos({ note }) {
-    return <Fragment>
-        <h1>{note.info.title}</h1>
+    return <div className="content">
+        <h4>{note.info.title}</h4>
         <ul>
             <li>{note.info.todos.map(todo => todo.txt)}</li>
         </ul>
-    </Fragment>
+    </div>
 }
 
 function DynamicCmp({ note }) {
