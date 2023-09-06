@@ -9,9 +9,10 @@ export function MailIndex() {
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter)
-    emailService.query(newFilter).then((res) => {
-      console.log(res)
-      setEmails(res)
+    emailService.query(newFilter).then((emails) => {
+      setEmails(emails)
+      console.log(newFilter)
+      console.log(emails)
     })
   }
 
@@ -27,7 +28,7 @@ export function MailIndex() {
   }
 
   const onMarkEmail = (id) => {
-    emailService.toggleRead(id).then((updatedEmails) => {
+    emailService.toggleRead(id).then(() => {
       setEmails(updatedEmails)
     })
   }

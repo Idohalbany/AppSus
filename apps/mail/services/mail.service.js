@@ -36,51 +36,28 @@ function getDefaultCriteria() {
 }
 
 function query(filterBy = getDefaultCriteria()) {
-  console.log(filterBy)
   return storageService.query(MAIL_KEY).then((mails) => {
     if (filterBy.txt) {
       const regex = new RegExp(filterBy.txt, 'i')
-      mails = filterByText(mails, regex)
-    }
-    if (filterBy.status === 'Sent') {
-      mails = filterByStatus(mails, filterBy.status)
-      // console.log('mailsssssssssss', mails)
+      mails = mails.filter(
+        (mail) =>
+          regex.test(mail.to) ||
+          regex.test(mail.from) ||
+          regex.test(mail.body) ||
+          regex.test(mail.subject)
+      )
     }
     if (filterBy.status && filterBy.status !== 'All') {
-      mails = filterByStatus(mails, filterBy.status)
-      // console.log('mails', mails)
+      mails = mails.filter((mail) => mail.status.includes(filterBy.status))
     }
     if (filterBy.isRead !== null) {
-      mails = filterByIsRead(mails, filterBy.isRead)
+      mails = mails.filter((mail) => mail.isRead === filterBy.isRead)
     }
     if (filterBy.isStarred !== null) {
-      mails = filterByIsStarred(mails, filterBy.isStarred)
+      mails = mails.filter((mail) => mail.isStarred === filterBy.isStarred)
     }
     return mails
   })
-}
-
-function filterByText(mails, regex) {
-  return mails.filter(
-    (mail) =>
-      regex.test(mail.to) ||
-      regex.test(mail.from) ||
-      regex.test(mail.body) ||
-      regex.test(mail.subject)
-  )
-}
-
-function filterByStatus(mails, status) {
-  // console.log(status)
-  return console.log(mails.filter((mail) => mail.status === status))
-}
-
-function filterByIsRead(mails, isRead) {
-  return mails.filter((mail) => mail.isRead === isRead)
-}
-
-function filterByIsStarred(mails, isStarred) {
-  return mails.filter((mail) => mail.isStarred === isStarred)
 }
 
 function get(mailId) {

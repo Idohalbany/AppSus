@@ -10,6 +10,7 @@ export function MailFilter({ onFilterChange }) {
     const newLocalFilter = { ...localFilter, [name]: updatedValue }
     setLocalFilter(newLocalFilter)
     onFilterChange(newLocalFilter)
+    console.log(newLocalFilter)
   }
 
   const handleSubmit = (event) => {
@@ -17,14 +18,14 @@ export function MailFilter({ onFilterChange }) {
     onFilterChange(localFilter)
   }
 
-//   console.log(localFilter.status)
+  //   console.log(localFilter.status)
   return (
     <form onSubmit={handleSubmit}>
       <input name='txt' value={localFilter.txt} onChange={handleChange} placeholder='Search...' />
       <select name='status' value={localFilter.status} onChange={handleChange}>
         <option value='All'>All</option>
         <option value='Inbox'>Inbox</option>
-        <option value='Sent'>Sent</option>
+        <option value='sent'>Sent</option>
         <option value='Draft'>Draft</option>
         <option value='Archived'>Archived</option>
         <option value='Trash'>Trash</option>
