@@ -2,10 +2,11 @@ import { LongTxt } from '../../../cmps/LongTxt.jsx'
 const { Link } = ReactRouterDOM
 
 export function MailPrivew({ email, onDeleteEmail, onMarkEmail, onSetIsStarred }) {
-  const { id, isRead, isStar, subject, body, sentAt, removedAt, to, from, status, labels } = email
+  const { id, isRead, isStarred, subject, body, sentAt, removedAt, to, from, status, labels } =
+    email
 
   const grayBg = isRead ? 'whitesmoke' : 'white'
-  const starBg = isStar ? '#FFD700' : '#e8e8e8f3'
+  const starBg = isStarred ? '#FFD700' : '#e8e8e8f3'
 
   const getSentDate = (sentAt) => {
     const timeToString = new Date(sentAt)

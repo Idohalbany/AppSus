@@ -1,13 +1,23 @@
 const { useState, useEffect } = React
 import { MailList } from '../cmps/MailList.jsx'
+import { MailFilter } from '../cmps/MailFilter.jsx'
 import { emailService } from '../services/mail.service.js'
 
 export function MailIndex() {
   const [emails, setEmails] = useState([])
+  const [filter, setFilter] = useState(emailService.getDefaultCriteria())
+
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter)
+    emailService.query(newFilter).then((res) => {
+      console.log(res)
+      setEmails(res)
+    })
+  }
 
   useEffect(() => {
-    emailService.query().then(setEmails)
-  }, [])
+    emailService.query(filter).then(setEmails)
+  }, [filter])
 
   const onDeleteEmail = (id) => {
     emailService.remove(id).then(() => {
@@ -17,27 +27,20 @@ export function MailIndex() {
   }
 
   const onMarkEmail = (id) => {
-    emailService.toggleRead(id).then(() => {
-      const updatedEmails = emails.map((email) => {
-        if (email.id === id) email.isRead = !email.isRead
-        return email
-      })
+    emailService.toggleRead(id).then((updatedEmails) => {
       setEmails(updatedEmails)
     })
   }
 
   const onSetIsStarred = (id) => {
-    emailService.toggleStar(id).then(() => {
-      const updatedEmails = emails.map((email) => {
-        if (email.id === id) email.isStar = !email.isStar
-        return email
-      })
+    emailService.toggleStar(id).then((updatedEmails) => {
       setEmails(updatedEmails)
     })
   }
 
   return (
     <div className='email-app'>
+      <MailFilter onFilterChange={handleFilterChange} />
       <MailList
         emails={emails}
         onDeleteEmail={onDeleteEmail}
