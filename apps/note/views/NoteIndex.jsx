@@ -4,14 +4,21 @@ import { noteService } from '../services/note.service.js'
 import { AddNote } from '../cmps/AddNote.jsx'
 import { NoteList } from '../cmps/NoteList.jsx'
 
-const { useEffect } = React
+const { useEffect, useState } = React
 
 export function NoteIndex() {
 
+    const [notes, setNotes] = useState(null)
+
     useEffect(() => {
-        const notes = noteService.query()
-        console.log('notes:', notes)
+        console.log('MOUNT')
+        noteService.query().then(setNotes)
     }, [])
+
+
+    console.log('RENDER')
+
+    if (!notes) return <div>Loading..</div>
 
     return <main className="main-container">
         <section className="note-input">
@@ -20,7 +27,7 @@ export function NoteIndex() {
         <section className="notes-container">
             <section className="pinned-notes-container">Pinned Here</section>
             <section className="note-list-container">
-                <NoteList />
+                <NoteList notes={notes} />
             </section>
         </section>
     </main>

@@ -48,7 +48,6 @@ function save(note) {
 
 function _createDemoNotes() {
     let notes = SyncStorageService.loadFromStorage(STORAGE_KEY)
-    console.log('notes:', notes)
     if (!notes || !notes.length) {
         notes = demoDataService.getDemoNotes()
         SyncStorageService.saveToStorage(STORAGE_KEY, notes)
