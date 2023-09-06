@@ -60,3 +60,21 @@ function getMonthName(date) {
     ]
     return monthNames[date.getMonth()]
 }
+
+function debounce(func, wait) {
+    let timeout
+
+    return function (...args) {
+        return new Promise((resolve) => {
+
+            const later = () => {
+                clearTimeout(timeout)
+                const res = func(...args)
+                return resolve(res)
+            }
+
+            clearTimeout(timeout)
+            timeout = setTimeout(later, wait)
+        })
+    }
+}
