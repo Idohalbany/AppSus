@@ -1,0 +1,126 @@
+.mail-page {
+  flex: 1;
+}
+
+.mail-tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  margin: 30px;
+  background-color: white;
+  box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.24);
+}
+
+.mail-tools-left {
+  display: flex;
+}
+
+.mail-tools button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.mail-tools button:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.mail-tools button:focus {
+  outline: none;
+}
+
+.mail-body {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  background-color: white;
+  padding: 20px;
+  height: 100vh;
+  box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.24);
+}
+
+.mail-body-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid whitesmoke;
+  padding: 20px;
+  position: relative;
+}
+
+.mail-important {
+  color: #e8ab02 !important;
+}
+
+.mail-body-header > h2 {
+  font-weight: 400;
+  margin-right: 20px;
+}
+
+.mail-body-header > p {
+  margin-left: 20px;
+}
+
+.mail-time {
+  position: absolute;
+  top: 24px;
+  right: 0;
+  font-size: 12px;
+  color: gray;
+}
+
+.mail-message > p {
+  padding: 10px;
+  margin-right: 20px;
+  overflow-wrap: break-word;
+}
+
+.icon {
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.back-icon {
+  margin-right: 20px;
+}
+
+.delete-icon {
+  color: #e53935;
+}
+
+.star {
+  color: #ffeb3b;
+}
+
+.date {
+  font-size: 12px;
+  color: gray;
+  margin-left: auto;
+}
+
+.icon:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 500px) {
+  .mail-body-header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mail-time {
+    margin-top: -20px;
+  }
+
+  .mail-tools-right {
+    display: none;
+  }
+
+  .mail-body {
+    margin: 10px;
+  }
+}
