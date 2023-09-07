@@ -9,7 +9,6 @@ import { MailIndex } from './apps/mail/views/MailIndex.jsx'
 import { MailDetails } from './apps/mail/cmps/MailDetails.jsx'
 import { ComposeMessage } from './apps/mail/cmps/ComposeMessage.jsx'
 import { NoteIndex } from './apps/note/views/NoteIndex.jsx'
-import { NoteEdit } from './apps/note/cmps/NoteEdit.jsx'
 
 export function App() {
   return (
