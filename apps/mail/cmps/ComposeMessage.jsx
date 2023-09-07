@@ -2,7 +2,7 @@ const { useState } = React
 const { Link, useNavigate } = ReactRouterDOM
 import { emailService } from '../services/mail.service.js'
 
-export function ComposeMessage() {
+export function ComposeMessage({ onClose }) {
   const [composeDetails, setComposeDetails] = useState({
     to: '',
     subject: '',
@@ -31,44 +31,45 @@ export function ComposeMessage() {
       emailService.save(composeDetails)
     }
 
-    navigate('/mail')
+    onClose()
   }
 
   return (
-    <div className='compose-container'>
-      <Link to='/mail' className='back-link'>
-        Back
-      </Link>
-      <form className='compose-form' onSubmit={handleSubmit}>
+    <div className='sendMail'>
+      <div className='sendMail-header'>
+        <h3>New Message</h3>
+        <i onClick={onClose} className='fa-solid fa-xmark sendMail-close'></i>
+      </div>
+      <form onSubmit={handleSubmit}>
         <input
-          className='compose-input'
-          type='text'
           name='to'
+          placeholder='To'
+          type='email'
           value={to}
           onChange={handleChange}
-          placeholder='To'
           required
         />
         <input
-          className='compose-input'
-          type='text'
           name='subject'
+          placeholder='Subject'
+          type='text'
           value={subject}
           onChange={handleChange}
-          placeholder='Subject'
           required
         />
         <textarea
-          className='compose-textarea'
           name='body'
+          placeholder='Compose email'
           value={body}
           onChange={handleChange}
-          placeholder='Compose email'
+          className='sendMail-message'
           required
         />
-        <button className='send-button' type='submit'>
-          Send
-        </button>
+        <div className='sendMail-options'>
+          <button className='sendMail-send' type='submit'>
+            Send
+          </button>
+        </div>
       </form>
     </div>
   )

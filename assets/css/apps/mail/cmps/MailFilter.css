@@ -1,0 +1,70 @@
+.mail-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: #f4f4f4; */
+  padding: 10px 20px;
+  border-radius: 5px;
+  /* box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1); */
+}
+
+.mail-filter > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mail-filter input[type='text'] {
+  padding: 10px 40px;
+  width: 500px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  outline: none;
+  background-color: #fff;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+  transition: box-shadow 0.3s;
+}
+
+.mail-filter input[type='text']:focus {
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.48);
+}
+
+.mail-filter select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border 0.2s;
+  margin-right: 10px;
+}
+
+.mail-filter select:focus {
+  border-color: #4285f4;
+}
+
+.mail-filter label {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.mail-filter input[type='checkbox'] {
+  margin-right: 5px;
+}
+
+.mail-filter button {
+  position: absolute;
+  background-color: transparent;
+  color: black;
+  font-size: 14px;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.mail-filter button:hover {
+  color: #357abf;
+}

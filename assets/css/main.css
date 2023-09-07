@@ -18,10 +18,12 @@
 /* @import './apps/note/views/NoteIndex.css'; */
 
 /* @import './apps/mail/views/MailIndex.css'; */
-
+@import './apps/mail/views/MailIndex.css';
 @import './apps/mail/cmps/MailPrivew.css';
 @import './apps/mail/cmps/MailDetails.css';
 @import './apps/mail/cmps/ComposeMessage.css';
+@import './apps/mail/cmps/MailFilter.css';
+@import './apps/mail/cmps/MailSort.css';
 
 /* Cmps */
 

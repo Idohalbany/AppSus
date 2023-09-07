@@ -1,0 +1,35 @@
+.sort-container {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  margin: 5px 0 10px;
+  gap: 15px;
+}
+
+.sort-container select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.sort-container select:focus {
+  border-color: #4285f4;
+}
+
+.sort-container button {
+  background-color: transparent;
+  color: #333;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.sort-container button:hover {
+  color: #357abf;
+}
