@@ -1,6 +1,8 @@
 const { useState, useEffect } = React
+const { Link } = ReactRouterDOM
 import { MailList } from '../cmps/MailList.jsx'
 import { MailFilter } from '../cmps/MailFilter.jsx'
+import { MailSort } from '../cmps/MailSort.jsx'
 import { emailService } from '../services/mail.service.js'
 
 export function MailIndex() {
@@ -11,8 +13,12 @@ export function MailIndex() {
     setFilter(newFilter)
     emailService.query(newFilter).then((emails) => {
       setEmails(emails)
-      console.log(newFilter)
-      console.log(emails)
+    })
+  }
+
+  const handleSortChange = (newSortCriteria) => {
+    emailService.sortMail(newSortCriteria.sortBy, newSortCriteria.order).then((sortedMails) => {
+      setEmails(sortedMails)
     })
   }
 
@@ -28,19 +34,38 @@ export function MailIndex() {
   }
 
   const onMarkEmail = (id) => {
-    emailService.toggleRead(id).then(() => {
-      setEmails(updatedEmails)
-    })
+    emailService
+      .toggleRead(id)
+      .then((updatedEmail) => {
+        const updatedEmails = emails.map((email) => (email.id === id ? updatedEmail : email))
+        setEmails(updatedEmails)
+      })
+      .catch((error) => {
+        console.error('Error toggling read status:', error)
+      })
   }
 
   const onSetIsStarred = (id) => {
-    emailService.toggleStar(id).then((updatedEmails) => {
-      setEmails(updatedEmails)
-    })
+    emailService
+      .toggleStar(id)
+      .then((updatedEmail) => {
+        const updatedEmails = emails.map((email) => (email.id === id ? updatedEmail : email))
+        setEmails(updatedEmails)
+      })
+      .catch((error) => {
+        console.error('Error toggling star status:', error)
+      })
   }
 
   return (
     <div className='email-app'>
+      <Link className='compose-btn' to='/compose'>
+        <img
+          src='https://www.gstatic.com/images/icons/material/colored_icons/1x/create_32dp.png'
+          alt='Compose Email'
+        />
+      </Link>
+      <MailSort onSortChange={handleSortChange} />
       <MailFilter onFilterChange={handleFilterChange} />
       <MailList
         emails={emails}

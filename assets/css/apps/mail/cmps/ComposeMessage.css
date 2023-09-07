@@ -1,0 +1,75 @@
+.compose-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d93025;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.compose-btn img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.compose-btn:hover {
+  background-color: #c02000;
+}
+
+.compose-container {
+  width: 50%;
+  margin: 2rem auto;
+  border: 1px solid #dcdcdc;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.back-link {
+  display: block;
+  margin-bottom: 1rem;
+  color: #1a73e8;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.compose-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.compose-input,
+.compose-textarea {
+  padding: 10px;
+  margin: 0.5rem 0;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.compose-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.send-button {
+  margin-top: 1rem;
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.send-button:hover {
+  background-color: #155a8a;
+}

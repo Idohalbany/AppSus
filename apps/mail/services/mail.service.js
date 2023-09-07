@@ -93,14 +93,12 @@ function getUnreadMails(criteria, val) {
 function sortMail(sortBy, change) {
   return query().then((mails) => {
     if (sortBy === 'sentAt') {
-      mails.sort(function (mail1, mail2) {
-        return (mail1[`${sortBy}`] - mail2[`${sortBy}`]) * change
-      })
+      mails.sort((mail1, mail2) => (mail1[sortBy] - mail2[sortBy]) * change)
     }
     if (sortBy === 'subject') {
-      mails.sort(function (mail1, mail2) {
-        const a = mail1[`${sortBy}`].toLowerCase()
-        const b = mail2[`${sortBy}`].toLowerCase()
+      mails.sort((mail1, mail2) => {
+        const a = mail1[sortBy].toLowerCase()
+        const b = mail2[sortBy].toLowerCase()
         return a.localeCompare(b) * change
       })
     }
@@ -148,12 +146,12 @@ function _createMails() {
       getEmptyMail(
         utilService.makeId(),
         'Life lesson',
-        'As the ship sailed away, they waved goodbye to their homeland, excited for the adventures ahead.',
+        'As the ship sailed, they waved to their homeland, excited for the adventures ahead.',
         true,
         Date.now(),
         null,
         'alice.brown@example.com',
-        'david.jones@randommail.com',
+        'david.jones@randmail.com',
         ['sent'],
         true,
         ['important', 'lovable']

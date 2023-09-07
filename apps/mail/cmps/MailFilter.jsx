@@ -5,12 +5,13 @@ export function MailFilter({ onFilterChange }) {
   const [localFilter, setLocalFilter] = useState(emailService.getDefaultCriteria())
 
   const handleChange = (event) => {
-    const { name, value } = event.target
-    const updatedValue = event.target.type === 'checkbox' ? event.target.checked : value
-    const newLocalFilter = { ...localFilter, [name]: updatedValue }
+    const { name } = event.target
+    const updatedValue =
+      event.target.type === 'checkbox' ? event.target.checked : event.target.value
+
+    const newLocalFilter = { ...localFilter, [name]: updatedValue ? updatedValue : null }
     setLocalFilter(newLocalFilter)
     onFilterChange(newLocalFilter)
-    console.log(newLocalFilter)
   }
 
   const handleSubmit = (event) => {
@@ -18,18 +19,17 @@ export function MailFilter({ onFilterChange }) {
     onFilterChange(localFilter)
   }
 
-  //   console.log(localFilter.status)
   return (
     <form onSubmit={handleSubmit}>
       <input name='txt' value={localFilter.txt} onChange={handleChange} placeholder='Search...' />
       <select name='status' value={localFilter.status} onChange={handleChange}>
         <option value='All'>All</option>
-        <option value='Inbox'>Inbox</option>
+        <option value='inbox'>Inbox</option>
         <option value='sent'>Sent</option>
-        <option value='Draft'>Draft</option>
-        <option value='Archived'>Archived</option>
-        <option value='Trash'>Trash</option>
-        <option value='Spam'>Spam</option>
+        <option value='draft'>Draft</option>
+        <option value='archived'>Archived</option>
+        <option value='trash'>Trash</option>
+        <option value='spam'>Spam</option>
       </select>
       <label>
         <input
