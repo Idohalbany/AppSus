@@ -5,12 +5,12 @@ import { NoteEdit } from '../cmps/NoteEdit.jsx'
 import { NoteList } from '../cmps/NoteList.jsx'
 
 const { useEffect, useState } = React
-const { useParams } = ReactRouterDOM
+const { useOutletContext, useParams, Outlet } = ReactRouterDOM
 
 export function NoteIndex() {
 
     const [notes, setNotes] = useState(null)
-    const [isEdit, setIsEdit] = useState(false)
+    const [editingNoteId, setEditingNoteId] = useState(null)
     const params = useParams()
 
     useEffect(() => {
@@ -20,15 +20,11 @@ export function NoteIndex() {
 
     useEffect(() => {
         console.log('Params?')
-        if (params.id) onEditNote(params.id)
+        if (params.id) setEditingNoteId(params.id)
     }, [params.id])
 
     function findPinned(notes, pinned = true) {
         return notes.filter(note => note.isPinned === pinned)
-    }
-
-    function onEditNote(noteId = null) {
-        setIsEdit(prevEdit => !prevEdit)
     }
 
     function onAddNote(txt) {
@@ -40,11 +36,16 @@ export function NoteIndex() {
         })
     }
 
-    function onRemoveNote(noteId) {
+    function onRemoveNote(ev, noteId) {
+        ev.stopPropagation()
         noteService.remove(noteId).then(() => {
             setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
             // showSuccessMessage('Note Removed')
         })
+    }
+
+    function onPinNote() {
+
     }
 
     console.log('RENDER')
@@ -53,7 +54,16 @@ export function NoteIndex() {
 
     return <main className="main-container">
 
-        {isEdit && <NoteEdit noteId={params.id} />}
+        {editingNoteId ? (
+            <div className="modal edit-note">
+                <div className="modal-content">
+                    <NoteEdit
+                        noteId={editingNoteId}
+                        onCloseModal={() => setEditingNoteId(null)}
+                    />
+                </div>
+            </div>
+        ) : null}
 
         <section className="note-input">
             <NoteEdit onAddNote={onAddNote} />
@@ -73,7 +83,3 @@ export function NoteIndex() {
 
     </main>
 }
-
-
-
-// This is a heartbeat test
