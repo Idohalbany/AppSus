@@ -54,17 +54,50 @@ function _createDemoNotes() {
     }
 }
 
-function getEmptyNote() {
-    return {
-        id: '',
-        createdAt: Date.now(),
-        type: 'NoteTxt',
-        isPinned: false,
-        style: {
-            backgroundColor: '#00d'
-        },
-        info: {
-            txt: ''
-        }
+function getEmptyNote(type = 'NoteTxt') {
+
+    let note
+
+    switch (type) {
+        case 'NoteTxt':
+            note = {
+                id: '',
+                createdAt: Date.now(),
+                type: 'NoteTxt',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#00d'
+                },
+                info: {
+                    title: '',
+                    txt: ''
+                }
+            }
+            break
+        case 'NoteImg':
+            note = {
+                id: '',
+                createdAt: Date.now(),
+                type: 'NoteImg',
+                isPinned: false,
+                info: {
+                    url: 'https://th.bing.com/th/id/OIP.XXWKhZZeWjrUPx-ZSfP0GAHaDt?pid=ImgDet&rs=1',
+                    title: ''
+                }
+            }
+            break
+        case 'NoteTodos':
+            note = {
+                id: '',
+                createdAt: Date.now(),
+                type: 'NoteTodos',
+                isPinned: false,
+                info: {
+                    title: '',
+                    todos: [{ txt: '', doneAt: null }]
+                }
+            }
+            break
     }
+    return note
 }
