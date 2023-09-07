@@ -31,7 +31,7 @@ function query(filterBy = {}) {
 }
 
 function get(noteId) {
-    return storageService.get(STORAGE_KEY, noteId).then(_setNextPrevNoteId).catch(err => err + ',Note Not found')
+    return storageService.get(STORAGE_KEY, noteId)
 }
 
 function remove(noteId) {

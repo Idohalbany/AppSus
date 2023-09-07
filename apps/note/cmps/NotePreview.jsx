@@ -14,7 +14,7 @@ export function NotePreview({ note, onRemoveNote }) {
         </div>
         <DynamicCmp note={note} />
         <div className="note-controls">
-            <i className="fa-solid fa-trash btn btn-remove" onClick={() => onRemoveNote(note.id)}></i>
+            <i className="fa-solid fa-trash btn btn-remove" onClick={(ev) => onRemoveNote(ev, note.id)}></i>
             <i className="fa-solid fa-image btn btn-add-img"></i>
             <i className="fa-solid fa-list btn btn-add-list"></i>
             <i className="fa-solid fa-microphone btn btn-add-audio"></i>
