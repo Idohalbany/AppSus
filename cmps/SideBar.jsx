@@ -1,4 +1,4 @@
-const { useState, useEffect } = React
+const { useState } = React
 
 export function SideBar({ toggleContentClass, onCategorySelect, toggleComposeModal }) {
   const [activeLink, setActiveLink] = useState(0)
@@ -7,11 +7,9 @@ export function SideBar({ toggleContentClass, onCategorySelect, toggleComposeMod
   const nameToIconMap = {
     Inbox: 'fa-envelope',
     Star: 'fa-star',
-    Snoozed: 'fa-clock',
     Sent: 'fa-paper-plane',
     'All Mail': 'fa-box-archive',
     Trash: 'fa-trash',
-    Spam: 'fa-circle-exclamation',
     Draft: 'fa-file-circle-question',
   }
 
@@ -19,7 +17,6 @@ export function SideBar({ toggleContentClass, onCategorySelect, toggleComposeMod
     e.preventDefault()
     setActiveLink(index)
     onCategorySelect(categoryName)
-
   }
 
   const toggleSidebar = (e) => {
@@ -27,21 +24,6 @@ export function SideBar({ toggleContentClass, onCategorySelect, toggleComposeMod
     setIsClosed(!isClosed)
     toggleContentClass()
   }
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setIsClosed(true)
-      } else {
-        setIsClosed(false)
-      }
-    }
-
-    window.addEventListener('resize', handleResize)
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
 
   return (
     <div className={`sidebar ${isClosed ? 'close' : ''}`}>
@@ -69,14 +51,6 @@ export function SideBar({ toggleContentClass, onCategorySelect, toggleComposeMod
             </a>
           </li>
         ))}
-      </ul>
-      <ul className='side-menu'>
-        <li>
-          <a href='#' className='logout'>
-            <i className='bx bx-log-out-circle'></i>
-            Logout
-          </a>
-        </li>
       </ul>
     </div>
   )

@@ -35,7 +35,7 @@
 .email-content {
   display: flex;
   align-items: center;
-  flex-basis: 40%;
+  flex-basis: 50%;
 }
 
 .email-content > * {
@@ -51,7 +51,7 @@
 }
 
 .email-body {
-  color: var(--light);
+  color: #272727;
   margin-left: 15px;
   font-size: 0.8rem;
 }

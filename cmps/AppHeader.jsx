@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-const { Link, NavLink } = ReactRouterDOM
+const { NavLink } = ReactRouterDOM
 
 export function AppHeader() {
   const [isDark, setIsDark] = useState(false)
@@ -37,7 +37,10 @@ export function AppHeader() {
             <span className='count'>12</span>
           </a>
           <a href='#' className='profile'>
-            <img src='images/logo.png' alt='' />
+            <img
+              src='https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg'
+              alt='Mail IMG'
+            />
           </a>
         </div>
       </nav>

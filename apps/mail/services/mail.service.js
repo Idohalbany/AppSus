@@ -171,7 +171,6 @@ function _createMails() {
         'alice.brown@example.com',
         'david.jones@randmail.com',
         ['sent'],
-        true,
         false,
         ['important', 'lovable']
       )
@@ -179,15 +178,14 @@ function _createMails() {
     mails.push(
       getEmptyMail(
         utilService.makeId(),
-        'therapy',
-        'The artist lost himself in his painting',
+        'Phone bill',
+        'Pay the bills now.',
         true,
         1672510386536,
         null,
         'emily.johnson@sol.net',
-        'idohalbany97@gmail.com',
+        'Bezeq',
         ['inbox'],
-        false,
         false,
         ['important', 'lovable']
       )
@@ -200,11 +198,10 @@ function _createMails() {
         true,
         1672510287536,
         null,
-        'emily.johnson@sendmail.net',
+        'emily.john@mail.net',
         'william@walla.com',
         ['inbox'],
         true,
-        false,
         ['important', 'lovable']
       )
     )
@@ -216,10 +213,9 @@ function _createMails() {
         false,
         1674510187536,
         null,
-        'michael.smith@mailer.com',
+        'michael@mailer.com',
         'isabella.son@mail.com',
         ['inbox'],
-        false,
         false,
         ['important', 'lovable']
       )
@@ -236,7 +232,6 @@ function _createMails() {
         'sophia@inbox.org',
         ['inbox'],
         false,
-        false,
         ['important', 'lovable']
       )
     )
@@ -249,10 +244,9 @@ function _createMails() {
         1551433950594,
         null,
         'michael@mailer.com',
-        'natifeldman@gmail.com',
+        'natifeld@gmail.com',
         ['inbox'],
         false,
-        true,
         ['important', 'lovable']
       )
     )
@@ -266,8 +260,7 @@ function _createMails() {
         null,
         'user@appsus.com',
         'john.doe@myemail.com',
-        ['inbox', 'sent'],
-        false,
+        ['sent'],
         false,
         ['important']
       )
@@ -281,9 +274,8 @@ function _createMails() {
         1551133230894,
         null,
         'sophia.miller@inbox.org',
-        'olivia.wilson@postbox.com',
+        'olivia@postbox.com',
         ['draft'],
-        false,
         false,
         ['important', 'lovable']
       )
@@ -300,7 +292,6 @@ function _createMails() {
         'john.doe@myemail.com',
         ['inbox'],
         false,
-        true,
         ['important', 'lovable']
       )
     )
@@ -308,14 +299,28 @@ function _createMails() {
       getEmptyMail(
         utilService.makeId(),
         "Don't mess with me",
-        'Just do your job nati! you have 2 hours or you are fired!.',
+        'Just do your job nati! you have 2 hours!',
         false,
         1551033930094,
         null,
-        'william.jackson@co.com',
-        'olivia.wilson@postbox.com',
+        'william.jack@co.com',
+        'olivia@postbox.com',
         ['inbox'],
         true,
+        ['important', 'lovable']
+      )
+    )
+    mails.push(
+      getEmptyMail(
+        utilService.makeId(),
+        'API key',
+        'Hi! your API key is ready for you!',
+        false,
+        1521133930594,
+        null,
+        'olivia.wilson@post.com',
+        'Google Cloud',
+        ['inbox'],
         false,
         ['important', 'lovable']
       )
@@ -331,7 +336,6 @@ function _createMails() {
         'olivia.wilson@post.com',
         'james.taylor@webmail.net',
         ['sent'],
-        true,
         false,
         ['important', 'lovable']
       )
@@ -347,7 +351,6 @@ function _createMails() {
         'william.jackson@cor.com',
         'james.taylor@webmail.net',
         ['sent'],
-        true,
         false,
         ['important', 'lovable']
       )
@@ -357,13 +360,12 @@ function _createMails() {
         utilService.makeId(),
         'old clock!',
         'The old clock tower chimed midnight',
-        true,
+        false,
         1251133930594,
         null,
         'natifeldman@gmail.com',
         'user@appsus.com',
         ['sent'],
-        false,
         false,
         ['important', 'lovable']
       )
@@ -377,9 +379,8 @@ function _createMails() {
         1511933990594,
         null,
         'james.taylor@webmail.net',
-        'isabella.anderson@mail.com',
+        'isabella.son@mail.com',
         ['inbox'],
-        false,
         false,
         ['important', 'lovable']
       )
@@ -395,7 +396,81 @@ function _createMails() {
         'arialevy@gmail.com',
         'Dropbox',
         ['inbox'],
+        true,
+        ['important', 'lovable']
+      )
+    )
+    mails.push(
+      getEmptyMail(
+        utilService.makeId(),
+        'New recording',
+        'Watch on Youtube now!',
         false,
+        1511933990594,
+        null,
+        'arialevy@gmail.com',
+        'Slack',
+        ['inbox'],
+        false,
+        ['important', 'lovable']
+      )
+    )
+    mails.push(
+      getEmptyMail(
+        utilService.makeId(),
+        '10 minutes break',
+        'Daniel sent a new message',
+        true,
+        1511933990594,
+        null,
+        'arialevy@gmail.com',
+        'Slack',
+        ['inbox'],
+        false,
+        ['important', 'lovable']
+      )
+    )
+    mails.push(
+      getEmptyMail(
+        utilService.makeId(),
+        'Hello babe',
+        'I hate you I love you I hate that I want you',
+        true,
+        1511933990594,
+        null,
+        'arialevy@gmail.com',
+        'Bar Refaeli',
+        ['inbox'],
+        true,
+        ['important', 'lovable']
+      )
+    )
+    mails.push(
+      getEmptyMail(
+        utilService.makeId(),
+        'Iphone 20 is out',
+        'Only 999$ on the new Iphone!',
+        false,
+        1511933990594,
+        null,
+        'arialevy@gmail.com',
+        'Apple',
+        ['inbox'],
+        false,
+        ['important', 'lovable']
+      )
+    )
+    mails.push(
+      getEmptyMail(
+        utilService.makeId(),
+        'HELLO THERE',
+        'Come and teach how to play football',
+        false,
+        1511933990594,
+        null,
+        'arialevy@gmail.com',
+        'Football Meneger',
+        ['inbox'],
         true,
         ['important', 'lovable']
       )
@@ -415,7 +490,6 @@ function getEmptyMail(
   from = '',
   status = '',
   isStarred = false,
-  isSpam = false,
   labels = []
 ) {
   return {
@@ -429,7 +503,6 @@ function getEmptyMail(
     from,
     status,
     isStarred,
-    isSpam,
     labels,
   }
 }

@@ -56,9 +56,6 @@ export function MailIndex() {
       case 'Trash':
         filterCriteria.status = 'trash'
         break
-      case 'Spam':
-        filterCriteria.isSpam = true
-        break
       case 'Draft':
         filterCriteria.status = 'draft'
         break
@@ -114,8 +111,12 @@ export function MailIndex() {
         toggleComposeModal={toggleComposeModal}
       />
       <section className={`app-open ${isContentClass ? 'content' : ''}`}>
-        <MailSort onSortChange={handleSortChange} />
-        <MailFilter onFilterChange={handleFilterChange} />
+        <div>
+          <MailFilter onFilterChange={handleFilterChange} />
+        </div>
+        <div className='round-top'>
+          <MailSort onSortChange={handleSortChange} />
+        </div>
         <MailList
           emails={emails}
           onDeleteEmail={onDeleteEmail}
@@ -123,8 +124,8 @@ export function MailIndex() {
           onSetIsStarred={onSetIsStarred}
           onDraftClick={handleDraftClick}
         />
-        {isComposeOpen && <ComposeMessage draft={editingDraft} onClose={toggleComposeModal} />}
       </section>
+      {isComposeOpen && <ComposeMessage draft={editingDraft} onClose={toggleComposeModal} />}
     </div>
   )
 }
