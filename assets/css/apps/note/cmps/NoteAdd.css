@@ -16,3 +16,22 @@
     padding: 1em;
     margin-block-end: 1em;
 }
+
+.add-note .pin-card {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.add-note input {
+    flex-grow: 1;
+    font-family: 'poppins';
+    padding: .5em;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: var(--light);
+    background-color: var(--grey);
+}
+
+.add-note input:focus {
+    outline-width: 0;
+}

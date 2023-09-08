@@ -96,14 +96,15 @@ export function NoteAdd({ onAddNote }) {
                 placeholder="Enter note title..."
                 value={titleInputValue}
                 onChange={(ev) => onInputText(ev, 'title')}
+                onBlur={() => handleAddNote()}
             />
 
-            <input
+            {/* <input
                 type="text"
                 placeholder="Enter note description..."
                 value={descriptionInputValue}
                 onChange={(ev) => onInputText(ev, 'description')}
-            />
+            /> */}
 
             <div className="note-controls">
                 <i className="fa-solid fa-image btn btn-add-img"></i>
@@ -112,9 +113,9 @@ export function NoteAdd({ onAddNote }) {
                 {showColorModal && <NoteColorModal setShowColorModal={() => setShowColorModal(false)} onSelectColor={onSelectColor} />}
             </div>
 
-            <button className="btn btn-add-note" onClick={() => handleAddNote()}>
+            {/* <button className="btn btn-add-note" onClick={() => handleAddNote()}>
                 Add Note
-            </button>
+            </button> */}
 
         </section>
     </Fragment>

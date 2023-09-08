@@ -2,20 +2,21 @@
     background-color: lightgray;
     padding: 1em;
     position: absolute;
-    top: 1em;
-    right: 1em;
+    bottom: 1em;
+    right: 50%;
+    transform: translate(-50% 0);
 }
 
 .user-msg.success {
-    background-color: lightgreen;
+    background-color: var(--light-success);
 }
 
 .user-msg.error {
-    background-color: lightpink;
+    background-color: var(--light-danger);
 }
 
 
-.user-msg button{
+.user-msg button {
     float: right;
     margin: 1em;
 }

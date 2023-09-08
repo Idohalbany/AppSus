@@ -7,9 +7,36 @@
 
 .search-bar-content {
     background-color: var(--light);
-    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 1px 1px var(--light);
     border-radius: 6px;
     padding: 1em;
+    display: flex;
     margin-block-end: 1em;
     width: 100%;
+    align-items: stretch;
+    align-content: stretch;
+    justify-content: space-between;
+}
+
+.search-bar-content .search-bar {
+    flex-grow: 1;
+    font-family: 'poppins';
+    padding: .5em;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: var(--light);
+    background-color: var(--grey);
+}
+
+.search-bar-content .search-bar:focus {
+    outline-width: 0;
+}
+
+.search-bar-content .filter-notes {
+    font-family: 'poppins';
+    padding: .5em;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: var(--light);
+    background-color: var(--grey);
 }

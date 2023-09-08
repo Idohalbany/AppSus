@@ -1,10 +1,12 @@
+import { utilService } from "../../../services/util.service.js"
+
 const { useNavigate, Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
 export function NotePreview({ note, onRemoveNote, onPinNote, onDuplicateNote, onSelectColor, onChangeColorClick }) {
 
     const navigate = useNavigate()
-    const backgroundColorClass = note.style ? note.style.backgroundColor : ''
+    const backgroundColorClass = note.style ? note.style.backgroundColor : 'clr0'
     const [showColorModal, setShowColorModal] = useState(false)
 
     function onChangeColorClick(ev) {
@@ -29,7 +31,6 @@ export function NotePreview({ note, onRemoveNote, onPinNote, onDuplicateNote, on
         <div className="note-controls">
             <i className="fa-solid fa-trash btn btn-remove" onClick={(ev) => onRemoveNote(ev, note.id)}></i>
             <i className="fa-solid fa-copy btn btn-duplicate-note" onClick={(ev) => onDuplicateNote(ev, note.id)}></i>
-            <i className="fa-solid fa-image btn btn-add-img"></i>
             <i className="fa-solid fa-palette btn btn-clr-change" onClick={(ev) => onChangeColorClick(ev)}></i>
             {showColorModal && <NoteColorModal onCloseColorModal={onCloseColorModal} onSelectColor={onSelectColor} note={note} />}
         </div>
@@ -40,7 +41,6 @@ function NoteTxt({ note }) {
     return <div className="content">
         <h4>{note.info.title}</h4>
         <h2>{note.info.txt}</h2>
-        <h2>{note.editedAt || note.createdAt}</h2>
     </div>
 
 }
@@ -56,7 +56,7 @@ function NoteTodos({ note }) {
     return <div className="content">
         <h4>{note.info.title}</h4>
         <ul>
-            <li>{note.info.todos.map(todo => `${todo.txt} Complited: ${todo.doneAt}\n`)}</li>
+            {note.info.todos.map(todo => <li>{`${todo.txt} Complited: ${todo.doneAt}\n`}</li>)}
         </ul>
     </div>
 }

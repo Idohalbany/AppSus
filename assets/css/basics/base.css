@@ -10,6 +10,11 @@ body {
   margin: 0;
   background: var(--light);
   overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body::-webkit-scrollbar {
+  width: 0;
 }
 
 body.dark {
@@ -33,7 +38,6 @@ a {
 }
 
 img {
-  height: 100%;
   width: 100%;
   object-fit: cover;
 }
