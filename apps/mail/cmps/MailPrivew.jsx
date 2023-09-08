@@ -10,8 +10,11 @@ export function MailPrivew({ email, onDeleteEmail, onMarkEmail, onSetIsStarred }
   const starBg = isStarred ? '#FFD700' : '#e8e8e8f3'
 
   const getSentDate = (sentAt) => {
-    const timeToString = new Date(sentAt)
-    return timeToString.toLocaleString().slice(0, 10)
+    const date = new Date(sentAt)
+    const day = date.getDate()
+    const monthName = date.toLocaleString('en-US', { month: 'long' })
+
+    return `${day} ${monthName}`
   }
 
   const handleButtonClick = (event, action) => {
@@ -23,33 +26,33 @@ export function MailPrivew({ email, onDeleteEmail, onMarkEmail, onSetIsStarred }
     if (action === 'star') onSetIsStarred(id)
   }
 
+  const handleEmailClick = (id) => {
+    onMarkEmail(id)
+  }
+
   return (
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className='email-preview'
       style={{ backgroundColor: grayBg }}>
-      {/* Checkbox */}
       <input type='checkbox' className='mail-checkbox' />
-
-      {/* Star icon */}
       <button onClick={(e) => handleButtonClick(e, 'star')} className='star-btn'>
         <i className='fa fa-star' style={{ color: starBg }}></i>
       </button>
-
-      {/* Email sender */}
-      <Link to={`/mail/${email.id}`}>
-        <div className='email-content' style={{ display: 'flex', alignItems: 'center' }}>
-          <span className='email-sender'>{from}</span>
-
-          {/* Subject and Body */}
-          <strong>{subject}</strong>
-          <span> - </span>
-          <LongTxt txt={body} length={100} />
+      <Link
+        onClick={() => handleEmailClick(email.id)}
+        to={`/mail/${email.id}`}
+        className={`email-content ${isRead ? '' : 'unread-email'}`}>
+        <span className='email-sender'>{from}</span>
+        <div className='email-out-details'>
+          <strong className='email-subject'>{subject}</strong>
+          <span className='separator'> - </span>
+          <span className='email-body'>
+            <LongTxt txt={body} length={100} />
+          </span>
         </div>
       </Link>
-
-      {/* Icons */}
       <div className='icon-actions'>
         {isHovered ? (
           <React.Fragment>
@@ -58,6 +61,9 @@ export function MailPrivew({ email, onDeleteEmail, onMarkEmail, onSetIsStarred }
             </button>
             <button onClick={(e) => handleButtonClick(e, 'mark')} className='read-btn'>
               <i className={isRead ? 'fa fa-envelope-open' : 'fa fa-envelope'}></i>
+            </button>
+            <button className='clock-btn'>
+              <i title='Read later' className='fa fa-clock-o'></i>
             </button>
           </React.Fragment>
         ) : (

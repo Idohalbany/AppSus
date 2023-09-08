@@ -1,7 +1,7 @@
 .email-preview {
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 10px 20px;
   border-bottom: 1px solid #e1e1e1;
   transition: background-color 0.3s;
 }
@@ -16,22 +16,75 @@
 
 .star-btn,
 .trash-btn,
-.read-btn {
+.read-btn,
+.clock-btn {
   background: none;
   border: none;
   margin: 0 5px;
+  cursor: pointer;
+  transition: color 0.3s;
 }
 
-.email-sender,
-.email-content,
-.email-date {
-  margin: 0 15px;
+.star-btn:hover,
+.trash-btn:hover,
+.read-btn:hover,
+.clock-btn:hover {
+  color: #357abf;
+}
+
+.email-content {
+  display: flex;
+  align-items: center;
+  flex-basis: 40%;
 }
 
 .email-content > * {
-  margin-right: 5px;
+  flex: 1;
+}
+
+.email-sender,
+.email-subject,
+.email-date {
+  margin: 0 15px;
+  color: #272727;
+  font-size: 0.8rem;
+}
+
+.email-body {
+  color: grey;
+  margin-left: 15px;
+  font-size: 0.8rem;
 }
 
 .icon-actions {
   margin-left: auto;
+}
+
+.email-out-details {
+  display: flex;
+  align-items: center;
+}
+
+.email-out-details > * {
+  flex-shrink: 0;
+}
+
+.unread-email .email-sender,
+.unread-email .email-subject,
+.unread-email .email-date {
+  font-size: 0.9rem;
+  font-weight: bolder;
+  color: black;
+}
+
+.unread-email + .icon-actions span {
+  font-size: 0.9rem;
+  font-weight: bolder;
+  color: black;
+}
+
+.separator {
+  color: #272727;
+  font-size: 0.8rem;
+  font-weight: normal;
 }

@@ -23,53 +23,85 @@
   background-color: #c02000;
 }
 
-.compose-container {
-  width: 50%;
-  margin: 2rem auto;
-  border: 1px solid #dcdcdc;
-  padding: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-}
-
-.back-link {
-  display: block;
-  margin-bottom: 1rem;
-  color: #1a73e8;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.compose-form {
+.sendMail {
+  position: absolute;
+  bottom: 0px;
+  right: 60px;
+  width: 40%;
+  height: 45%;
+  max-width: 520px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   display: flex;
+  flex-direction: column;
+  box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.4);
+}
+
+.sendMail-header {
+  padding: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: lightgray;
+  background-color: #404040;
+}
+
+.sendMail-header > h3 {
+  color: whitesmoke;
+  font-size: 13px;
+}
+
+.sendMail-send {
+  background-color: #3079ed;
+  padding: 8px 20px;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.sendMail-close {
+  cursor: pointer;
+}
+
+.sendMail > form {
+  display: flex;
+  flex: 1;
   flex-direction: column;
 }
 
-.compose-input,
-.compose-textarea {
+.sendMail-error {
+  background-color: white;
+  color: red;
+  text-align: right;
+  padding: 2px;
+}
+
+.sendMail > form > input {
+  height: 30px;
   padding: 10px;
-  margin: 0.5rem 0;
-  border: 1px solid #dcdcdc;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-.compose-textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-
-.send-button {
-  margin-top: 1rem;
-  background-color: #1a73e8;
-  color: white;
   border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  border-bottom: 1px solid whitesmoke;
+  outline: none;
 }
 
-.send-button:hover {
-  background-color: #155a8a;
+.sendMail > form > textarea {
+  padding: 10px;
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  outline: none;
+  border: none;
+}
+
+.sendMail-message {
+  flex: 1;
+}
+
+@media (max-width: 500px) {
+  .sendMail {
+    position: fixed;
+    width: 70%;
+    height: 55%;
+  }
 }

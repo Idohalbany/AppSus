@@ -3,11 +3,13 @@ const { Link } = ReactRouterDOM
 import { MailList } from '../cmps/MailList.jsx'
 import { MailFilter } from '../cmps/MailFilter.jsx'
 import { MailSort } from '../cmps/MailSort.jsx'
+import { ComposeMessage } from '../cmps/ComposeMessage.jsx'
 import { emailService } from '../services/mail.service.js'
 
 export function MailIndex() {
   const [emails, setEmails] = useState([])
   const [filter, setFilter] = useState(emailService.getDefaultCriteria())
+  const [isComposeOpen, setIsComposeOpen] = useState(false)
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter)
@@ -57,14 +59,18 @@ export function MailIndex() {
       })
   }
 
+  const toggleComposeModal = () => {
+    setIsComposeOpen(!isComposeOpen)
+  }
+
   return (
     <div className='email-app'>
-      <Link className='compose-btn' to='/compose'>
+      <button className='compose-btn' onClick={toggleComposeModal}>
         <img
           src='https://www.gstatic.com/images/icons/material/colored_icons/1x/create_32dp.png'
           alt='Compose Email'
         />
-      </Link>
+      </button>
       <MailSort onSortChange={handleSortChange} />
       <MailFilter onFilterChange={handleFilterChange} />
       <MailList
@@ -73,6 +79,7 @@ export function MailIndex() {
         onMarkEmail={onMarkEmail}
         onSetIsStarred={onSetIsStarred}
       />
+      {isComposeOpen && <ComposeMessage onClose={toggleComposeModal} />}
     </div>
   )
 }

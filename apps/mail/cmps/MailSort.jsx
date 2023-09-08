@@ -16,13 +16,20 @@ export function MailSort({ onSortChange }) {
   }, [sortCriteria])
 
   return (
-    <div>
+    <div className='sort-container'>
       <select name='sortBy' value={sortCriteria.sortBy} onChange={handleChange}>
         <option value='sentAt'>Date</option>
         <option value='subject'>Subject</option>
       </select>
       <button onClick={() => setSortCriteria({ ...sortCriteria, order: sortCriteria.order * -1 })}>
-        {sortCriteria.order === 1 ? 'Ascending' : 'Descending'}
+        {sortCriteria.order === 1 ? (
+          <i className='fas fa-arrow-up'></i>
+        ) : (
+          <i className='fas fa-arrow-down'></i>
+        )}
+      </button>
+      <button>
+        <i className='fa-solid fa-arrow-rotate-right'></i>
       </button>
     </div>
   )
