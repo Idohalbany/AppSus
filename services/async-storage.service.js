@@ -36,7 +36,9 @@ function put(entityType, updatedEntity) {
   return query(entityType).then((entities) => {
     const idx = entities.findIndex((entity) => entity.id === updatedEntity.id)
     if (idx < 0)
-      throw new Error(`Update failed, cannot find entity with id: ${entityId} in: ${entityType}`)
+      throw new Error(
+        `Update failed, cannot find entity with id: ${updatedEntity.id} in: ${entityType}`
+      )
     entities.splice(idx, 1, updatedEntity)
     _save(entityType, entities)
     return updatedEntity

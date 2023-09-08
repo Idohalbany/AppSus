@@ -2,7 +2,7 @@ import { LongTxt } from '../../../cmps/LongTxt.jsx'
 const { Link } = ReactRouterDOM
 const { useState } = React
 
-export function MailPrivew({ email, onDeleteEmail, onMarkEmail, onSetIsStarred }) {
+export function MailPrivew({ email, onDeleteEmail, onMarkEmail, onSetIsStarred, onDraftClick }) {
   const { id, isRead, isStarred, subject, body, sentAt, removedAt, to, from, status, labels } =
     email
   const [isHovered, setIsHovered] = useState(false)
@@ -26,8 +26,12 @@ export function MailPrivew({ email, onDeleteEmail, onMarkEmail, onSetIsStarred }
     if (action === 'star') onSetIsStarred(id)
   }
 
-  const handleEmailClick = (id) => {
+  const handleEmailClick = (event, id) => {
     onMarkEmail(id)
+    if (email.status.includes('draft')) {
+      onDraftClick(email)
+      event.preventDefault()
+    }
   }
 
   return (
@@ -41,7 +45,7 @@ export function MailPrivew({ email, onDeleteEmail, onMarkEmail, onSetIsStarred }
         <i className='fa fa-star' style={{ color: starBg }}></i>
       </button>
       <Link
-        onClick={() => handleEmailClick(email.id)}
+        onClick={(e) => handleEmailClick(e, email.id)}
         to={`/mail/${email.id}`}
         className={`email-content ${isRead ? '' : 'unread-email'}`}>
         <span className='email-sender'>{from}</span>

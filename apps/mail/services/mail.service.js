@@ -18,12 +18,13 @@ export const emailService = {
   put,
   toggleRead,
   toggleStar,
+  removeBySentTime,
 }
 
-// const loggedinUser = {
-//   email: 'user@appsus.com',
-//   fullname: 'Mahatma Appsus',
-// }
+const loggedinUser = {
+  email: 'user@appsus.com',
+  fullname: 'Mahatma Appsus',
+}
 
 function getDefaultCriteria() {
   return {
@@ -59,6 +60,7 @@ function query(filterBy = getDefaultCriteria()) {
     // if (filterBy.isSpam !== null) {
     //   mails = mails.filter((mail) => mail.isSpam === filterBy.isSpam)
     // }
+    // console.log(mails)
     return mails
   })
 }
@@ -125,6 +127,19 @@ function toggleStar(mailId) {
 
 function remove(mailId) {
   return storageService.remove(MAIL_KEY, mailId)
+}
+
+function removeBySentTime(sentTime) {
+  storageService.query(MAIL_KEY).then((mails) => {
+    const index = mails.findIndex((email) => email.sentAt === sentTime)
+    if (index > -1) {
+      mails.splice(index, 1)
+    } else {
+      console.log('No draft found with sentTime:', sentTime)
+    }
+
+    storageService.saveToStorage(MAIL_KEY, mails)
+  })
 }
 
 function save(mail) {
@@ -267,7 +282,7 @@ function _createMails() {
         null,
         'sophia.miller@inbox.org',
         'olivia.wilson@postbox.com',
-        ['inbox'],
+        ['draft'],
         false,
         false,
         ['important', 'lovable']

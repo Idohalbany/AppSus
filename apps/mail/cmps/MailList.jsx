@@ -1,6 +1,6 @@
 import { MailPrivew } from './MailPrivew.jsx'
 
-export function MailList({ emails, onDeleteEmail, onMarkEmail, onSetIsStarred }) {
+export function MailList({ emails, onDeleteEmail, onMarkEmail, onSetIsStarred, onDraftClick }) {
   return (
     <section className='email-list'>
       {emails.map((email) => (
@@ -10,6 +10,7 @@ export function MailList({ emails, onDeleteEmail, onMarkEmail, onSetIsStarred })
           onDeleteEmail={onDeleteEmail}
           onMarkEmail={onMarkEmail}
           onSetIsStarred={onSetIsStarred}
+          onDraftClick={onDraftClick}
         />
       ))}
     </section>

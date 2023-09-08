@@ -1,12 +1,11 @@
-const { useState } = React
-const { Link, useNavigate } = ReactRouterDOM
+const { useState, useEffect } = React
 import { emailService } from '../services/mail.service.js'
 
-export function ComposeMessage({ onClose }) {
-  const [composeDetails, setComposeDetails] = useState({
-    to: '',
-    subject: '',
-    body: '',
+export function ComposeMessage({ draft, onClose }) {
+  const initialComposeDetails = {
+    to: draft ? draft.to : '',
+    subject: draft ? draft.subject : '',
+    body: draft ? draft.body : '',
     from: 'your-email@mail.com',
     isRead: false,
     isStarred: false,
@@ -14,10 +13,10 @@ export function ComposeMessage({ onClose }) {
     labels: [],
     removedAt: null,
     sentAt: Date.now(),
-  })
+  }
 
-  const { to, subject, body } = composeDetails
-  const navigate = useNavigate()
+  const [composeDetails, setComposeDetails] = useState(initialComposeDetails)
+  const [draftSentAt, setDraftSentAt] = useState(Date.now())
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -26,19 +25,43 @@ export function ComposeMessage({ onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    if (to && body && subject) {
+    if (composeDetails.to && composeDetails.body && composeDetails.subject) {
       emailService.save(composeDetails)
     }
-
     onClose()
   }
+
+  const handleClose = () => {
+    const { to, subject, body } = composeDetails
+    if (!to || !body || !subject) {
+      createDraft()
+    }
+    onClose()
+  }
+
+  const createDraft = () => {
+    const newDraft = {
+      ...composeDetails,
+      status: ['draft'],
+      sentAt: draftSentAt,
+    }
+
+    setDraftSentAt(newDraft.sentAt)
+    emailService.save(newDraft)
+    const timerId = setTimeout(() => {
+      // emailService.removeBySentTime(newDraft.sentAt)
+    }, 5000)
+
+    return () => clearTimeout(timerId)
+  }
+
+  const { to, subject, body } = composeDetails
 
   return (
     <div className='sendMail'>
       <div className='sendMail-header'>
         <h3>New Message</h3>
-        <i onClick={onClose} className='fa-solid fa-xmark sendMail-close'></i>
+        <i onClick={handleClose} className='fa-solid fa-xmark sendMail-close'></i>
       </div>
       <form onSubmit={handleSubmit}>
         <input
