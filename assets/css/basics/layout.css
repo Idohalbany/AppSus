@@ -1,11 +1,11 @@
-.app {
+.app-open {
   position: relative;
   width: calc(100% - 60px);
   left: 60px;
   transition: all 0.3s ease;
 }
 
-.app.content {
+.app-open.content {
   width: calc(100% - 230px);
   left: 230px;
 }

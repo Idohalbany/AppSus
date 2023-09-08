@@ -29,7 +29,7 @@ const loggedinUser = {
 function getDefaultCriteria() {
   return {
     txt: '',
-    status: 'All',
+    status: 'inbox',
     isRead: null,
     isStarred: null,
     labels: [],
@@ -60,7 +60,7 @@ function query(filterBy = getDefaultCriteria()) {
     // if (filterBy.isSpam !== null) {
     //   mails = mails.filter((mail) => mail.isSpam === filterBy.isSpam)
     // }
-    // console.log(mails)
+    console.log(mails)
     return mails
   })
 }

@@ -1,4 +1,5 @@
 /* mail index  */
 .email-app {
-  background-color: aliceblue;
+  background-color: var(--light);
+  height: 100%;
 }

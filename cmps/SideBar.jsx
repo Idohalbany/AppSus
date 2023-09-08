@@ -1,7 +1,7 @@
 const { useState, useEffect } = React
 
-export function SideBar({ toggleContentClass, onCategorySelect }) {
-  const [activeLink, setActiveLink] = useState(2)
+export function SideBar({ toggleContentClass, onCategorySelect, toggleComposeModal }) {
+  const [activeLink, setActiveLink] = useState(0)
   const [isClosed, setIsClosed] = useState(window.innerWidth < 768)
 
   const nameToIconMap = {
@@ -19,7 +19,7 @@ export function SideBar({ toggleContentClass, onCategorySelect }) {
     e.preventDefault()
     setActiveLink(index)
     onCategorySelect(categoryName)
-    // console.log(categoryName)
+
   }
 
   const toggleSidebar = (e) => {
@@ -52,6 +52,12 @@ export function SideBar({ toggleContentClass, onCategorySelect }) {
         </div>
         <i onClick={toggleSidebar} className={`bx bx-menu ${isClosed ? 'hide' : ''}`}></i>
       </a>
+      <button className='compose-btn' onClick={toggleComposeModal}>
+        <img
+          src='https://www.gstatic.com/images/icons/material/colored_icons/1x/create_32dp.png'
+          alt='Compose Email'
+        />
+      </button>
       <ul className='side-menu'>
         {Object.keys(nameToIconMap).map((name, index) => (
           <li key={name} className={index === activeLink ? 'active' : ''}>
@@ -75,21 +81,3 @@ export function SideBar({ toggleContentClass, onCategorySelect }) {
     </div>
   )
 }
-
-// const categoryFilters = {
-//   Inbox: { status: 'inbox' },
-//   Star: { isStarred: true },
-//   Snoozed: {
-//     /* custom criteria for Snoozed */
-//   },
-//   Sent: { status: 'sent' },
-//   Archived: { status: 'archived' },
-//   Trash: { status: 'trash' },
-//   Spam: { status: 'spam' },
-//   Draft: { status: 'draft' },
-// }
-
-// const handleLinkClick = (index, name) => {
-//   setActiveLink(index)
-//   onFilterChange(categoryFilters[name] || {})
-// }
