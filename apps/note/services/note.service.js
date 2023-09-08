@@ -16,16 +16,18 @@ export const noteService = {
     // getDefaultFilter,
 }
 
-function query(filterBy = {}) {
+function query(filterBy = { key: '', type: '' }) {
     return storageService.query(STORAGE_KEY)
         .then(notes => {
-            // if (filterBy.title) {
-            //     const regExp = new RegExp(filterBy.title, 'i')
-            //     notes = notes.filter(note => regExp.test(note.title))
-            // }
-            // if (filterBy.price) {
-            //     notes = notes.filter(note => note.listPrice.amount >= filterBy.price)
-            // }
+            if (filterBy.type) {
+                if (filterBy.type === 'pinned') notes = notes.filter(note => note.isPinned)
+                if (filterBy.type === 'unpinned') notes = notes.filter(note => !note.isPinned)
+                else notes = notes.filter(note => note.type === filterBy.type)
+            }
+            if (filterBy.key) {
+                const regExp = new RegExp(filterBy.key, 'i')
+                notes = notes.filter(note => regExp.test(note.info.title))
+            }
             return notes
         })
 }

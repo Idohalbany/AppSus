@@ -12,17 +12,18 @@ export function NoteIndex() {
 
     const [notes, setNotes] = useState(null)
     const [editingNoteId, setEditingNoteId] = useState(null)
+    const [filterBy, setFilterBy] = useState({ key: '', type: '' })
     const params = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
         console.log('MOUNT')
-        noteService.query()
+        noteService.query(filterBy)
             .then(setNotes)
             .catch(err => {
                 console.log('err:', err)
             })
-    }, [])
+    }, [filterBy])
 
     useEffect(() => {
         console.log('Params?')
@@ -107,6 +108,15 @@ export function NoteIndex() {
             })
     }
 
+    function onSearchNote({ target: { value } }) {
+        setFilterBy(prevFilter => ({ ...prevFilter, key: value }))
+    }
+
+    function onFilterNotes({ target: { value } }) {
+        console.log('value:', value)
+        setFilterBy(prevFilter => ({ ...prevFilter, type: value }))
+    }
+
     function handleOverlayClick(ev) {
         if (ev.target === ev.currentTarget) {
             setEditingNoteId(null)
@@ -121,7 +131,15 @@ export function NoteIndex() {
     return <main className="main-container">
 
         <section className="search-bar-container">
-            <input type="text" placeholder="Search note..." className="search-bar" />
+            <input type="text" value={filterBy.key} placeholder="Search note by title..." className="search-bar" onChange={(ev) => onSearchNote(ev)} />
+            <select name="noteType" onChange={(ev) => onFilterNotes(ev)}>
+                <option value="">All</option>
+                <option value="pinned">Pinned</option>
+                <option value="unpinned">Unpinned</option>
+                <option value="text">Text</option>
+                <option value="todos">Todos</option>
+                <option value="img">Images</option>
+            </select>
         </section>
 
         {editingNoteId ? (

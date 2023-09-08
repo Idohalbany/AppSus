@@ -29,7 +29,11 @@ export function NoteDetails({ noteId, onUpdateNote }) {
         })
     }, [noteId])
 
-    function onInputText({ target: { value } }, field) {
+    function onSelectColor() {
+
+    }
+
+    function onInputText({ target: { value } }, field, index = 0) {
         if (field === 'title') {
             setTitleInputValue(value)
             setNote(prevNote => {
@@ -49,7 +53,13 @@ export function NoteDetails({ noteId, onUpdateNote }) {
             onUpdateNote(note)
         }
         else if (field === 'todo') {
-            //FUCK MY LIFE IM DEAD
+            setTodos(prevTodos => prevTodos[index].txt = value)
+            setNote(prevNote => {
+                const newNote = { ...prevNote }
+                newNote.info.txt = value
+                return newNote
+            })
+            onUpdateNote(note)
         }
     }
 
@@ -61,7 +71,7 @@ export function NoteDetails({ noteId, onUpdateNote }) {
             <i className="fa-solid fa-thumbtack btn btn-pin" ></i>
         </div>
 
-        <DynamicCmp note={note} onInputText={onInputText} titleInputValue={titleInputValue} descriptionInputValue={descriptionInputValue} />
+        <DynamicCmp note={note} onInputText={onInputText} titleInputValue={titleInputValue} descriptionInputValue={descriptionInputValue} todos={todos} />
 
         <div className="note-controls">
             <i className="fa-solid fa-image btn btn-add-img"></i>
@@ -103,7 +113,7 @@ function NoteImg({ note, onInputText, titleInputValue }) {
     </div>
 }
 
-function NoteTodos({ note, onInputText, titleInputValue }) {
+function NoteTodos({ note, onInputText, titleInputValue, todos }) {
     return <div className="content">
         <input
             type="text"
@@ -113,13 +123,12 @@ function NoteTodos({ note, onInputText, titleInputValue }) {
         />
         <ul>
             <li>{note.info.todos.map((todo, idx) => {
-                console.log('todo:', todo)
                 return <div key={idx} className={`todo-item-${note.id}`}>
                     <input
                         type="text"
                         placeholder="Enter todo..."
-                        value={todo.txt}
-                        onChange={(ev) => onInputText(ev, 'todo')}
+                        value={todos[idx].txt}
+                        onChange={(ev) => onInputText(ev, 'todo', idx)}
                     />
                     <p>{`Completed at: ${todo.doneAt ? todo.doneAt : 'Not yet'}`}</p>
                 </div>
@@ -128,14 +137,14 @@ function NoteTodos({ note, onInputText, titleInputValue }) {
     </div>
 }
 
-function DynamicCmp({ note, onInputText, titleInputValue, descriptionInputValue }) {
+function DynamicCmp({ note, onInputText, titleInputValue, descriptionInputValue, todos }) {
 
     switch (note.type) {
 
         case 'NoteTxt':
             return <NoteTxt note={note} onInputText={onInputText} titleInputValue={titleInputValue} descriptionInputValue={descriptionInputValue} />
         case 'NoteTodos':
-            return <NoteTodos note={note} onInputText={onInputText} titleInputValue={titleInputValue} />
+            return <NoteTodos note={note} onInputText={onInputText} titleInputValue={titleInputValue} todos={todos} />
         case 'NoteImg':
             return <NoteImg note={note} onInputText={onInputText} titleInputValue={titleInputValue} />
     }
