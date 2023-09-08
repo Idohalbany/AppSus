@@ -16,6 +16,8 @@ export function NoteIndex() {
     const params = useParams()
     const navigate = useNavigate()
 
+    // let backgroundColorClass
+
     useEffect(() => {
         console.log('MOUNT')
         noteService.query(filterBy)
@@ -27,7 +29,13 @@ export function NoteIndex() {
 
     useEffect(() => {
         console.log('Params?')
-        if (params.id) setEditingNoteId(params.id)
+        if (params.id) {
+            setEditingNoteId(params.id)
+            // const note = noteService.get(params.id).then((note) => {
+            //     backgroundColorClass = note.style ? note.style.backgroundColor : 'clr0'
+            // })
+        }
+
     }, [params.id])
 
     function findPinned(notes, pinned = true) {
@@ -56,6 +64,12 @@ export function NoteIndex() {
                 console.log('err:', err)
                 // showErrorMessage('Note Remove Unsuccessful')
             })
+    }
+
+    function onSelectColor(ev, note, clr) {
+        ev.stopPropagation()
+        note.style = { backgroundColor: clr }
+        onUpdateNote(note)
     }
 
     function onUpdateNote(note) {
@@ -131,21 +145,24 @@ export function NoteIndex() {
     return <main className="main-note-container">
 
         <section className="search-bar-container">
-            <input type="text" value={filterBy.key} placeholder="Search note by title..." className="search-bar" onChange={(ev) => onSearchNote(ev)} />
-            <select name="noteType" onChange={(ev) => onFilterNotes(ev)}>
-                <option value="">All</option>
-                <option value="pinned">Pinned</option>
-                <option value="unpinned">Unpinned</option>
-                <option value="text">Text</option>
-                <option value="todos">Todos</option>
-                <option value="img">Images</option>
-            </select>
+            <div className="search-bar-content">
+                <input type="text" value={filterBy.key} placeholder="Search note by title..." className="search-bar" onChange={(ev) => onSearchNote(ev)} />
+                <select name="noteType" onChange={(ev) => onFilterNotes(ev)}>
+                    <option value="">All</option>
+                    <option value="pinned">Pinned</option>
+                    <option value="unpinned">Unpinned</option>
+                    <option value="text">Text</option>
+                    <option value="todos">Todos</option>
+                    <option value="img">Images</option>
+                </select>
+            </div>
         </section>
 
         {editingNoteId ? (
             <div className="modal edit-note" onClick={handleOverlayClick}>
-                <div className="modal-content">
-                    <NoteDetails noteId={editingNoteId} onUpdateNote={onUpdateNote} />
+                {/* <div className={`modal-content ` + backgroundColorClass}> */}
+                <div className={`modal-content`}>
+                    <NoteDetails noteId={editingNoteId} onUpdateNote={onUpdateNote} onRemoveNote={onRemoveNote} onDuplicateNote={onDuplicateNote} onPinNote={onPinNote} onSelectColor={onSelectColor} />
                 </div>
             </div>
         ) : null}
@@ -156,13 +173,13 @@ export function NoteIndex() {
 
         <section className="notes-container">
             <section className="pinned-notes-container">
-                <h1>PINNED!!!</h1>
-                <NoteList notes={findPinned(notes, true)} onRemoveNote={onRemoveNote} onPinNote={onPinNote} onDuplicateNote={onDuplicateNote} />
+                <h1>PINNED</h1>
+                <NoteList notes={findPinned(notes, true)} onRemoveNote={onRemoveNote} onPinNote={onPinNote} onDuplicateNote={onDuplicateNote} onSelectColor={onSelectColor} />
             </section>
 
             <section className="note-list-container">
-                <h1>UNPINNED!!!</h1>
-                <NoteList notes={findPinned(notes, false)} onRemoveNote={onRemoveNote} onPinNote={onPinNote} onDuplicateNote={onDuplicateNote} />
+                <h1>UNPINNED</h1>
+                <NoteList notes={findPinned(notes, false)} onRemoveNote={onRemoveNote} onPinNote={onPinNote} onDuplicateNote={onDuplicateNote} onSelectColor={onSelectColor} />
             </section>
         </section>
 

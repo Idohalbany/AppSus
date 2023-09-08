@@ -1,11 +1,12 @@
 const { useState, useEffect } = React
 import { noteService } from "../services/note.service.js"
 
-export function NoteDetails({ noteId, onUpdateNote }) {
+export function NoteDetails({ noteId, onUpdateNote, onRemoveNote, onDuplicateNote, onPinNote, onSelectColor }) {
 
     const [note, setNote] = useState(null)
     const [titleInputValue, setTitleInputValue] = useState('')
     const [descriptionInputValue, setDescriptionInputValue] = useState('')
+    const [showColorModal, setShowColorModal] = useState(false)
     const [image, setImage] = useState('')
     const [todos, setTodos] = useState('')
 
@@ -29,8 +30,14 @@ export function NoteDetails({ noteId, onUpdateNote }) {
         })
     }, [noteId])
 
-    function onSelectColor() {
+    function onChangeColorClick(ev) {
+        ev.stopPropagation()
+        setShowColorModal(true)
+    }
 
+    function onCloseColorModal(ev) {
+        ev.stopPropagation()
+        setShowColorModal(false)
     }
 
     function onInputText({ target: { value } }, field, index = 0) {
@@ -68,15 +75,16 @@ export function NoteDetails({ noteId, onUpdateNote }) {
     return <section className="note-details">
 
         <div className="pin-card">
-            <i className="fa-solid fa-thumbtack btn btn-pin" ></i>
+            <i className="fa-solid fa-thumbtack btn btn-pin" onClick={(ev) => onPinNote(ev, note.id)}></i>
         </div>
 
         <DynamicCmp note={note} onInputText={onInputText} titleInputValue={titleInputValue} descriptionInputValue={descriptionInputValue} todos={todos} />
 
         <div className="note-controls">
-            <i className="fa-solid fa-image btn btn-add-img"></i>
-            <i className="fa-solid fa-list btn btn-add-list"></i>
-            <i className="fa-solid fa-palette btn btn-clr-change"></i>
+            <i className="fa-solid fa-trash btn btn-remove" onClick={(ev) => onRemoveNote(ev, note.id)}></i>
+            <i className="fa-solid fa-copy btn btn-duplicate-note" onClick={(ev) => onDuplicateNote(ev, note.id)}></i>
+            <i className="fa-solid fa-palette btn btn-clr-change" onClick={(ev) => onChangeColorClick(ev)}></i>
+            {showColorModal && <NoteColorModal onCloseColorModal={onCloseColorModal} onSelectColor={onSelectColor} note={note} />}
         </div>
 
     </section>
@@ -148,4 +156,19 @@ function DynamicCmp({ note, onInputText, titleInputValue, descriptionInputValue,
         case 'NoteImg':
             return <NoteImg note={note} onInputText={onInputText} titleInputValue={titleInputValue} />
     }
+}
+
+function NoteColorModal({ onCloseColorModal, onSelectColor, note }) {
+    return <div className="color-modal">
+        <div className={`modal-content`}>
+            <h2>Select a Color</h2>
+            <div className="color-options">
+                <div className="color-option" onClick={(ev) => onSelectColor(ev, note, '')}></div>
+                <div className="color-option clr1" onClick={(ev) => onSelectColor(ev, note, 'clr1')}></div>
+                <div className="color-option clr2" onClick={(ev) => onSelectColor(ev, note, 'clr2')}></div>
+                <div className="color-option clr3" onClick={(ev) => onSelectColor(ev, note, 'clr3')}></div>
+            </div>
+            <button className="btn btn-close-modal" onClick={(ev) => onCloseColorModal(ev)}>Close</button>
+        </div>
+    </div>
 }

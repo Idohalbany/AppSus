@@ -1,1 +1,8 @@
- /* note list */
+ .pinned-notes-container>h1 {
+     margin-block-end: 1em;
+ }
+
+ .note-list-container>h1 {
+     margin-block-start: 3em;
+     margin-block-end: 1em;
+ }

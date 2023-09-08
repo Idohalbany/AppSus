@@ -13,7 +13,6 @@ export const noteService = {
     remove,
     save,
     getEmptyNote
-    // getDefaultFilter,
 }
 
 function query(filterBy = { key: '', type: '' }) {
