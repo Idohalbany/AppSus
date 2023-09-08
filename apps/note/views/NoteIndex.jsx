@@ -128,7 +128,7 @@ export function NoteIndex() {
 
     if (!notes) return <div>Loading..</div>
 
-    return <main className="main-container">
+    return <main className="main-note-container">
 
         <section className="search-bar-container">
             <input type="text" value={filterBy.key} placeholder="Search note by title..." className="search-bar" onChange={(ev) => onSearchNote(ev)} />

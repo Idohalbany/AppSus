@@ -21,7 +21,7 @@ function query(filterBy = { key: '', type: '' }) {
         .then(notes => {
             if (filterBy.type) {
                 if (filterBy.type === 'pinned') notes = notes.filter(note => note.isPinned)
-                if (filterBy.type === 'unpinned') notes = notes.filter(note => !note.isPinned)
+                else if (filterBy.type === 'unpinned') notes = notes.filter(note => !note.isPinned)
                 else notes = notes.filter(note => note.type === filterBy.type)
             }
             if (filterBy.key) {
