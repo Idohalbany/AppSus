@@ -6,7 +6,7 @@ export function MailPrivew({ email, onDeleteEmail, onMarkEmail, onSetIsStarred, 
   const { id, isRead, isStarred, subject, body, sentAt, removedAt, to, from, status, labels } =
     email
   const [isHovered, setIsHovered] = useState(false)
-  const grayBg = isRead ? 'whitesmoke' : 'white'
+  const grayBg = isRead ? '#f6f6f9' : 'white'
   const starBg = isStarred ? '#FFD700' : '#e8e8e8f3'
 
   const getSentDate = (sentAt) => {

@@ -44,7 +44,7 @@
 
 .sidebar .side-menu {
   width: 100%;
-  margin-top: 48px;
+  margin-top: 70px;
 }
 
 .sidebar .side-menu li {
@@ -99,7 +99,7 @@
 }
 
 .sidebar .side-menu li.active a {
-  color: var(--success);
+  color: #357abf;
 }
 
 .sidebar.close .side-menu li a {
@@ -114,10 +114,6 @@
   justify-content: center;
 }
 
-.sidebar .side-menu li a.logout {
-  color: var(--danger);
-}
-
 .bx.bx-menu {
   cursor: pointer;
   color: var(--dark);
@@ -125,6 +121,43 @@
   left: 175px;
   font-size: 1.8rem !important;
   top: 16px;
+}
+
+.compose-btn {
+  position: relative;
+  top: 50px;
+  background-color: var(--danger);
+  border: none;
+  padding: 12px 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0s ease;
+  margin-left: 15px;
+}
+
+.compose-btn img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+.compose-btn:hover {
+  background-color: #c02000;
+  transition: 0.3s;
+}
+
+.sidebar.close .compose-btn {
+  border-radius: 50px;
+  background-color: transparent;
+  right: 38px;
+  top: 40px;
+}
+
+.sidebar.close .compose-btn img {
+  width: 30px;
+  height: 30px;
 }
 
 .hide {
