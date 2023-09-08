@@ -106,7 +106,6 @@ function NoteTxt({ note, onInputText, titleInputValue, descriptionInputValue }) 
         />
         <h2>{note.editedAt || note.createdAt}</h2>
     </div>
-
 }
 
 function NoteImg({ note, onInputText, titleInputValue }) {

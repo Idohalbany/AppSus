@@ -22,14 +22,22 @@
     display: grid;
 }
 
+.clr0 {
+    background-color: var(--light);
+}
+
 .clr1 {
-    background-color: red;
+    background-color: var(--primary);
 }
 
 .clr2 {
-    background-color: green;
+    background-color: var(--success);
 }
 
 .clr3 {
-    background-color: blue;
+    background-color: var(--danger);
+}
+
+.hide {
+    opacity: 0;
 }

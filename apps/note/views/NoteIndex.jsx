@@ -1,5 +1,6 @@
 import { utilService } from '../../../services/util.service.js'
 import { noteService } from '../services/note.service.js'
+import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 
 import { NoteAdd } from '../cmps/NoteAdd.jsx'
 import { NoteList } from '../cmps/NoteList.jsx'
@@ -49,7 +50,7 @@ export function NoteIndex() {
             })
             .catch(err => {
                 console.log('err:', err)
-                // showErrorMessage('Note Add Unsuccessful')
+                showSuccessMsg('Note Add Unsuccessful')
             })
     }
 
@@ -58,11 +59,11 @@ export function NoteIndex() {
         noteService.remove(noteId)
             .then(() => {
                 setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
-                // showSuccessMessage('Note Removed')
+                showSuccessMsg('Note Removed')
             })
             .catch(err => {
                 console.log('err:', err)
-                // showErrorMessage('Note Remove Unsuccessful')
+                showErrorMsg('Note Remove Unsuccessful')
             })
     }
 
@@ -78,11 +79,11 @@ export function NoteIndex() {
             .then((savedNote) => {
                 setNotes((prevNotes) =>
                     prevNotes.map((note) => note.id === savedNote.id ? savedNote : note))
-                // showSuccessMessage('Note Saved')
+                showSuccessMsg('Note Saved')
             })
             .catch(err => {
                 console.log('err:', err)
-                // showErrorMessage('Note Update Unsuccessful')
+                showErrorMsg('Note Update Unsuccessful')
             })
     }
 
@@ -96,11 +97,11 @@ export function NoteIndex() {
             .then(savedNote => {
                 setNotes((prevNotes) =>
                     prevNotes.map((note) => note.id === savedNote.id ? savedNote : note))
-                // showSuccessMessage('Note Pinned')
+                showSuccessMsg('Note Pinned')
             })
             .catch(err => {
                 console.log('err:', err)
-                // showErrorMessage('Note Pin Unsuccessful')
+                showErrorMsg('Note Pin Unsuccessful')
             })
     }
 
@@ -113,11 +114,11 @@ export function NoteIndex() {
             })
             .then((newNote) => {
                 setNotes((prevNotes) => [newNote, ...prevNotes])
-                // showSuccessMessage('Note Duplicated')
+                showSuccessMsg('Note Duplicated')
             })
             .catch(err => {
                 console.log('err:', err)
-                // showErrorMessage('Note Duplicate Unsuccessful')
+                showErrorMessage('Note Duplicate Unsuccessful')
 
             })
     }
@@ -147,7 +148,7 @@ export function NoteIndex() {
         <section className="search-bar-container">
             <div className="search-bar-content">
                 <input type="text" value={filterBy.key} placeholder="Search note by title..." className="search-bar" onChange={(ev) => onSearchNote(ev)} />
-                <select name="noteType" onChange={(ev) => onFilterNotes(ev)}>
+                <select name="noteType" className="filter-notes" onChange={(ev) => onFilterNotes(ev)}>
                     <option value="">All</option>
                     <option value="pinned">Pinned</option>
                     <option value="unpinned">Unpinned</option>

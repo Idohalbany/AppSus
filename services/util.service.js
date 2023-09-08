@@ -6,6 +6,7 @@ export const utilService = {
     padNum,
     getDayName,
     getMonthName,
+    formatDate
 }
 
 function makeId(length = 6) {
@@ -77,4 +78,38 @@ function debounce(func, wait) {
             timeout = setTimeout(later, wait)
         })
     }
+}
+
+function formatDate(timestamp) {
+    const currentTime = new Date();
+    const inputTime = new Date(timestamp * 1000); // Convert Unix timestamp to JavaScript Date object
+
+    const diffInSeconds = Math.floor((currentTime - inputTime) / 1000);
+    const diffInMinutes = diffInSeconds / 60;
+    const diffInHours = diffInMinutes / 60;
+    const diffInDays = diffInHours / 24;
+    const diffInWeeks = diffInDays / 7;
+    const diffInMonths = diffInDays / 30;
+    const diffInYears = diffInDays / 365;
+
+    let formattedDate = '';
+
+    const optionsForFullYear = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const optionsForMonthAndDay = { year: 'numeric', month: 'long', day: 'numeric' };
+    const optionsForDay = { weekday: 'long' };
+    const optionsForTime = { hour: '2-digit', minute: '2-digit' };
+
+    if (diffInYears > 1) {
+        formattedDate = inputTime.toLocaleDateString('en-US', optionsForFullYear);
+    } else if (diffInMonths > 1) {
+        formattedDate = inputTime.toLocaleDateString('en-US', optionsForMonthAndDay);
+    } else if (diffInWeeks > 1) {
+        formattedDate = inputTime.toLocaleDateString('en-US', optionsForMonthAndDay).toLowerCase();
+    } else if (diffInDays > 1) {
+        formattedDate = inputTime.toLocaleDateString('en-US', optionsForDay);
+    } else {
+        formattedDate = inputTime.toLocaleTimeString('en-US', optionsForTime);
+    }
+
+    return formattedDate;
 }
