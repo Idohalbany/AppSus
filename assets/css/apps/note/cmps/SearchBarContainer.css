@@ -33,6 +33,7 @@
 }
 
 .search-bar-content .filter-notes {
+    color: var(--dark);
     font-family: 'poppins';
     padding: .5em;
     border-radius: 6px;

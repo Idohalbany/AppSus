@@ -6,10 +6,12 @@
 }
 
 .add-note {
-    display: grid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
 
-    background-color: var(--light);
+    /* background-color: var(--light); */
     box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
 
     border-radius: 6px;
@@ -34,4 +36,17 @@
 
 .add-note input:focus {
     outline-width: 0;
+}
+
+.add-note .btn {
+    color: var(--dark);
+    padding: .5em;
+    border-radius: 6px;
+    margin: 0 .5em;
+    transition: color .15s ease;
+}
+
+.add-note .btn:hover {
+    cursor: pointer;
+    color: var(--light-primary);
 }

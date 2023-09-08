@@ -5,39 +5,45 @@ import { noteService } from "../services/note.service.js"
 export function NoteAdd({ onAddNote }) {
 
     const [note, setNote] = useState(noteService.getEmptyNote('NoteTxt'))
+    const [inputMode, setInputMode] = useState('NoteTxt')
     const [titleInputValue, setTitleInputValue] = useState('')
     const [descriptionInputValue, setDescriptionInputValue] = useState('')
     const [showColorModal, setShowColorModal] = useState(false)
     const [isPinned, setIsPinned] = useState(false)
-    const [addNoteColor, setAddNoteColor] = useState('')
+    const [addNoteColor, setAddNoteColor] = useState('clr0')
 
     // ADD IMAGE TO MAILSSS
 
     function handleAddNote() {
-
-        switch (note.type) {
+        console.log('YESSSSSSSSS')
+        switch (inputMode) {
             case 'NoteTxt':
-                note = noteService.getEmptyNote('NoteTxt')
-                note.info.title = titleInputValue || 'No Title'
-                note.info.txt = descriptionInputValue || 'No Description'
+                noteService.getEmptyNote('NoteTxt')
+                setNote(() => {
+                    const newNote = noteService.getEmptyNote('NoteTxt')
+                    newNote.info.title = titleInputValue || 'No Title'
+                    // console.log('newNote:', newNote)
+                    onAddNote(newNote)
+                    return newNote
+                })
+                // note.info.title = titleInputValue || 'No Title'
+                // note.info.txt = descriptionInputValue || 'No Description'
                 break
             case 'NoteImg':
-                note.info.title = titleInputValue || 'No Title'
+                // note.info.title = titleInputValue || 'No Title'
                 // ADD IMAGE TO MAILSSS
                 // note.info.url = ????????
                 // ADD IMAGE TO MAILSSS
                 break
             case 'NoteTodos':
-                note.info.title = titleInputValue || 'No Title'
+                // note.info.title = titleInputValue || 'No Title'
                 /// HANDLE TODOLIST
                 break
             default:
-                note = noteService.getEmptyNote('NoteTxt')
-                note.info.title = titleInputValue || 'No Title'
-                note.info.txt = descriptionInputValue || 'No Description'
+            // note = noteService.getEmptyNote('NoteTxt')
+            // note.info.title = titleInputValue || 'No Title'
+            // note.info.txt = descriptionInputValue || 'No Description'
         }
-
-        onAddNote(note)
         clearInputs()
     }
 
@@ -56,6 +62,16 @@ export function NoteAdd({ onAddNote }) {
             })
             return newIsPinned
         })
+    }
+
+    function onAddImageClick(ev) {
+        ev.stopPropagation()
+        setInputMode('NoteImg')
+    }
+
+    function onAddTodosClick(ev) {
+        ev.stopPropagation()
+        setInputMode('NoteTodos')
     }
 
     function onChangeColorClick(ev) {
@@ -87,13 +103,17 @@ export function NoteAdd({ onAddNote }) {
     return <Fragment>
         <section className={`add-note ${addNoteColor}`}>
 
-            <div className="pin-card">
+            {/* <div className="pin-card">
                 <i className="fa-solid fa-thumbtack btn btn-pin" onClick={(ev) => onPinClick(ev)}></i>
-            </div>
+            </div> */}
 
             <input
                 type="text"
-                placeholder="Enter note title..."
+                placeholder={
+                    (inputMode === 'NoteTxt') && "Enter note title..." ||
+                    (inputMode === 'NoteImg') && "Enter image URL..." ||
+                    (inputMode === 'NoteTodos') && "Enter TODO title..."
+                }
                 value={titleInputValue}
                 onChange={(ev) => onInputText(ev, 'title')}
                 onBlur={() => handleAddNote()}
@@ -107,8 +127,8 @@ export function NoteAdd({ onAddNote }) {
             /> */}
 
             <div className="note-controls">
-                <i className="fa-solid fa-image btn btn-add-img"></i>
-                <i className="fa-solid fa-list btn btn-add-list"></i>
+                <i className="fa-solid fa-image btn btn-add-img" onClick={(ev) => onAddImageClick(ev)}></i>
+                <i className="fa-solid fa-list btn btn-add-list" onClick={(ev) => onAddTodosClick(ev)}></i>
                 <i className="fa-solid fa-palette btn btn-clr-change" onClick={(ev) => onChangeColorClick(ev)}></i>
                 {showColorModal && <NoteColorModal setShowColorModal={() => setShowColorModal(false)} onSelectColor={onSelectColor} />}
             </div>
@@ -124,9 +144,8 @@ export function NoteAdd({ onAddNote }) {
 function NoteColorModal({ setShowColorModal, onSelectColor }) {
     return <div className="color-modal">
         <div className="modal-content">
-            <h2>Select a Color</h2>
             <div className="color-options">
-                <div className="color-option" onClick={(ev) => onSelectColor(ev, '')}></div>
+                <div className="color-option" onClick={(ev) => onSelectColor(ev, 'clr0')}></div>
                 <div className="color-option clr1" onClick={(ev) => onSelectColor(ev, 'clr1')}></div>
                 <div className="color-option clr2" onClick={(ev) => onSelectColor(ev, 'clr2')}></div>
                 <div className="color-option clr3" onClick={(ev) => onSelectColor(ev, 'clr3')}></div>

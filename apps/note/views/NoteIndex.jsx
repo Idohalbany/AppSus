@@ -152,9 +152,9 @@ export function NoteIndex() {
                     <option value="">All</option>
                     <option value="pinned">Pinned</option>
                     <option value="unpinned">Unpinned</option>
-                    <option value="text">Text</option>
-                    <option value="todos">Todos</option>
-                    <option value="img">Images</option>
+                    <option value="NoteTxt">Text</option>
+                    <option value="NoteTodos">Todos</option>
+                    <option value="NoteImg">Images</option>
                 </select>
             </div>
         </section>

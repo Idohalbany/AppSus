@@ -3,13 +3,12 @@
     max-width: 250px;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    /* background-color: #fff; */
     word-break: break-word;
     border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, .12);
     padding: 1em;
     transition: box-shadow border .3s ease-in-out;
+    outline: 1px solid var(--grey);
 }
 
 .note-preview .pin-card {
@@ -18,8 +17,7 @@
 }
 
 .note-preview:hover {
-    outline: 1px solid var(--grey);
-    box-shadow: 0px 4px 6px 4px rgba(0, 0, 0, .15);
+    box-shadow: 0px 0 4px 3px rgba(0, 0, 0, .15);
 }
 
 .note-preview .image {
@@ -42,6 +40,10 @@
     margin: 0 0 1em;
     font-size: 1.5em;
     line-height: 1.5em;
+}
+
+.note-preview .content li {
+    list-style: circle;
 }
 
 .note-preview .note-controls {
@@ -67,9 +69,13 @@
     color: var(--dark);
 }
 
+.note-preview .btn {
+    transition: color .15s ease;
+}
+
 .note-preview .btn:hover {
     cursor: pointer;
-    color: var(--dark-grey);
+    color: var(--light-primary);
 }
 
 .note-preview .loading .image,

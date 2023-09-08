@@ -12,18 +12,82 @@
 }
 
 .modal.edit-note .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
+    background-color: var(--light);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+
+    color: var(--dark);
+    max-width: 400px;
+    min-width: 300px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    word-break: break-word;
+    border-radius: 6px;
+    overflow: hidden;
+    padding: 1em;
+    transition: box-shadow border .3s ease-in-out;
+    outline: 1px solid var(--grey);
 }
 
-.modal-content .note-details {
+.modal-content .note-details .pin-card {
     display: flex;
-    flex-direction: column;
+    justify-content: flex-end;
 }
 
-.modal-content .note-details .content {
+.note-details .image {
+    display: block;
+    height: unset;
+    width: 100%;
+    height: inherit;
+    object-fit: cover;
+    margin-block-end: 1em;
+}
+
+.note-details input {
+    flex-grow: 1;
+    font-family: 'poppins';
+    padding: .5em;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: var(--light);
+    background-color: var(--grey);
+}
+
+.note-details .content {
     display: flex;
     flex-direction: column;
+    padding: 1.5em 1em;
+}
+
+.note-details .note-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-details .note-options .last-edited {
+    font-size: .7rem;
+}
+
+.note-details .note-controls {
+    display: flex;
+    font-size: 1rem;
+    line-height: 1.4rem;
+    align-items: center;
+}
+
+.note-details .note-controls .btn {
+    margin: 0 0.5em;
+}
+
+.note-details .note-controls .btn {
+    color: var(--dark);
+}
+
+.note-details .btn {
+    transition: color .15s ease;
+}
+
+.note-details .btn:hover {
+    cursor: pointer;
+    color: var(--light-primary);
 }

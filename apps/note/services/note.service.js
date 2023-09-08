@@ -21,7 +21,11 @@ function query(filterBy = { key: '', type: '' }) {
             if (filterBy.type) {
                 if (filterBy.type === 'pinned') notes = notes.filter(note => note.isPinned)
                 else if (filterBy.type === 'unpinned') notes = notes.filter(note => !note.isPinned)
-                else notes = notes.filter(note => note.type === filterBy.type)
+                else {
+                    notes = notes.filter(note => note.type === filterBy.type)
+                    console.log('notes:', notes)
+                    console.log('filterBy:', filterBy)
+                }
             }
             if (filterBy.key) {
                 const regExp = new RegExp(filterBy.key, 'i')

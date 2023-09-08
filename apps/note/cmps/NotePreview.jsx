@@ -56,7 +56,7 @@ function NoteTodos({ note }) {
     return <div className="content">
         <h4>{note.info.title}</h4>
         <ul>
-            {note.info.todos.map(todo => <li>{`${todo.txt} Complited: ${todo.doneAt}\n`}</li>)}
+            {note.info.todos.map((todo, idx) => <li key={`todos-${idx}`} className={todo.doneAt ? 'crossed' : ''}>{`${todo.txt} \n`}</li>)}
         </ul>
     </div>
 }
@@ -79,7 +79,7 @@ function NoteColorModal({ onCloseColorModal, onSelectColor, note }) {
         <div className="modal-content">
             <h2>Select a Color</h2>
             <div className="color-options">
-                <div className="color-option" onClick={(ev) => onSelectColor(ev, note, '')}></div>
+                <div className="color-option" onClick={(ev) => onSelectColor(ev, note, 'clr0')}></div>
                 <div className="color-option clr1" onClick={(ev) => onSelectColor(ev, note, 'clr1')}></div>
                 <div className="color-option clr2" onClick={(ev) => onSelectColor(ev, note, 'clr2')}></div>
                 <div className="color-option clr3" onClick={(ev) => onSelectColor(ev, note, 'clr3')}></div>

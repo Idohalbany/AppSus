@@ -1,5 +1,6 @@
 const { useState, useEffect } = React
 import { noteService } from "../services/note.service.js"
+import { utilService } from "../../../services/util.service.js"
 
 export function NoteDetails({ noteId, onUpdateNote, onRemoveNote, onDuplicateNote, onPinNote, onSelectColor }) {
 
@@ -80,11 +81,14 @@ export function NoteDetails({ noteId, onUpdateNote, onRemoveNote, onDuplicateNot
 
         <DynamicCmp note={note} onInputText={onInputText} titleInputValue={titleInputValue} descriptionInputValue={descriptionInputValue} todos={todos} />
 
-        <div className="note-controls">
-            <i className="fa-solid fa-trash btn btn-remove" onClick={(ev) => onRemoveNote(ev, note.id)}></i>
-            <i className="fa-solid fa-copy btn btn-duplicate-note" onClick={(ev) => onDuplicateNote(ev, note.id)}></i>
-            <i className="fa-solid fa-palette btn btn-clr-change" onClick={(ev) => onChangeColorClick(ev)}></i>
-            {showColorModal && <NoteColorModal onCloseColorModal={onCloseColorModal} onSelectColor={onSelectColor} note={note} />}
+        <div className="note-options">
+            <div className="note-controls">
+                <i className="fa-solid fa-trash btn btn-remove" onClick={(ev) => onRemoveNote(ev, note.id)}></i>
+                <i className="fa-solid fa-copy btn btn-duplicate-note" onClick={(ev) => onDuplicateNote(ev, note.id)}></i>
+                <i className="fa-solid fa-palette btn btn-clr-change" onClick={(ev) => onChangeColorClick(ev)}></i>
+                {showColorModal && <NoteColorModal onCloseColorModal={onCloseColorModal} onSelectColor={onSelectColor} note={note} />}
+            </div>
+            {<div className="last-edited">{utilService.formatDate(note.editedAt || note.createdAt)}</div>}
         </div>
 
     </section>
@@ -98,13 +102,14 @@ function NoteTxt({ note, onInputText, titleInputValue, descriptionInputValue }) 
             value={titleInputValue}
             onChange={(ev) => onInputText(ev, 'title')}
         />
+
         <input
             type="text"
             placeholder="Enter note..."
             value={descriptionInputValue}
             onChange={(ev) => onInputText(ev, 'description')}
         />
-        <h2>{note.editedAt || note.createdAt}</h2>
+
     </div>
 }
 
@@ -132,12 +137,13 @@ function NoteTodos({ note, onInputText, titleInputValue, todos }) {
             <li>{note.info.todos.map((todo, idx) => {
                 return <div key={idx} className={`todo-item-${note.id}`}>
                     <input
+                        className={todo.doneAt ? 'crossed' : ''}
                         type="text"
                         placeholder="Enter todo..."
                         value={todos[idx].txt}
                         onChange={(ev) => onInputText(ev, 'todo', idx)}
                     />
-                    <p>{`Completed at: ${todo.doneAt ? todo.doneAt : 'Not yet'}`}</p>
+                    <p className="date-completed">{`${todo.doneAt ? ('Completed:' + utilService.formatDate(todo.doneAt)) : ''}`}</p>
                 </div>
             })}</li>
         </ul>
@@ -162,7 +168,7 @@ function NoteColorModal({ onCloseColorModal, onSelectColor, note }) {
         <div className={`modal-content`}>
             <h2>Select a Color</h2>
             <div className="color-options">
-                <div className="color-option" onClick={(ev) => onSelectColor(ev, note, '')}></div>
+                <div className="color-option" onClick={(ev) => onSelectColor(ev, note, 'clr0')}></div>
                 <div className="color-option clr1" onClick={(ev) => onSelectColor(ev, note, 'clr1')}></div>
                 <div className="color-option clr2" onClick={(ev) => onSelectColor(ev, note, 'clr2')}></div>
                 <div className="color-option clr3" onClick={(ev) => onSelectColor(ev, note, 'clr3')}></div>
