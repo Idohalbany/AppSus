@@ -3,14 +3,21 @@ const { Link } = ReactRouterDOM
 import { MailList } from '../cmps/MailList.jsx'
 import { MailFilter } from '../cmps/MailFilter.jsx'
 import { MailSort } from '../cmps/MailSort.jsx'
+import { SideBar } from '../../../cmps/SideBar.jsx'
 import { ComposeMessage } from '../cmps/ComposeMessage.jsx'
 import { emailService } from '../services/mail.service.js'
 
-export function MailIndex({ selectedCategory }) {
+export function MailIndex() {
   const [emails, setEmails] = useState([])
   const [filter, setFilter] = useState(emailService.getDefaultCriteria())
   const [isComposeOpen, setIsComposeOpen] = useState(false)
   const [editingDraft, setEditingDraft] = useState(null)
+  const [isContentClass, setIsContentClass] = useState(true)
+  const [selectedCategory, setSelectedCategory] = useState('Inbox')
+  // console.log(selectedCategory)
+  const toggleContentClass = () => {
+    setIsContentClass((prevState) => !prevState)
+  }
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter)
@@ -101,22 +108,23 @@ export function MailIndex({ selectedCategory }) {
 
   return (
     <div className='email-app'>
-      <button className='compose-btn' onClick={toggleComposeModal}>
-        <img
-          src='https://www.gstatic.com/images/icons/material/colored_icons/1x/create_32dp.png'
-          alt='Compose Email'
-        />
-      </button>
-      <MailSort onSortChange={handleSortChange} />
-      <MailFilter onFilterChange={handleFilterChange} />
-      <MailList
-        emails={emails}
-        onDeleteEmail={onDeleteEmail}
-        onMarkEmail={onMarkEmail}
-        onSetIsStarred={onSetIsStarred}
-        onDraftClick={handleDraftClick}
+      <SideBar
+        onCategorySelect={setSelectedCategory}
+        toggleContentClass={toggleContentClass}
+        toggleComposeModal={toggleComposeModal}
       />
-      {isComposeOpen && <ComposeMessage draft={editingDraft} onClose={toggleComposeModal} />}
+      <section className={`app-open ${isContentClass ? 'content' : ''}`}>
+        <MailSort onSortChange={handleSortChange} />
+        <MailFilter onFilterChange={handleFilterChange} />
+        <MailList
+          emails={emails}
+          onDeleteEmail={onDeleteEmail}
+          onMarkEmail={onMarkEmail}
+          onSetIsStarred={onSetIsStarred}
+          onDraftClick={handleDraftClick}
+        />
+        {isComposeOpen && <ComposeMessage draft={editingDraft} onClose={toggleComposeModal} />}
+      </section>
     </div>
   )
 }
