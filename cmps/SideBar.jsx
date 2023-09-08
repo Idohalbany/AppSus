@@ -1,6 +1,6 @@
 const { useState, useEffect } = React
 
-export function SideBar({ toggleContentClass }) {
+export function SideBar({ toggleContentClass, onCategorySelect }) {
   const [activeLink, setActiveLink] = useState(2)
   const [isClosed, setIsClosed] = useState(window.innerWidth < 768)
 
@@ -9,14 +9,18 @@ export function SideBar({ toggleContentClass }) {
     Star: 'fa-star',
     Snoozed: 'fa-clock',
     Sent: 'fa-paper-plane',
-    Archived: 'fa-box-archive',
+    'All Mail': 'fa-box-archive',
     Trash: 'fa-trash',
     Spam: 'fa-circle-exclamation',
     Draft: 'fa-file-circle-question',
   }
 
-  const handleLinkClick = (index) => {
+  const handleLinkClick = (e, index, categoryName) => {
+    e.preventDefault()
     setActiveLink(index)
+    console.log(categoryName)
+    onCategorySelect(categoryName)
+    // console.log(categoryName)
   }
 
   const toggleSidebar = (e) => {
@@ -52,7 +56,7 @@ export function SideBar({ toggleContentClass }) {
       <ul className='side-menu'>
         {Object.keys(nameToIconMap).map((name, index) => (
           <li key={name} className={index === activeLink ? 'active' : ''}>
-            <a href='#' onClick={() => handleLinkClick(index)}>
+            <a href='#' onClick={(e) => handleLinkClick(e, index, name)}>
               <i
                 style={{ marginRight: 20, marginLeft: 10 }}
                 className={`fa-solid ${nameToIconMap[name]}`}></i>
@@ -72,3 +76,21 @@ export function SideBar({ toggleContentClass }) {
     </div>
   )
 }
+
+// const categoryFilters = {
+//   Inbox: { status: 'inbox' },
+//   Star: { isStarred: true },
+//   Snoozed: {
+//     /* custom criteria for Snoozed */
+//   },
+//   Sent: { status: 'sent' },
+//   Archived: { status: 'archived' },
+//   Trash: { status: 'trash' },
+//   Spam: { status: 'spam' },
+//   Draft: { status: 'draft' },
+// }
+
+// const handleLinkClick = (index, name) => {
+//   setActiveLink(index)
+//   onFilterChange(categoryFilters[name] || {})
+// }

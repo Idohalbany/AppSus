@@ -14,7 +14,8 @@ import { NoteIndex } from './apps/note/views/NoteIndex.jsx'
 
 export function App() {
   const [isContentClass, setIsContentClass] = useState(true)
-
+  const [selectedCategory, setSelectedCategory] = useState('Inbox')
+  // console.log(selectedCategory)
   const toggleContentClass = () => {
     setIsContentClass((prevState) => !prevState)
   }
@@ -22,12 +23,12 @@ export function App() {
   return (
     <Router>
       <section className={`app ${isContentClass ? 'content' : ''}`}>
-        <SideBar toggleContentClass={toggleContentClass} />
+        <SideBar onCategorySelect={setSelectedCategory} toggleContentClass={toggleContentClass} />
         <AppHeader />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
-          <Route path='/mail' element={<MailIndex />} />
+          <Route path='/mail' element={<MailIndex selectedCategory={selectedCategory} />} />
           <Route path='/mail/:id' element={<MailDetails />} />
           <Route path='/compose' element={<ComposeMessage />} />
           <Route path='/note' element={<NoteIndex />} />

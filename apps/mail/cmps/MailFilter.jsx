@@ -49,7 +49,7 @@ export function MailFilter({ onFilterChange }) {
             name='isRead'
             checked={localFilter.isRead || false}
             onChange={handleChange}
-            style={{ display: 'none' }} 
+            style={{ display: 'none' }}
           />
           <i
             className={localFilter.isRead ? 'fas fa-envelope-open-text' : 'fas fa-envelope'}

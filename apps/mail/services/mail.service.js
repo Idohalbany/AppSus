@@ -56,6 +56,9 @@ function query(filterBy = getDefaultCriteria()) {
     if (filterBy.isStarred !== null) {
       mails = mails.filter((mail) => mail.isStarred === filterBy.isStarred)
     }
+    // if (filterBy.isSpam !== null) {
+    //   mails = mails.filter((mail) => mail.isSpam === filterBy.isSpam)
+    // }
     return mails
   })
 }
@@ -154,6 +157,7 @@ function _createMails() {
         'david.jones@randmail.com',
         ['sent'],
         true,
+        false,
         ['important', 'lovable']
       )
     )
@@ -168,6 +172,7 @@ function _createMails() {
         'emily.johnson@sol.net',
         'idohalbany97@gmail.com',
         ['inbox'],
+        false,
         false,
         ['important', 'lovable']
       )
@@ -184,6 +189,7 @@ function _createMails() {
         'william@walla.com',
         ['inbox'],
         true,
+        false,
         ['important', 'lovable']
       )
     )
@@ -198,6 +204,7 @@ function _createMails() {
         'michael.smith@mailer.com',
         'isabella.son@mail.com',
         ['inbox'],
+        false,
         false,
         ['important', 'lovable']
       )
@@ -214,6 +221,7 @@ function _createMails() {
         'sophia@inbox.org',
         ['inbox'],
         false,
+        false,
         ['important', 'lovable']
       )
     )
@@ -229,6 +237,7 @@ function _createMails() {
         'natifeldman@gmail.com',
         ['inbox'],
         false,
+        true,
         ['important', 'lovable']
       )
     )
@@ -243,6 +252,7 @@ function _createMails() {
         'user@appsus.com',
         'john.doe@myemail.com',
         ['inbox', 'sent'],
+        false,
         false,
         ['important']
       )
@@ -259,6 +269,7 @@ function _createMails() {
         'olivia.wilson@postbox.com',
         ['inbox'],
         false,
+        false,
         ['important', 'lovable']
       )
     )
@@ -274,6 +285,7 @@ function _createMails() {
         'john.doe@myemail.com',
         ['inbox'],
         false,
+        true,
         ['important', 'lovable']
       )
     )
@@ -289,6 +301,7 @@ function _createMails() {
         'olivia.wilson@postbox.com',
         ['inbox'],
         true,
+        false,
         ['important', 'lovable']
       )
     )
@@ -302,8 +315,9 @@ function _createMails() {
         null,
         'olivia.wilson@post.com',
         'james.taylor@webmail.net',
-        ['inbox'],
+        ['sent'],
         true,
+        false,
         ['important', 'lovable']
       )
     )
@@ -317,8 +331,9 @@ function _createMails() {
         null,
         'william.jackson@cor.com',
         'james.taylor@webmail.net',
-        ['inbox'],
+        ['sent'],
         true,
+        false,
         ['important', 'lovable']
       )
     )
@@ -333,6 +348,7 @@ function _createMails() {
         'natifeldman@gmail.com',
         'user@appsus.com',
         ['sent'],
+        false,
         false,
         ['important', 'lovable']
       )
@@ -349,6 +365,7 @@ function _createMails() {
         'isabella.anderson@mail.com',
         ['inbox'],
         false,
+        false,
         ['important', 'lovable']
       )
     )
@@ -357,13 +374,14 @@ function _createMails() {
         utilService.makeId(),
         'Gift card',
         'Join to get 10$',
-        true,
+        false,
         1511933990594,
         null,
         'arialevy@gmail.com',
         'Dropbox',
         ['inbox'],
         false,
+        true,
         ['important', 'lovable']
       )
     )
@@ -382,6 +400,7 @@ function getEmptyMail(
   from = '',
   status = '',
   isStarred = false,
+  isSpam = false,
   labels = []
 ) {
   return {
@@ -395,6 +414,7 @@ function getEmptyMail(
     from,
     status,
     isStarred,
+    isSpam,
     labels,
   }
 }
