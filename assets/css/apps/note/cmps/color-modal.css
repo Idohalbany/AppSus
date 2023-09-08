@@ -1,0 +1,43 @@
+/* Styles for the modal container */
+.color-modal {
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styles for the modal content */
+.color-modal .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Styles for the color options */
+.color-modal .color-options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.color-modal .color-option {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.color-modal .color-option:first-of-type {
+    border: 1px solid black;
+}
+
+/* Style for the close button */
+.color-modal .btn-close-modal {
+    margin-top: 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}

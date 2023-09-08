@@ -21,3 +21,15 @@
 .grid {
     display: grid;
 }
+
+.clr1 {
+    background-color: red;
+}
+
+.clr2 {
+    background-color: green;
+}
+
+.clr3 {
+    background-color: blue;
+}
