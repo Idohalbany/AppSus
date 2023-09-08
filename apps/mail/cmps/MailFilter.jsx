@@ -34,7 +34,7 @@ export function MailFilter({ onFilterChange }) {
         />
       </div>
       <div>
-        <select name='status' value={localFilter.status} onChange={handleChange}>
+        {/* <select name='status' value={localFilter.status} onChange={handleChange}>
           <option value='All'>All</option>
           <option value='inbox'>Inbox</option>
           <option value='sent'>Sent</option>
@@ -42,7 +42,7 @@ export function MailFilter({ onFilterChange }) {
           <option value='archived'>Archived</option>
           <option value='trash'>Trash</option>
           <option value='spam'>Spam</option>
-        </select>
+        </select> */}
         <label className='icon-label'>
           <input
             type='checkbox'

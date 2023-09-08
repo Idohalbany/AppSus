@@ -18,7 +18,6 @@ export function SideBar({ toggleContentClass, onCategorySelect }) {
   const handleLinkClick = (e, index, categoryName) => {
     e.preventDefault()
     setActiveLink(index)
-    console.log(categoryName)
     onCategorySelect(categoryName)
     // console.log(categoryName)
   }

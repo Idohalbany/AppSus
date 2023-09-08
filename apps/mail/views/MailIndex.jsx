@@ -10,6 +10,7 @@ export function MailIndex({ selectedCategory }) {
   const [emails, setEmails] = useState([])
   const [filter, setFilter] = useState(emailService.getDefaultCriteria())
   const [isComposeOpen, setIsComposeOpen] = useState(false)
+  const [editingDraft, setEditingDraft] = useState(null)
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter)
@@ -22,6 +23,11 @@ export function MailIndex({ selectedCategory }) {
     emailService.sortMail(newSortCriteria.sortBy, newSortCriteria.order).then((sortedMails) => {
       setEmails(sortedMails)
     })
+  }
+
+  const handleDraftClick = (draft) => {
+    setEditingDraft(draft)
+    toggleComposeModal()
   }
 
   useEffect(() => {
@@ -52,7 +58,6 @@ export function MailIndex({ selectedCategory }) {
     }
 
     emailService.query(filterCriteria).then(setEmails)
-    // console.log(filterCriteria)
   }, [selectedCategory])
 
   useEffect(() => {
@@ -109,8 +114,9 @@ export function MailIndex({ selectedCategory }) {
         onDeleteEmail={onDeleteEmail}
         onMarkEmail={onMarkEmail}
         onSetIsStarred={onSetIsStarred}
+        onDraftClick={handleDraftClick}
       />
-      {isComposeOpen && <ComposeMessage onClose={toggleComposeModal} />}
+      {isComposeOpen && <ComposeMessage draft={editingDraft} onClose={toggleComposeModal} />}
     </div>
   )
 }
