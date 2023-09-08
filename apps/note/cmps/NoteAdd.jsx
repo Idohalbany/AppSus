@@ -9,7 +9,7 @@ export function NoteAdd({ onAddNote }) {
     const [descriptionInputValue, setDescriptionInputValue] = useState('')
     const [showColorModal, setShowColorModal] = useState(false)
     const [isPinned, setIsPinned] = useState(false)
-    const [addNoteColor, setAddNoteColor] = useState(null)
+    const [addNoteColor, setAddNoteColor] = useState('')
 
     // ADD IMAGE TO MAILSSS
 
@@ -109,6 +109,7 @@ export function NoteAdd({ onAddNote }) {
                 <i className="fa-solid fa-image btn btn-add-img"></i>
                 <i className="fa-solid fa-list btn btn-add-list"></i>
                 <i className="fa-solid fa-palette btn btn-clr-change" onClick={(ev) => onChangeColorClick(ev)}></i>
+                {showColorModal && <NoteColorModal setShowColorModal={() => setShowColorModal(false)} onSelectColor={onSelectColor} />}
             </div>
 
             <button className="btn btn-add-note" onClick={() => handleAddNote()}>
@@ -116,7 +117,6 @@ export function NoteAdd({ onAddNote }) {
             </button>
 
         </section>
-        {showColorModal && <NoteColorModal setShowColorModal={() => setShowColorModal(false)} onSelectColor={onSelectColor} />}
     </Fragment>
 }
 
