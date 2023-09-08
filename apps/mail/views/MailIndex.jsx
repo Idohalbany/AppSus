@@ -64,15 +64,15 @@ export function MailIndex() {
   }
 
   return (
-    <div className='mail-app'>
+    <div className='email-app'>
       <button className='compose-btn' onClick={toggleComposeModal}>
         <img
           src='https://www.gstatic.com/images/icons/material/colored_icons/1x/create_32dp.png'
           alt='Compose Email'
         />
       </button>
-      <MailFilter onFilterChange={handleFilterChange} />
       <MailSort onSortChange={handleSortChange} />
+      <MailFilter onFilterChange={handleFilterChange} />
       <MailList
         emails={emails}
         onDeleteEmail={onDeleteEmail}

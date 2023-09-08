@@ -22,7 +22,7 @@ export function MenuNav() {
         <i className='bx bx-notepad'></i>
       </div>
       <div className='item open_nav' onClick={toggleNav}>
-        <i className='bx bx-menu'></i>
+        <i className='fa-solid fa-bars'></i>
       </div>
     </div>
   )

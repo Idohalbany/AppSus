@@ -1,25 +1,89 @@
-header {
-
-    background: lightcyan;
-    border-bottom: 2px solid white;
+.content-header nav {
+  height: 56px;
+  background: var(--light);
+  padding: 0 24px 0 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  grid-gap: 24px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 100;
 }
 
-.app-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 0;
+.content-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 40px;
 }
 
-nav a {
-    margin: .5em;
+.content-header nav::before {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  bottom: -40px;
+  left: 0;
+  border-radius: 50%;
+  box-shadow: -20px -20px 0 var(--light);
 }
 
-nav a:active {
-    color: purple;
+.content-header nav a {
+  color: var(--dark);
 }
 
-nav a.active {
-    color: darkblue;
-    font-weight: bold;
-    text-decoration: overline;
+.content-header nav .notif {
+  font-size: 20px;
+  position: relative;
+}
+
+.content-header nav .notif .count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 20px;
+  height: 20px;
+  background: var(--danger);
+  border-radius: 50%;
+  color: var(--light);
+  border: 2px solid var(--light);
+  font-weight: 700;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-header nav .profile img {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.content-header nav .theme-toggle {
+  display: block;
+  min-width: 50px;
+  height: 25px;
+  background: var(--grey);
+  cursor: pointer;
+  position: relative;
+  border-radius: 25px;
+}
+
+.content-header nav .theme-toggle::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
+  width: calc(25px - 4px);
+  background: var(--primary);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.content-header nav #theme-toggle:checked + .theme-toggle::before {
+  left: calc(100% - (25px - 4px) - 2px);
 }

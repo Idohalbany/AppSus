@@ -1,6 +1,8 @@
 const { Route, Routes } = ReactRouterDOM
 const Router = ReactRouterDOM.HashRouter
+const { useState } = React
 
+import { SideBar } from './cmps/SideBar.jsx'
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { MenuNav } from './cmps/MenuNav.jsx'
 import { About } from './views/About.jsx'
@@ -11,9 +13,16 @@ import { ComposeMessage } from './apps/mail/cmps/ComposeMessage.jsx'
 import { NoteIndex } from './apps/note/views/NoteIndex.jsx'
 
 export function App() {
+  const [isContentClass, setIsContentClass] = useState(true)
+
+  const toggleContentClass = () => {
+    setIsContentClass((prevState) => !prevState)
+  }
+
   return (
     <Router>
-      <section className='app'>
+      <section className={`app ${isContentClass ? 'content' : ''}`}>
+        <SideBar toggleContentClass={toggleContentClass} />
         <AppHeader />
         <Routes>
           <Route path='/' element={<Home />} />

@@ -8,6 +8,14 @@ html {
 
 body {
   margin: 0;
+  background: var(--grey);
+  overflow-x: hidden;
+}
+
+body.dark {
+  --light: #181a1e;
+  --grey: #25252c;
+  --dark: #fbfbfb;
 }
 
 h1,

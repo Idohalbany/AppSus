@@ -62,6 +62,9 @@ export function MailPrivew({ email, onDeleteEmail, onMarkEmail, onSetIsStarred }
             <button onClick={(e) => handleButtonClick(e, 'mark')} className='read-btn'>
               <i className={isRead ? 'fa fa-envelope-open' : 'fa fa-envelope'}></i>
             </button>
+            <button className='clock-btn'>
+              <i title='Read later' className='fa fa-clock-o'></i>
+            </button>
           </React.Fragment>
         ) : (
           <span className='email-date'>{getSentDate(sentAt)}</span>
