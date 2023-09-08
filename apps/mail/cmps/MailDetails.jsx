@@ -73,7 +73,7 @@ export function MailDetails() {
     <div className='mail-page'>
       <div className='mail-tools'>
         <div className='mail-tools-left'>
-          <button onClick={() => navigate('/mail')} className='icon-button'>
+          <button onClick={() => navigate(-1)} className='icon-button'>
             <i title='Back' className='fa fa-arrow-left'></i>
           </button>
           <button className='icon-button'>

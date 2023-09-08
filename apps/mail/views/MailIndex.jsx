@@ -6,7 +6,7 @@ import { MailSort } from '../cmps/MailSort.jsx'
 import { ComposeMessage } from '../cmps/ComposeMessage.jsx'
 import { emailService } from '../services/mail.service.js'
 
-export function MailIndex() {
+export function MailIndex({ selectedCategory }) {
   const [emails, setEmails] = useState([])
   const [filter, setFilter] = useState(emailService.getDefaultCriteria())
   const [isComposeOpen, setIsComposeOpen] = useState(false)
@@ -23,6 +23,37 @@ export function MailIndex() {
       setEmails(sortedMails)
     })
   }
+
+  useEffect(() => {
+    const filterCriteria = emailService.getDefaultCriteria()
+
+    switch (selectedCategory) {
+      case 'Inbox':
+        filterCriteria.status = 'inbox'
+        break
+      case 'Star':
+        filterCriteria.isStarred = true
+        break
+      case 'Sent':
+        filterCriteria.status = 'sent'
+        break
+      case 'All Mail':
+        filterCriteria.status = 'All'
+        break
+      case 'Trash':
+        filterCriteria.status = 'trash'
+        break
+      case 'Spam':
+        filterCriteria.isSpam = true
+        break
+      case 'Draft':
+        filterCriteria.status = 'draft'
+        break
+    }
+
+    emailService.query(filterCriteria).then(setEmails)
+    // console.log(filterCriteria)
+  }, [selectedCategory])
 
   useEffect(() => {
     emailService.query(filter).then(setEmails)
