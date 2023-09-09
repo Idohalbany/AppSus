@@ -25,13 +25,13 @@ export function NotePreview({ note, onRemoveNote, onPinNote, onDuplicateNote, on
 
     return <li key={note.id} className={`note-preview ${backgroundColorClass} ${note.id}`} onClick={() => onEditNoteClick(note)}>
         <div className="pin-card">
-            <i className="fa-solid fa-thumbtack btn btn-pin" onClick={(ev) => onPinNote(ev, note.id)}></i>
+            <i className={`fa-solid fa-thumbtack btn btn-pin`} title={note.isPinned ? 'Unpin note' : 'Pin note'} onClick={(ev) => onPinNote(ev, note.id)}></i>
         </div>
         <DynamicCmp note={note} />
         <div className="note-controls">
-            <i className="fa-solid fa-trash btn btn-remove" onClick={(ev) => onRemoveNote(ev, note.id)}></i>
-            <i className="fa-solid fa-copy btn btn-duplicate-note" onClick={(ev) => onDuplicateNote(ev, note.id)}></i>
-            <i className="fa-solid fa-palette btn btn-clr-change" onClick={(ev) => onChangeColorClick(ev)}></i>
+            <i className="fa-solid fa-trash btn btn-remove" title="Delete note" onClick={(ev) => onRemoveNote(ev, note.id)}></i>
+            <i className="fa-solid fa-copy btn btn-duplicate-note" title="Duplicate note" onClick={(ev) => onDuplicateNote(ev, note.id)}></i>
+            <i className="fa-solid fa-palette btn btn-clr-change" title="Change note color" onClick={(ev) => onChangeColorClick(ev)}></i>
             {showColorModal && <NoteColorModal onCloseColorModal={onCloseColorModal} onSelectColor={onSelectColor} note={note} />}
         </div>
     </li>
@@ -77,7 +77,6 @@ function DynamicCmp({ note }) {
 function NoteColorModal({ onCloseColorModal, onSelectColor, note }) {
     return <div className="color-modal">
         <div className="modal-content">
-            <h2>Select a Color</h2>
             <div className="color-options">
                 <div className="color-option" onClick={(ev) => onSelectColor(ev, note, 'clr0')}></div>
                 <div className="color-option clr1" onClick={(ev) => onSelectColor(ev, note, 'clr1')}></div>

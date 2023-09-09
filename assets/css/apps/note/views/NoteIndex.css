@@ -12,3 +12,10 @@
  .notes-container {
      color: var(--dark);
  }
+
+ .loading-note-index {
+     position: fixed;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+ }

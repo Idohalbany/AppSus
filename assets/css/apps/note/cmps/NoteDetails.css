@@ -16,9 +16,10 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 
     color: var(--dark);
-    max-width: 400px;
-    min-width: 300px;
-    display: grid;
+    max-width: 90vw;
+    min-width: 60vw;
+    max-height: 90vh;
+    /* display: grid; */
     grid-template-rows: auto 1fr auto;
     word-break: break-word;
     border-radius: 6px;
@@ -37,25 +38,58 @@
     display: block;
     height: unset;
     width: 100%;
+    max-height: 60vh;
     height: inherit;
     object-fit: cover;
     margin-block-end: 1em;
 }
 
+.note-details .btn-remove-todo {
+    margin-inline-start: 1em;
+}
+
+.note-details .fa-square-check {
+    margin-inline-end: 1em;
+}
+
 .note-details input {
+    color: var(--dark);
     flex-grow: 1;
     font-family: 'poppins';
-    padding: .5em;
+    padding: .5em .5em .5em 0;
     border-radius: 6px;
     border-style: solid;
     border-color: var(--light);
-    background-color: var(--grey);
+    background-color: transparent;
+    min-height: 36px;
+    /* Set a minimum height for input */
+    height: auto;
+    /* Allow input to grow in height */
+    resize: vertical;
+}
+
+.note-details input:focus {
+    outline-width: 0;
+}
+
+.note-details .content>input:first-of-type {
+    font-size: 1.3em;
+}
+
+.note-details li div {
+    display: flex;
+    align-items: center;
+}
+
+.note-details .date-completed {
+    margin-inline-start: 1em;
 }
 
 .note-details .content {
     display: flex;
     flex-direction: column;
-    padding: 1.5em 1em;
+    padding: 1.5em 0;
+    align-items: stretch;
 }
 
 .note-details .note-options {
@@ -68,6 +102,11 @@
     font-size: .7rem;
 }
 
+.note-details .content .new-todo {
+    display: flex;
+    align-items: center;
+}
+
 .note-details .note-controls {
     display: flex;
     font-size: 1rem;
@@ -75,19 +114,31 @@
     align-items: center;
 }
 
-.note-details .note-controls .btn {
+.note-details .note-controls>.btn {
+    color: var(--dark);
     margin: 0 0.5em;
 }
 
-.note-details .note-controls .btn {
-    color: var(--dark);
+.note-details .date-completed {
+    font-size: .7rem;
+    white-space: nowrap;
+    /* Prevent date from wrapping to the next line */
+    overflow: hidden;
+    /* Hide overflowing text */
+    text-overflow: ellipsis;
+    /* Add ellipsis (...) for long dates */
 }
 
 .note-details .btn {
     transition: color .15s ease;
 }
 
-.note-details .btn:hover {
+.note-details .note-controls>.btn:hover {
+    cursor: pointer;
+    color: var(--light-primary);
+}
+
+.note-details .pin-card .btn:hover {
     cursor: pointer;
     color: var(--light-primary);
 }

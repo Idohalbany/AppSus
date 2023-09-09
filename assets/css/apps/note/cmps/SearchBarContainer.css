@@ -7,7 +7,7 @@
 
 .search-bar-content {
     background-color: var(--light);
-    box-shadow: 0px 0px 1px 1px var(--light);
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
     border-radius: 6px;
     padding: 1em;
     display: flex;

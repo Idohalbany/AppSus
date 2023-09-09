@@ -65,15 +65,14 @@
     margin: 0 0.5em;
 }
 
-.note-preview .note-controls .btn {
+.note-preview .note-controls>.btn,
+.note-preview .pin-card>.btn {
     color: var(--dark);
-}
-
-.note-preview .btn {
     transition: color .15s ease;
 }
 
-.note-preview .btn:hover {
+.note-preview .note-controls>.btn:hover,
+.note-preview .pin-card>.btn:hover {
     cursor: pointer;
     color: var(--light-primary);
 }
