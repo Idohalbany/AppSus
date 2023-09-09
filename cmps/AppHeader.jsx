@@ -1,3 +1,5 @@
+import { UserMsg } from "./UserMsg.jsx"
+
 const { useState, useEffect } = React
 
 export function AppHeader() {
@@ -32,6 +34,7 @@ export function AppHeader() {
           </a>
         </div>
       </nav>
+      <UserMsg />
     </header>
   )
 }

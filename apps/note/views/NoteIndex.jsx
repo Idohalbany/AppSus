@@ -1,4 +1,3 @@
-import { utilService } from '../../../services/util.service.js'
 import { noteService } from '../services/note.service.js'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 
@@ -48,7 +47,6 @@ export function NoteIndex() {
   }, [selectedNoteCategory])
 
   useEffect(() => {
-    // console.log('MOUNT')
     noteService
       .query(filterBy)
       .then(setNotes)
@@ -58,12 +56,8 @@ export function NoteIndex() {
   }, [filterBy])
 
   useEffect(() => {
-    // console.log('Params?')
     if (params.id) {
       setEditingNoteId(params.id)
-      // const note = noteService.get(params.id).then((note) => {
-      //     backgroundColorClass = note.style ? note.style.backgroundColor : 'clr0'
-      // })
     }
   }, [params.id])
 
@@ -162,7 +156,6 @@ export function NoteIndex() {
   }
 
   function onFilterNotes({ target: { value } }) {
-    // console.log('value:', value)
     setFilterBy((prevFilter) => ({ ...prevFilter, type: value }))
   }
 
@@ -173,7 +166,6 @@ export function NoteIndex() {
     }
   }
 
-  //   console.log('RENDER')
 
   if (!notes) return <div className='loading-note-index'>Loading..</div>
 
@@ -245,4 +237,3 @@ export function NoteIndex() {
   )
 }
 
-// className={`app-open ${isContentClass ? 'content' : ''}`

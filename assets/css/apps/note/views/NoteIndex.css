@@ -8,7 +8,7 @@
 .main-note-container {
   display: grid;
   grid-template-columns: minmax(20px, 1fr) minmax(80vw, 980px) minmax(20px, 1fr);
-  background-color: var(--grey);
+  background-color: var(--light);
 }
 
 .main-note-container>*:not(:first-child) {
