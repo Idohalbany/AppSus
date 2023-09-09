@@ -7,7 +7,7 @@
 
 .insights li {
   padding: 24px;
-  background: white;
+  background: var(--light);
   border-radius: 20px;
   display: flex;
   align-items: center;

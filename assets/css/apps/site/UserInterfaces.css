@@ -7,9 +7,9 @@
   color: var(--dark);
 }
 
-.bottom-data > div {
+.bottom-data>div {
   border-radius: 20px;
-  background: white;
+  background: var(--light);
   padding: 24px;
   overflow-x: auto;
 }
