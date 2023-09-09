@@ -21,7 +21,9 @@ export function MenuNav() {
         </NavLink>
       </div>
       <div className='item'>
-        <i className='bx bx-book-bookmark'></i>
+        <NavLink to='/about'>
+          <i class='bx bxs-user-detail'></i>
+        </NavLink>
       </div>
       <div className='item'>
         <NavLink to='/note'>
@@ -34,8 +36,3 @@ export function MenuNav() {
     </div>
   )
 }
-
-// <NavLink to='/'>Home</NavLink>
-// <NavLink to='/about'>About</NavLink>
-// <NavLink to='/mail'>Mail</NavLink>
-// <NavLink to='/note'>Note</NavLink>

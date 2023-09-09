@@ -13,6 +13,7 @@
   align-items: center;
   grid-gap: 24px;
   cursor: pointer;
+  background-color: var(--grey);
 }
 
 .insights li .bx {

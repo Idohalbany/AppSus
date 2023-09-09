@@ -5,7 +5,7 @@ import { Reminders } from '../apps/site/Reminders.jsx'
 
 export function Home() {
   return (
-    <section className='content home'>
+    <section className='home-content'>
       <Headlines />
       <Insights />
       <div className='bottom-data'>

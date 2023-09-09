@@ -34,6 +34,7 @@
 .bottom-data .orders {
   flex-grow: 1;
   flex-basis: 500px;
+  background-color: var(--grey);
 }
 
 .bottom-data .orders table {
@@ -72,7 +73,7 @@
 }
 
 .bottom-data .orders table tbody tr:hover {
-  background: var(--grey);
+  background: var(--light);
 }
 
 .bottom-data .orders table tr td .status {
