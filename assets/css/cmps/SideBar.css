@@ -163,3 +163,9 @@
 .hide {
   visibility: hidden;
 }
+
+@media screen and (max-width: 600px) {
+  .sidebar .logo {
+    pointer-events: none;
+  }
+}

@@ -66,3 +66,26 @@
 .mail-filter button:hover {
   color: #357abf;
 }
+
+@media only screen and (max-width: 1140px) {
+  .mail-filter > div {
+    position: relative;
+    right: 20px;
+  }
+
+  .mail-filter input[type='text'] {
+    position: relative;
+    left: 30px;
+  }
+
+  .mail-filter button {
+    left: 25px;
+    z-index: 2;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .mail-filter input[type='text'] {
+    width: 300px;
+  }
+}

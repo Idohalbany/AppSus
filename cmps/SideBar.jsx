@@ -1,9 +1,9 @@
-const { useState } = React
+const { useState, useEffect } = React
 const { useLocation } = ReactRouterDOM
 
 export function SideBar({ toggleContentClass, onCategorySelect, toggleComposeModal }) {
   const [activeLink, setActiveLink] = useState(0)
-  const [isClosed, setIsClosed] = useState(window.innerWidth < 768)
+  const [isClosed, setIsClosed] = useState(window.innerWidth <= 1140)
   const location = useLocation()
 
   const mailNameToIconMap = {
@@ -27,6 +27,17 @@ export function SideBar({ toggleContentClass, onCategorySelect, toggleComposeMod
   const nameToIconMap = isNotePage ? noteNameToIconMap : mailNameToIconMap
 
   // console.log(nameToIconMap)
+
+  useEffect(() => {
+    function handleResize() {
+      setIsClosed(window.innerWidth <= 1140)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   const handleLinkClick = (e, index, categoryName) => {
     e.preventDefault()

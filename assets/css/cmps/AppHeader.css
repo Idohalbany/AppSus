@@ -87,3 +87,10 @@
 .content-header nav #theme-toggle:checked + .theme-toggle::before {
   left: calc(100% - (25px - 4px) - 2px);
 }
+
+@media only screen and (max-width: 600px) {
+  .content-header nav .profile img {
+    position: relative;
+    left: 60px;
+  }
+}

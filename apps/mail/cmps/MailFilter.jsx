@@ -45,7 +45,7 @@ export function MailFilter({ onFilterChange }) {
           <i
             title={localFilter.isRead ? 'Show All' : 'Show Unread'}
             className={localFilter.isRead ? 'fas fa-envelope-open-text' : 'fas fa-envelope'}
-            style={{ color: localFilter.isRead ? '#357abf' : '#333' }}></i>
+            style={{ color: localFilter.isRead ? '#357abf' : 'gold' }}></i>
         </label>
 
         <label className='icon-label'>
@@ -59,7 +59,7 @@ export function MailFilter({ onFilterChange }) {
           <i
             title={localFilter.isStarred ? 'Show All' : 'Show Stars'}
             className={localFilter.isStarred ? 'fas fa-star' : 'far fa-star'}
-            style={{ color: localFilter.isStarred ? '#357abf' : '#333' }}></i>
+            style={{ color: localFilter.isStarred ? '#357abf' : 'gold' }}></i>
         </label>
       </div>
     </form>

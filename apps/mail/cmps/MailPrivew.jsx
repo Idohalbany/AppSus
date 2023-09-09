@@ -66,7 +66,7 @@ export function MailPrivew({
         <div className='email-out-details'>
           <strong className='email-subject'>{subject}</strong>
           <span className='separator'> - </span>
-          <span className='email-body'>
+          <span style={{ color: grayBg }} className='email-body'>
             <LongTxt txt={body} length={100} />
           </span>
         </div>
@@ -97,7 +97,7 @@ export function MailPrivew({
               <i className={isRead ? 'fa fa-envelope-open' : 'fa fa-envelope'}></i>
             </button>
             <button className='note-btn'>
-              <i title='Sent to notes' class='fa-solid fa-note-sticky'></i>
+              <i title='Sent to notes' className='fa-solid fa-note-sticky'></i>
             </button>
           </React.Fragment>
         ) : (

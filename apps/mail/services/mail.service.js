@@ -185,7 +185,7 @@ function _createMails() {
       getEmptyMail(
         utilService.makeId(),
         'Life lesson',
-        'As the ship sailed, they waved to their homeland',
+        'The ship sailed.',
         true,
         Date.now(),
         null,
@@ -200,11 +200,11 @@ function _createMails() {
       getEmptyMail(
         utilService.makeId(),
         'Phone bill',
-        'Pay the bills now.',
+        'Pay the bills now or we will cut you off! dont test us....',
         true,
         1672510386536,
         null,
-        'emily.johnson@sol.net',
+        'emily.jo@sol.net',
         'Bezeq',
         ['inbox'],
         false,
@@ -215,7 +215,7 @@ function _createMails() {
       getEmptyMail(
         utilService.makeId(),
         "Let's go eat something",
-        'interested on getting some burgers?',
+        'interested?',
         true,
         1672510287536,
         null,
@@ -229,13 +229,13 @@ function _createMails() {
     mails.push(
       getEmptyMail(
         utilService.makeId(),
-        'To my mom!',
-        'He forgot his umbrella, and it began to rain heavily.',
+        'To mom!',
+        'He forgot the umbrella, please bring that when.',
         false,
         1674510187536,
         null,
         'michael@mailer.com',
-        'isabella.son@mail.com',
+        'ela.son@mail.com',
         ['inbox'],
         false,
         ['important', 'lovable']
@@ -260,12 +260,12 @@ function _createMails() {
       getEmptyMail(
         utilService.makeId(),
         'My dog died',
-        'I found an old diary tucked away in the attic',
+        'I found an old image.',
         false,
         1551433950594,
         null,
-        'michael@mailer.com',
-        'natifeld@gmail.com',
+        'mic@mailer.com',
+        'nati@gmail.com',
         ['inbox'],
         false,
         ['important', 'lovable']
@@ -275,12 +275,12 @@ function _createMails() {
       getEmptyMail(
         utilService.makeId(),
         'Miss you a lot!',
-        'A mysterious letter arrived in the mail',
+        'A mysterious letter arrived.',
         false,
         1551133930594,
         null,
         'user@appsus.com',
-        'john.doe@myemail.com',
+        'john@mail.com',
         ['sent'],
         false,
         ['important']
@@ -305,12 +305,12 @@ function _createMails() {
       getEmptyMail(
         utilService.makeId(),
         'New dicovery',
-        'Nati is affraid of cats. how lame!!!',
+        'Nati"s affraid of cats. lame!!',
         false,
         1551133980594,
         null,
         'user@appsus.com',
-        'john.doe@myemail.com',
+        'doe@mail.com',
         ['inbox'],
         false,
         ['important', 'lovable']
@@ -320,7 +320,7 @@ function _createMails() {
       getEmptyMail(
         utilService.makeId(),
         "Don't mess with me",
-        'Just do your job nati! you have 2 hours!',
+        'Just do your job nati!',
         false,
         1551033930094,
         null,
