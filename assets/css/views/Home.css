@@ -1,13 +1,12 @@
 /* home */
 
 .home-content {
-  display: grid;
-  grid-template-columns: minmax(20px, 1fr) auto minmax(20px, 1fr);
+  padding: 80px;
   width: 100%;
   max-height: calc(100vh - 56px);
 }
 
-.home-content>* {
+.home-content > * {
   grid-column: 2;
 }
 

@@ -1,5 +1,4 @@
 const { useState, useEffect } = React
-const { NavLink } = ReactRouterDOM
 
 export function AppHeader() {
   const [isDark, setIsDark] = useState(false)
@@ -20,7 +19,6 @@ export function AppHeader() {
     <header className='content-header'>
       <nav>
         <div className='content-wrapper'>
-
           <input
             type='checkbox'
             id='theme-toggle'

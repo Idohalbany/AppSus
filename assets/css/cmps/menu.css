@@ -15,7 +15,7 @@
   text-align: center;
   cursor: pointer;
   font-weight: bold;
-  transition: all 400ms ease-in-out;
+  transition: transform 400ms ease-in-out;
 }
 
 .nav .item.open_nav {
@@ -30,27 +30,28 @@
 
 .open .item:nth-child(1) {
   transform: translate(-100px, 0);
-  padding: .5em;
+  padding: 0.5em;
   background-color: var(--light);
 }
 
 .open .item:nth-child(2) {
   transform: translate(-45px, -80px);
   transition-delay: 100ms;
-  padding: .5em;
+  padding: 0.5em;
   background-color: var(--light);
 }
 
 .open .item:nth-child(3) {
   transform: translate(0, -100px);
   transition-delay: 150ms;
-  padding: .5em;
+  padding: 0.5em;
   background-color: var(--light);
 }
 
 .open .item:nth-child(4) {
   transform: translate(-80px, -45px);
   transition-delay: 50ms;
-  padding: .5em;
+  padding: 0.5em;
   background-color: var(--light);
 }
+

@@ -4,10 +4,10 @@
   grid-gap: 24px;
   margin-top: 24px;
   width: 100%;
-  color: var(--dark);
+  /* color: var(--dark); */
 }
 
-.bottom-data>div {
+.bottom-data > div {
   border-radius: 20px;
   background: var(--light);
   padding: 24px;
@@ -25,6 +25,7 @@
   margin-right: auto;
   font-size: 24px;
   font-weight: 600;
+  color: black;
 }
 
 .bottom-data .header .bx {
@@ -34,7 +35,7 @@
 .bottom-data .orders {
   flex-grow: 1;
   flex-basis: 500px;
-  background-color: var(--grey);
+  background-color: var(--light-primary);
 }
 
 .bottom-data .orders table {
@@ -46,7 +47,11 @@
   padding-bottom: 12px;
   font-size: 13px;
   text-align: left;
-  border-bottom: 1px solid var(--grey);
+  /* border-bottom: 1px solid var(--grey); */
+}
+
+.bx bxl-gmail {
+  background-color: black;
 }
 
 .bottom-data .orders table td {
@@ -79,11 +84,12 @@
 .bottom-data .orders table tr td .status {
   font-size: 16px;
   padding: 6px 5px;
-  color: var(--dark);
+  /* color: var(--dark); */
   font-weight: 700;
 }
 
 .go-to {
   display: flex;
   align-items: center;
+  color: black;
 }

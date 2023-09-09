@@ -67,11 +67,7 @@
   gap: 10px;
   justify-content: center;
   align-items: center;
-}
-
-.bx {
-  font-size: 28px;
-  color: var(--dark);
+  color: var(--primary);
 }
 
 .about footer {

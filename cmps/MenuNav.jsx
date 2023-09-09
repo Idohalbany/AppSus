@@ -22,7 +22,7 @@ export function MenuNav() {
       </div>
       <div className='item'>
         <NavLink to='/about'>
-          <i class='bx bxs-user-detail'></i>
+          <i className='bx bxs-user-detail'></i>
         </NavLink>
       </div>
       <div className='item'>

@@ -1,7 +1,6 @@
 const { NavLink } = ReactRouterDOM
 
 export function Headlines() {
-
   return (
     <div className='header'>
       <div className='left'>
@@ -31,5 +30,3 @@ export function Headlines() {
     </div>
   )
 }
-
-

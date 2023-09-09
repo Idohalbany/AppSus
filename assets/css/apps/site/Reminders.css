@@ -1,7 +1,7 @@
 .bottom-data .reminders {
   flex-grow: 1;
   flex-basis: 300px;
-  background-color: var(--grey);
+  background-color: var(--light-primary);
 }
 
 .bottom-data .reminders .task-list {
@@ -11,7 +11,6 @@
 .bottom-data .reminders .task-list li {
   width: 100%;
   margin-bottom: 16px;
-  background: var(--grey);
   padding: 14px 10px;
   border-radius: 10px;
   display: flex;
