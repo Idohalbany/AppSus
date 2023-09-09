@@ -1,4 +1,7 @@
+const { NavLink } = ReactRouterDOM
+
 export function Headlines() {
+
   return (
     <div className='header'>
       <div className='left'>
@@ -20,9 +23,13 @@ export function Headlines() {
         </ul>
       </div>
       <a href='#' className='report'>
-        <i className='fa-solid fa-address-card'></i>
-        <span>About</span>
+        <NavLink to='/about'>
+          <i className='fa-solid fa-address-card'></i>
+          <span> About</span>
+        </NavLink>
       </a>
     </div>
   )
 }
+
+
