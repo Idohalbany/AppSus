@@ -146,7 +146,7 @@ export function NoteIndex() {
 
     return <main className="main-note-container">
 
-        <SideBar className="sidebar-notes" />
+        <SideBar />
 
         <section className="search-bar-container">
             <div className="search-bar-content">
