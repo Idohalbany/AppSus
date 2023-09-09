@@ -11,12 +11,12 @@
   background-color: var(--grey);
 }
 
-.main-note-container > *:not(:first-child) {
+.main-note-container>*:not(:first-child) {
   grid-column: 2;
 }
 
 .notes-container {
-  color: var(--grey);
+  color: var(--dark);
 }
 
 .loading-note-index {

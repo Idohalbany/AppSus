@@ -20,10 +20,7 @@ export function AppHeader() {
     <header className='content-header'>
       <nav>
         <div className='content-wrapper'>
-          <NavLink to='/'>Home</NavLink>
-          <NavLink to='/about'>About</NavLink>
-          <NavLink to='/mail'>Mail</NavLink>
-          <NavLink to='/note'>Note</NavLink>
+
           <input
             type='checkbox'
             id='theme-toggle'
