@@ -34,15 +34,6 @@ export function MailFilter({ onFilterChange }) {
         />
       </div>
       <div>
-        {/* <select name='status' value={localFilter.status} onChange={handleChange}>
-          <option value='All'>All</option>
-          <option value='inbox'>Inbox</option>
-          <option value='sent'>Sent</option>
-          <option value='draft'>Draft</option>
-          <option value='archived'>Archived</option>
-          <option value='trash'>Trash</option>
-          <option value='spam'>Spam</option>
-        </select> */}
         <label className='icon-label'>
           <input
             type='checkbox'
@@ -52,6 +43,7 @@ export function MailFilter({ onFilterChange }) {
             style={{ display: 'none' }}
           />
           <i
+            title={localFilter.isRead ? 'Show All' : 'Show Unread'}
             className={localFilter.isRead ? 'fas fa-envelope-open-text' : 'fas fa-envelope'}
             style={{ color: localFilter.isRead ? '#357abf' : '#333' }}></i>
         </label>
@@ -65,6 +57,7 @@ export function MailFilter({ onFilterChange }) {
             style={{ display: 'none' }}
           />
           <i
+            title={localFilter.isStarred ? 'Show All' : 'Show Stars'}
             className={localFilter.isStarred ? 'fas fa-star' : 'far fa-star'}
             style={{ color: localFilter.isStarred ? '#357abf' : '#333' }}></i>
         </label>

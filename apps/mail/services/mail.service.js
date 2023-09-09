@@ -19,6 +19,9 @@ export const emailService = {
   toggleRead,
   toggleStar,
   removeBySentTime,
+  moveToTrash,
+  permanentDelete,
+  moveToInbox,
 }
 
 const loggedinUser = {
@@ -57,10 +60,7 @@ function query(filterBy = getDefaultCriteria()) {
     if (filterBy.isStarred !== null) {
       mails = mails.filter((mail) => mail.isStarred === filterBy.isStarred)
     }
-    // if (filterBy.isSpam !== null) {
-    //   mails = mails.filter((mail) => mail.isSpam === filterBy.isSpam)
-    // }
-    console.log(mails)
+    // console.log(mails)
     return mails
   })
 }
@@ -125,7 +125,21 @@ function toggleStar(mailId) {
   })
 }
 
+function moveToInbox(mailId) {
+  get(mailId)
+    .then((mail) => {
+      mail.status = 'inbox'
+      storageService.put(MAIL_KEY, mail)
+      return mail
+    })
+    .catch((err) => console.error('Could not update mail due to: ', err))
+}
+
 function remove(mailId) {
+  return storageService.remove(MAIL_KEY, mailId)
+}
+
+function permanentDelete(mailId) {
   return storageService.remove(MAIL_KEY, mailId)
 }
 
@@ -139,6 +153,13 @@ function removeBySentTime(sentTime) {
     }
 
     storageService.saveToStorage(MAIL_KEY, mails)
+  })
+}
+
+function moveToTrash(mailId) {
+  return storageService.get(MAIL_KEY, mailId).then((mail) => {
+    mail.status = 'trash'
+    return storageService.put(MAIL_KEY, mail)
   })
 }
 
@@ -194,7 +215,7 @@ function _createMails() {
       getEmptyMail(
         utilService.makeId(),
         "Let's go eat something",
-        'interested on getting some burgers?.',
+        'interested on getting some burgers?',
         true,
         1672510287536,
         null,

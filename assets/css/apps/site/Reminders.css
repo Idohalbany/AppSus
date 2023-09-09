@@ -1,0 +1,45 @@
+.bottom-data .reminders {
+  flex-grow: 1;
+  flex-basis: 300px;
+}
+
+.bottom-data .reminders .task-list {
+  width: 100%;
+}
+
+.bottom-data .reminders .task-list li {
+  width: 100%;
+  margin-bottom: 16px;
+  background: var(--grey);
+  padding: 14px 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bottom-data .reminders .task-list li .task-title {
+  display: flex;
+  align-items: center;
+}
+
+.bottom-data .reminders .task-list li .task-title p {
+  margin-left: 6px;
+}
+
+.bottom-data .reminders .task-list li .bx {
+  cursor: pointer;
+}
+
+.bottom-data .reminders .task-list li.note1 {
+  border-left: 10px solid var(--success);
+}
+
+.bottom-data .reminders .task-list li.note2 {
+  border-left: 10px solid black;
+}
+
+.bottom-data .reminders .task-list li:last-child {
+  margin-bottom: 0;
+  border-left: 10px solid var(--danger);
+}

@@ -1,8 +1,17 @@
 import { LongTxt } from '../../../cmps/LongTxt.jsx'
+import { emailService } from '../services/mail.service.js'
 const { Link } = ReactRouterDOM
 const { useState } = React
 
-export function MailPrivew({ email, onDeleteEmail, onMarkEmail, onSetIsStarred, onDraftClick }) {
+export function MailPrivew({
+  email,
+  onDeleteEmail,
+  onMarkEmail,
+  onSetIsStarred,
+  onDraftClick,
+  selectedCategory,
+  handlePermanentDeletion,
+}) {
   const { id, isRead, isStarred, subject, body, sentAt, removedAt, to, from, status, labels } =
     email
   const [isHovered, setIsHovered] = useState(false)
@@ -34,6 +43,13 @@ export function MailPrivew({ email, onDeleteEmail, onMarkEmail, onSetIsStarred, 
     }
   }
 
+  const onPermanentDeleteEmail = (id) => {
+    emailService.permanentDelete(id).then(() => {
+      // Use the prop to "notify" the parent about the deletion
+      handlePermanentDeletion(id)
+    })
+  }
+
   return (
     <div
       onMouseEnter={() => setIsHovered(true)}
@@ -60,14 +76,30 @@ export function MailPrivew({ email, onDeleteEmail, onMarkEmail, onSetIsStarred, 
       <div className='icon-actions'>
         {isHovered ? (
           <React.Fragment>
-            <button onClick={(e) => handleButtonClick(e, 'delete')} className='trash-btn'>
-              <i className='fa fa-trash'></i>
-            </button>
+            {selectedCategory === 'Trash' ? (
+              <button
+                onClick={(e) => {
+                  e.preventDefault()
+                  onPermanentDeleteEmail(id)
+                }}
+                className='trash-btn'>
+                <i className='fa fa-trash'></i>
+              </button>
+            ) : (
+              <button
+                onClick={(e) => {
+                  e.preventDefault()
+                  onDeleteEmail(id)
+                }}
+                className='trash-btn'>
+                <i className='fa fa-trash'></i>
+              </button>
+            )}
             <button onClick={(e) => handleButtonClick(e, 'mark')} className='read-btn'>
               <i className={isRead ? 'fa fa-envelope-open' : 'fa fa-envelope'}></i>
             </button>
-            <button className='clock-btn'>
-              <i title='Read later' className='fa fa-clock-o'></i>
+            <button className='note-btn'>
+              <i title='Sent to notes' class='fa-solid fa-note-sticky'></i>
             </button>
           </React.Fragment>
         ) : (

@@ -32,15 +32,8 @@ export function AppHeader() {
             onChange={() => setIsDark(!isDark)}
           />
           <label htmlFor='theme-toggle' className='theme-toggle'></label>
-          <a href='#' className='notif'>
-            <i className='bx bx-bell'></i>
-            <span className='count'>12</span>
-          </a>
           <a href='#' className='profile'>
-            <img
-              src='https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg'
-              alt='Mail IMG'
-            />
+            <img src='./assets/img/profile.jpg' alt='Mail IMG' />
           </a>
         </div>
       </nav>

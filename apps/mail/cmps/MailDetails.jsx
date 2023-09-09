@@ -45,6 +45,11 @@ export function MailDetails() {
       })
   }
 
+  const handleMoveToInbox = () => {
+    emailService.moveToInbox(mail.id)
+    console.log(mail.id)
+  }
+
   const onSetTimeSince = (timestamp) => {
     const now = new Date()
     const then = new Date(timestamp)
@@ -76,11 +81,8 @@ export function MailDetails() {
           <button onClick={() => navigate(-1)} className='icon-button'>
             <i title='Back' className='fa fa-arrow-left'></i>
           </button>
-          <button className='icon-button'>
+          <button onClick={handleMoveToInbox} className='icon-button'>
             <i title='Inbox' className='fa fa-inbox'></i>
-          </button>
-          <button className='icon-button'>
-            <i title='Spam' className='fa fa-exclamation-circle'></i>
           </button>
           <button onClick={(ev) => onDeleteEmail(ev, mail)} className='icon-button'>
             <i title='Delete' className='fa fa-trash'></i>
@@ -90,30 +92,18 @@ export function MailDetails() {
               title={mail.isRead ? 'Mark as unread' : 'Mark as read'}
               className={`fa ${mail.isRead ? 'fa-envelope-open' : 'fa-envelope'}`}></i>
           </button>
-          <button className='icon-button hide'>
-            <i title='Read later' className='fa fa-clock-o'></i>
-          </button>
-          <button className='icon-button hide'>
-            <i className='fa fa-check-circle'></i>
-          </button>
           <button onClick={(ev) => onSetIsStarred(ev, mail)} className='icon-button hide'>
             <i
               title={mail.isStarred ? 'Unstar Email' : 'Star Email'}
               className={`fa ${mail.isStarred ? 'fa-star' : 'fa-star-o'}`}></i>
           </button>
-          <button className='icon-button hide'>
-            <i className='fa fa-ellipsis-v'></i>
-          </button>
         </div>
         <div className='mail-tools-right'>
           <button className='icon-button'>
-            <i className='fa fa-angle-double-up'></i>
+            <i onClick={() => window.print()} title='Print Mail' className='fa fa-print'></i>
           </button>
-          <button className='icon-button'>
-            <i title='Move to notes' className='fa fa-print'></i>
-          </button>
-          <button className='icon-button'>
-            <i className='fa fa-sign-out'></i>
+          <button className='note-btn'>
+            <i title='Sent to notes' className='fa-solid fa-note-sticky'></i>
           </button>
         </div>
       </div>

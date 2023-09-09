@@ -17,7 +17,7 @@
 .star-btn,
 .trash-btn,
 .read-btn,
-.clock-btn {
+.note-btn {
   background: none;
   border: none;
   margin: 0 5px;
@@ -28,7 +28,7 @@
 .star-btn:hover,
 .trash-btn:hover,
 .read-btn:hover,
-.clock-btn:hover {
+.note-btn:hover {
   color: #357abf;
 }
 

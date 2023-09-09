@@ -1,0 +1,67 @@
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .content {
+    width: calc(100% - 60px);
+    left: 200px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .header .left h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  nav form .form-input input {
+    display: none;
+  }
+
+  nav form .form-input button {
+    width: auto;
+    height: auto;
+    background: transparent;
+    color: var(--dark);
+    border-radius: none;
+  }
+
+  nav form.show .form-input input {
+    display: block;
+    width: 100%;
+  }
+
+  nav form.show .form-input button {
+    width: 36px;
+    height: 100%;
+    color: var(--light);
+    background: var(--danger);
+    border-radius: 0 36px 36px 0;
+  }
+
+  nav form.show ~ .notif,
+  nav form.show ~ .profile {
+    display: none;
+  }
+
+  .insights {
+    grid-template-columns: 1fr;
+  }
+
+  .bottom-data .header {
+    min-width: 340px;
+  }
+
+  .bottom-data .orders table {
+    min-width: 340px;
+  }
+
+  .bottom-data .reminders .task-list {
+    min-width: 340px;
+  }
+
+  .content.home {
+    padding: 50px 20px;
+  }
+}

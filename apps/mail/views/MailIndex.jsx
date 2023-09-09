@@ -68,11 +68,23 @@ export function MailIndex() {
     emailService.query(filter).then(setEmails)
   }, [filter])
 
+  // const onDeleteEmail = (id) => {
+  //   emailService.remove(id).then(() => {
+  //     const updatedEmails = emails.filter((email) => email.id !== id)
+  //     setEmails(updatedEmails)
+  //   })
+  // }
+
   const onDeleteEmail = (id) => {
-    emailService.remove(id).then(() => {
+    emailService.moveToTrash(id).then(() => {
       const updatedEmails = emails.filter((email) => email.id !== id)
       setEmails(updatedEmails)
     })
+  }
+
+  const handlePermanentDeletion = (id) => {
+    const updatedEmails = emails.filter((email) => email.id !== id)
+    setEmails(updatedEmails)
   }
 
   const onMarkEmail = (id) => {
@@ -123,6 +135,8 @@ export function MailIndex() {
           onMarkEmail={onMarkEmail}
           onSetIsStarred={onSetIsStarred}
           onDraftClick={handleDraftClick}
+          selectedCategory={selectedCategory}
+          handlePermanentDeletion={handlePermanentDeletion}
         />
       </section>
       {isComposeOpen && <ComposeMessage draft={editingDraft} onClose={toggleComposeModal} />}

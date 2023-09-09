@@ -2,30 +2,33 @@
 @import './setup/reset.css';
 
 /* Setup */
-
 @import './setup/variables.css';
 @import './setup/fonts.css';
 
 /* Basics */
-
 @import './basics/base.css';
 @import './basics/helpers.css';
 @import './basics/layout.css';
 
 /* Views */
 @import './views/home.css';
+@import './views/about.css';
+@import './apps/site/Headlines.css';
+@import './apps/site/Insightes.css';
+@import './apps/site/UserInterfaces.css';
+@import './apps/site/Reminders.css';
 @import './apps/note/views/NoteIndex.css';
-
-/* @import './apps/mail/views/MailIndex.css'; */
 @import './apps/mail/views/MailIndex.css';
+
+/* Mail Cmps */
 @import './apps/mail/cmps/MailPrivew.css';
+@import './apps/mail/cmps/MailList.css';
 @import './apps/mail/cmps/MailDetails.css';
 @import './apps/mail/cmps/ComposeMessage.css';
 @import './apps/mail/cmps/MailFilter.css';
 @import './apps/mail/cmps/MailSort.css';
 
 /* Cmps */
-
 @import './cmps/menu.css';
 @import './cmps/UserMsg.css';
 @import './cmps/AppHeader.css';
@@ -39,4 +42,6 @@
 @import './apps/note/cmps/SearchBarContainer.css';
 @import './apps/note/cmps/NoteList.css';
 
-/* @import './apps/mail/cmps/MailList.css'; */
+/* media query */
+
+@import './setup/mq.css';

@@ -33,3 +33,16 @@
 .sort-container button:hover {
   color: #357abf;
 }
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-icon {
+  animation: rotate 1s linear;
+}

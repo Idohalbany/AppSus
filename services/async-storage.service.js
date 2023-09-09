@@ -33,6 +33,7 @@ function post(entityType, newEntity) {
 }
 
 function put(entityType, updatedEntity) {
+  console.log(entityType, updatedEntity)
   return query(entityType).then((entities) => {
     const idx = entities.findIndex((entity) => entity.id === updatedEntity.id)
     if (idx < 0)
