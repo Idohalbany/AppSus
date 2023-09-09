@@ -1,10 +1,12 @@
 const { useState } = React
+const { useLocation } = ReactRouterDOM
 
 export function SideBar({ toggleContentClass, onCategorySelect, toggleComposeModal }) {
   const [activeLink, setActiveLink] = useState(0)
   const [isClosed, setIsClosed] = useState(window.innerWidth < 768)
+  const location = useLocation()
 
-  const nameToIconMap = {
+  const mailNameToIconMap = {
     Inbox: 'fa-envelope',
     Star: 'fa-star',
     Sent: 'fa-paper-plane',
@@ -12,6 +14,19 @@ export function SideBar({ toggleContentClass, onCategorySelect, toggleComposeMod
     Trash: 'fa-trash',
     Draft: 'fa-file-circle-question',
   }
+
+  const noteNameToIconMap = {
+    All: 'fa-box-archive',
+    Pinned: 'fa-thumbtack',
+    Unpinned: 'fa-circle-xmark',
+    Text: 'fa-font',
+    Todo: 'fa-list',
+    Images: 'fa-image',
+  }
+  const isNotePage = location.pathname.includes('/note')
+  const nameToIconMap = isNotePage ? noteNameToIconMap : mailNameToIconMap
+
+  // console.log(nameToIconMap)
 
   const handleLinkClick = (e, index, categoryName) => {
     e.preventDefault()
@@ -34,12 +49,15 @@ export function SideBar({ toggleContentClass, onCategorySelect, toggleComposeMod
         </div>
         <i onClick={toggleSidebar} className={`bx bx-menu ${isClosed ? 'hide' : ''}`}></i>
       </a>
-      <button className='compose-btn' onClick={toggleComposeModal}>
-        <img
-          src='https://www.gstatic.com/images/icons/material/colored_icons/1x/create_32dp.png'
-          alt='Compose Email'
-        />
-      </button>
+      {!isNotePage && (
+        <button className='compose-btn' onClick={toggleComposeModal}>
+          <img
+            src='https://www.gstatic.com/images/icons/material/colored_icons/1x/create_32dp.png'
+            alt='Compose Email'
+          />
+        </button>
+      )}
+
       <ul className='side-menu'>
         {Object.keys(nameToIconMap).map((name, index) => (
           <li key={name} className={index === activeLink ? 'active' : ''}>

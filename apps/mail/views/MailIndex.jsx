@@ -68,13 +68,6 @@ export function MailIndex() {
     emailService.query(filter).then(setEmails)
   }, [filter])
 
-  // const onDeleteEmail = (id) => {
-  //   emailService.remove(id).then(() => {
-  //     const updatedEmails = emails.filter((email) => email.id !== id)
-  //     setEmails(updatedEmails)
-  //   })
-  // }
-
   const onDeleteEmail = (id) => {
     emailService.moveToTrash(id).then(() => {
       const updatedEmails = emails.filter((email) => email.id !== id)
