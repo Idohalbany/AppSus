@@ -1,17 +1,19 @@
  /* note index */
 
- .main-note-container {
+ .main-note-page-layout {
      display: grid;
-     grid-template-columns: minmax(60px, auto) minmax(20px, 1fr) minmax(80vw, 980px) minmax(20px, 1fr);
+     grid-template-columns: minmax(60px, auto) 1fr;
      background-color: var(--grey);
  }
 
- .main-note-container:first-child {
-     grid-column: 1;
+ .main-note-container {
+     display: grid;
+     grid-template-columns: minmax(20px, 1fr) minmax(80vw, 980px) minmax(20px, 1fr);
+     background-color: var(--grey);
  }
 
  .main-note-container>*:not(:first-child) {
-     grid-column: 3;
+     grid-column: 2;
  }
 
  .notes-container {
