@@ -141,7 +141,7 @@ export function NoteIndex() {
 
     console.log('RENDER')
 
-    if (!notes) return <div>Loading..</div>
+    if (!notes) return <div className="loading-note-index">Loading..</div>
 
     return <main className="main-note-container">
 
@@ -161,9 +161,8 @@ export function NoteIndex() {
 
         {editingNoteId ? (
             <div className="modal edit-note" onClick={handleOverlayClick}>
-                {/* <div className={`modal-content ` + backgroundColorClass}> */}
                 <div className={`modal-content`}>
-                    <NoteDetails noteId={editingNoteId} onUpdateNote={onUpdateNote} onRemoveNote={onRemoveNote} onDuplicateNote={onDuplicateNote} onPinNote={onPinNote} onSelectColor={onSelectColor} />
+                    <NoteDetails setEditingNoteId={setEditingNoteId} noteId={editingNoteId} onUpdateNote={onUpdateNote} onRemoveNote={onRemoveNote} onDuplicateNote={onDuplicateNote} onPinNote={onPinNote} onSelectColor={onSelectColor} />
                 </div>
             </div>
         ) : null}

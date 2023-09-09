@@ -1,5 +1,6 @@
 const { useState, useEffect } = React
 const { Fragment } = React
+import { showSuccessMsg } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note.service.js"
 
 export function NoteAdd({ onAddNote }) {
@@ -12,38 +13,45 @@ export function NoteAdd({ onAddNote }) {
     const [isPinned, setIsPinned] = useState(false)
     const [addNoteColor, setAddNoteColor] = useState('clr0')
 
-    // ADD IMAGE TO MAILSSS
-
     function handleAddNote() {
-        console.log('YESSSSSSSSS')
+
         switch (inputMode) {
             case 'NoteTxt':
                 noteService.getEmptyNote('NoteTxt')
                 setNote(() => {
                     const newNote = noteService.getEmptyNote('NoteTxt')
                     newNote.info.title = titleInputValue || 'No Title'
-                    // console.log('newNote:', newNote)
+                    newNote.isPinned = isPinned
+                    newNote.style = { backgroundColor: addNoteColor }
                     onAddNote(newNote)
                     return newNote
                 })
-                // note.info.title = titleInputValue || 'No Title'
-                // note.info.txt = descriptionInputValue || 'No Description'
                 break
             case 'NoteImg':
-                // note.info.title = titleInputValue || 'No Title'
-                // ADD IMAGE TO MAILSSS
-                // note.info.url = ????????
-                // ADD IMAGE TO MAILSSS
+                noteService.getEmptyNote('NoteImg')
+                setNote(() => {
+                    const newNote = noteService.getEmptyNote('NoteImg')
+                    newNote.info.url = titleInputValue || 'No Title'
+                    newNote.isPinned = isPinned
+                    newNote.style = { backgroundColor: addNoteColor }
+                    onAddNote(newNote)
+                    return newNote
+                })
                 break
             case 'NoteTodos':
-                // note.info.title = titleInputValue || 'No Title'
-                /// HANDLE TODOLIST
+                noteService.getEmptyNote('NoteTxt')
+                setNote(() => {
+                    const newNote = noteService.getEmptyNote('NoteTxt')
+                    newNote.info.title = titleInputValue || 'No Title'
+                    newNote.isPinned = isPinned
+                    newNote.style = { backgroundColor: addNoteColor }
+                    onAddNote(newNote)
+                    return newNote
+                })
                 break
-            default:
-            // note = noteService.getEmptyNote('NoteTxt')
-            // note.info.title = titleInputValue || 'No Title'
-            // note.info.txt = descriptionInputValue || 'No Description'
+
         }
+        showSuccessMsg('Note Added')
         clearInputs()
     }
 
@@ -55,13 +63,14 @@ export function NoteAdd({ onAddNote }) {
         ev.stopPropagation()
         setIsPinned(prevIsPinned => {
             const newIsPinned = !prevIsPinned
-            setNote(prevNote => {
-                const newNote = { ...prevNote }
-                newNote.isPinned = newIsPinned
-                return newNote
-            })
             return newIsPinned
         })
+        showSuccessMsg('Note Pinned')
+    }
+
+    function onAddTextNoteClick(ev) {
+        ev.stopPropagation()
+        setInputMode('NoteTxt')
     }
 
     function onAddImageClick(ev) {
@@ -90,6 +99,8 @@ export function NoteAdd({ onAddNote }) {
     }
 
     function clearInputs() {
+        setIsPinned(false)
+        setAddNoteColor('clr0')
         setTitleInputValue('')
         setDescriptionInputValue('')
     }
@@ -104,7 +115,6 @@ export function NoteAdd({ onAddNote }) {
         <section className={`add-note ${addNoteColor}`}>
 
             {/* <div className="pin-card">
-                <i className="fa-solid fa-thumbtack btn btn-pin" onClick={(ev) => onPinClick(ev)}></i>
             </div> */}
 
             <input
@@ -127,15 +137,13 @@ export function NoteAdd({ onAddNote }) {
             /> */}
 
             <div className="note-controls">
-                <i className="fa-solid fa-image btn btn-add-img" onClick={(ev) => onAddImageClick(ev)}></i>
-                <i className="fa-solid fa-list btn btn-add-list" onClick={(ev) => onAddTodosClick(ev)}></i>
-                <i className="fa-solid fa-palette btn btn-clr-change" onClick={(ev) => onChangeColorClick(ev)}></i>
+                <i className="fa-solid fa-font btn btn-add-note-txt" title="Add simple note" onClick={(ev) => onAddTextNoteClick(ev)}></i>
+                <i className="fa-solid fa-image btn btn-add-img" title="Add image note" onClick={(ev) => onAddImageClick(ev)}></i>
+                <i className="fa-solid fa-list btn btn-add-list" title="Add list note" onClick={(ev) => onAddTodosClick(ev)}></i>
+                <i className="fa-solid fa-thumbtack btn btn-pin" title="Pin note" onClick={(ev) => onPinClick(ev)}></i>
+                <i className="fa-solid fa-palette btn btn-clr-change" title="Select note color" onClick={(ev) => onChangeColorClick(ev)}></i>
                 {showColorModal && <NoteColorModal setShowColorModal={() => setShowColorModal(false)} onSelectColor={onSelectColor} />}
             </div>
-
-            {/* <button className="btn btn-add-note" onClick={() => handleAddNote()}>
-                Add Note
-            </button> */}
 
         </section>
     </Fragment>
