@@ -11,3 +11,9 @@
   left: 230px;
 }
 
+.main-note-page-layout.app-open.content {
+  width: calc(100%-230px);
+  left: 230px;
+}
+
+/* <div className={`main-note-page-layout app-open ${isContentClass ? 'content' : ''}`}> */
