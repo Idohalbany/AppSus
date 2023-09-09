@@ -38,7 +38,7 @@
   flex-basis: 50%;
 }
 
-.email-content > * {
+.email-content>* {
   flex: 1;
 }
 
@@ -65,7 +65,7 @@
   align-items: center;
 }
 
-.email-out-details > * {
+.email-out-details>* {
   flex-shrink: 0;
 }
 
@@ -77,7 +77,7 @@
   color: black;
 }
 
-.unread-email + .icon-actions span {
+.unread-email+.icon-actions span {
   font-size: 0.9rem;
   font-weight: bolder;
   color: black;

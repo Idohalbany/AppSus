@@ -5,6 +5,7 @@ import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.servic
 import { NoteAdd } from '../cmps/NoteAdd.jsx'
 import { NoteList } from '../cmps/NoteList.jsx'
 import { NoteDetails } from '../cmps/NoteDetails.jsx'
+import { SideBar } from '../../../cmps/SideBar.jsx'
 
 const { useEffect, useState, } = React
 const { useNavigate, useParams } = ReactRouterDOM
@@ -144,6 +145,8 @@ export function NoteIndex() {
     if (!notes) return <div className="loading-note-index">Loading..</div>
 
     return <main className="main-note-container">
+
+        <SideBar className="sidebar-notes" />
 
         <section className="search-bar-container">
             <div className="search-bar-content">

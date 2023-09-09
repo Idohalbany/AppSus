@@ -3,10 +3,10 @@
     width: 200px;
   }
 
-  .content {
+  /* .content {
     width: calc(100% - 60px);
     left: 200px;
-  }
+  } */
 }
 
 @media screen and (max-width: 576px) {
@@ -15,6 +15,7 @@
     margin-bottom: 10px;
     margin-top: 10px;
   }
+
   nav form .form-input input {
     display: none;
   }
@@ -40,8 +41,8 @@
     border-radius: 0 36px 36px 0;
   }
 
-  nav form.show ~ .notif,
-  nav form.show ~ .profile {
+  nav form.show~.notif,
+  nav form.show~.profile {
     display: none;
   }
 
