@@ -166,25 +166,50 @@ export function NoteIndex() {
             <div className="modal edit-note" onClick={handleOverlayClick}>
                 <div className={`modal-content`}>
                     <NoteDetails setEditingNoteId={setEditingNoteId} noteId={editingNoteId} onUpdateNote={onUpdateNote} onRemoveNote={onRemoveNote} onDuplicateNote={onDuplicateNote} onPinNote={onPinNote} onSelectColor={onSelectColor} />
+    return <div className="main-note-page-layout">
+        <div className="note-sidebar-container">
+            <SideBar className="sidebar-notes" />
+        </div>
+        <main className="main-note-container">
+
+            <section className="search-bar-container">
+                <div className="search-bar-content">
+                    <input type="text" value={filterBy.key} placeholder="Search note by title..." className="search-bar" onChange={(ev) => onSearchNote(ev)} />
+                    <select name="noteType" className="filter-notes" onChange={(ev) => onFilterNotes(ev)}>
+                        <option value="">All</option>
+                        <option value="pinned">Pinned</option>
+                        <option value="unpinned">Unpinned</option>
+                        <option value="NoteTxt">Text</option>
+                        <option value="NoteTodos">Todos</option>
+                        <option value="NoteImg">Images</option>
+                    </select>
                 </div>
-            </div>
-        ) : null}
-
-        <section className="new-note-container">
-            <NoteAdd onAddNote={onAddNote} />
-        </section>
-
-        <section className="notes-container">
-            <section className="pinned-notes-container">
-                <h1>PINNED</h1>
-                <NoteList notes={findPinned(notes, true)} onRemoveNote={onRemoveNote} onPinNote={onPinNote} onDuplicateNote={onDuplicateNote} onSelectColor={onSelectColor} />
             </section>
 
-            <section className="note-list-container">
-                <h1>UNPINNED</h1>
-                <NoteList notes={findPinned(notes, false)} onRemoveNote={onRemoveNote} onPinNote={onPinNote} onDuplicateNote={onDuplicateNote} onSelectColor={onSelectColor} />
-            </section>
-        </section>
+            {editingNoteId ? (
+                <div className="modal edit-note" onClick={handleOverlayClick}>
+                    <div className={`modal-content`}>
+                        <NoteDetails setEditingNoteId={setEditingNoteId} noteId={editingNoteId} onUpdateNote={onUpdateNote} onRemoveNote={onRemoveNote} onDuplicateNote={onDuplicateNote} onPinNote={onPinNote} onSelectColor={onSelectColor} />
+                    </div>
+                </div>
+            ) : null}
 
-    </main>
+            <section className="new-note-container">
+                <NoteAdd onAddNote={onAddNote} />
+            </section>
+
+            <section className="notes-container">
+                <section className="pinned-notes-container">
+                    <h1>PINNED</h1>
+                    <NoteList notes={findPinned(notes, true)} onRemoveNote={onRemoveNote} onPinNote={onPinNote} onDuplicateNote={onDuplicateNote} onSelectColor={onSelectColor} />
+                </section>
+
+                <section className="note-list-container">
+                    <h1>UNPINNED</h1>
+                    <NoteList notes={findPinned(notes, false)} onRemoveNote={onRemoveNote} onPinNote={onPinNote} onDuplicateNote={onDuplicateNote} onSelectColor={onSelectColor} />
+                </section>
+            </section>
+
+        </main>
+    </div>
 }
