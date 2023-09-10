@@ -4,7 +4,7 @@ import { demoDataService } from '../../../services/demoData.service.js'
 import { SyncStorageService } from '../../../services/storage.service.js'
 
 const STORAGE_KEY = 'noteDB'
-
+console.log('noteDB before update:', STORAGE_KEY)
 _createDemoNotes()
 
 export const noteService = {

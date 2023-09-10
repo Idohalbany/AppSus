@@ -48,7 +48,6 @@ export function NoteIndex() {
   }, [selectedNoteCategory])
 
   useEffect(() => {
-    // console.log('MOUNT')
     noteService
       .query(filterBy)
       .then(setNotes)
@@ -58,12 +57,8 @@ export function NoteIndex() {
   }, [filterBy])
 
   useEffect(() => {
-    // console.log('Params?')
     if (params.id) {
       setEditingNoteId(params.id)
-      // const note = noteService.get(params.id).then((note) => {
-      //     backgroundColorClass = note.style ? note.style.backgroundColor : 'clr0'
-      // })
     }
   }, [params.id])
 
@@ -172,8 +167,6 @@ export function NoteIndex() {
       navigate('/note')
     }
   }
-
-  //   console.log('RENDER')
 
   if (!notes) return <div className='loading-note-index'>Loading..</div>
 

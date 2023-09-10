@@ -4,7 +4,7 @@
   justify-content: space-between;
   grid-gap: 16px;
   flex-wrap: wrap;
-  color: var(--dark);
+  color: black !important;
 }
 
 .header .left h1 {

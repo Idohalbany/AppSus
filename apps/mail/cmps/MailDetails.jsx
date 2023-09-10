@@ -1,6 +1,7 @@
 import { emailService } from '../services/mail.service.js'
 const { useParams, useNavigate } = ReactRouterDOM
 const { useState, useEffect } = React
+import { showSuccessMsg } from '../../../services/event-bus.service.js'
 
 export function MailDetails() {
   const { id } = useParams()
@@ -17,6 +18,7 @@ export function MailDetails() {
     emailService.remove(mail.id).then(() => {
       navigate('/mail')
     })
+    showSuccessMsg('Success')
   }
 
   const onMarkEmail = (event, mail) => {
@@ -30,6 +32,7 @@ export function MailDetails() {
       .catch((error) => {
         console.error('Error toggling read status:', error)
       })
+      showSuccessMsg('Success')
   }
 
   const onSetIsStarred = (event, mail) => {
@@ -43,11 +46,13 @@ export function MailDetails() {
       .catch((error) => {
         console.error('Error toggling star status:', error)
       })
+      showSuccessMsg('Success')
   }
 
   const handleMoveToInbox = () => {
     emailService.moveToInbox(mail.id)
-    console.log(mail.id)
+    // console.log(mail.id)
+    showSuccessMsg('Success')
   }
 
   const onSetTimeSince = (timestamp) => {

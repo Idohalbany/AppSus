@@ -1,5 +1,7 @@
 import { LongTxt } from '../../../cmps/LongTxt.jsx'
 import { emailService } from '../services/mail.service.js'
+import { utilService } from '../../../services/util.service.js'
+import { showSuccessMsg } from '../../../services/event-bus.service.js'
 const { Link } = ReactRouterDOM
 const { useState } = React
 
@@ -42,6 +44,16 @@ export function MailPrivew({
     }
   }
 
+  const handleNoteButtonClick = () => {
+    const emailToSave = {
+      subject: email.subject,
+      body: email.body,
+      sender: email.sender,
+    }
+    localStorage.setItem('emailToNote', JSON.stringify(emailToSave))
+    showSuccessMsg('Moved to Notes!')
+  }
+
   const onPermanentDeleteEmail = (id) => {
     emailService.permanentDelete(id).then(() => {
       handlePermanentDeletion(id)
@@ -66,7 +78,7 @@ export function MailPrivew({
         <div className='email-out-details'>
           <strong className='email-subject'>{subject}</strong>
           <span className='separator'> - </span>
-          <span style={{ color: grayBg }} className='email-body'>
+          <span style={{ backgroundColor: grayBg }} className='email-body'>
             <LongTxt txt={body} length={100} />
           </span>
         </div>
@@ -96,7 +108,7 @@ export function MailPrivew({
             <button onClick={(e) => handleButtonClick(e, 'mark')} className='read-btn'>
               <i className={isRead ? 'fa fa-envelope-open' : 'fa fa-envelope'}></i>
             </button>
-            <button className='note-btn'>
+            <button onClick={handleNoteButtonClick} className='note-btn'>
               <i title='Sent to notes' className='fa-solid fa-note-sticky'></i>
             </button>
           </React.Fragment>

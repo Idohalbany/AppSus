@@ -20,6 +20,13 @@
 @import './apps/note/views/NoteIndex.css';
 @import './apps/mail/views/MailIndex.css';
 
+/* Book Cmps */
+@import './apps/book/cmps/forms.css';
+@import './apps/book/views/book-index.css';
+@import './apps/book/views/book-list.css';
+@import './apps/book/cmps/book-details.css';
+@import './apps/book/cmps/user-msg.css';
+
 /* Mail Cmps */
 @import './apps/mail/cmps/MailPrivew.css';
 @import './apps/mail/cmps/MailList.css';

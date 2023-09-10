@@ -1,11 +1,11 @@
 const { useState, useEffect } = React
-const { Link } = ReactRouterDOM
 import { MailList } from '../cmps/MailList.jsx'
 import { MailFilter } from '../cmps/MailFilter.jsx'
 import { MailSort } from '../cmps/MailSort.jsx'
 import { SideBar } from '../../../cmps/SideBar.jsx'
 import { ComposeMessage } from '../cmps/ComposeMessage.jsx'
 import { emailService } from '../services/mail.service.js'
+import { showSuccessMsg } from '../../../services/event-bus.service.js'
 
 export function MailIndex() {
   const [emails, setEmails] = useState([])
@@ -35,6 +35,7 @@ export function MailIndex() {
   const handleDraftClick = (draft) => {
     setEditingDraft(draft)
     toggleComposeModal()
+    showSuccessMsg('On Draft')
   }
 
   useEffect(() => {
@@ -73,11 +74,13 @@ export function MailIndex() {
       const updatedEmails = emails.filter((email) => email.id !== id)
       setEmails(updatedEmails)
     })
+    showSuccessMsg('Success')
   }
 
   const handlePermanentDeletion = (id) => {
     const updatedEmails = emails.filter((email) => email.id !== id)
     setEmails(updatedEmails)
+    showSuccessMsg('Removed')
   }
 
   const onMarkEmail = (id) => {
@@ -90,6 +93,7 @@ export function MailIndex() {
       .catch((error) => {
         console.error('Error toggling read status:', error)
       })
+    showSuccessMsg('Success')
   }
 
   const onSetIsStarred = (id) => {
@@ -102,6 +106,7 @@ export function MailIndex() {
       .catch((error) => {
         console.error('Error toggling star status:', error)
       })
+    showSuccessMsg('Success')
   }
 
   const toggleComposeModal = () => {

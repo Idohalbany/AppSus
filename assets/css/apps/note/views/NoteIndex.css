@@ -2,16 +2,17 @@
 
 .main-note-page-layout {
   display: grid;
-  background-color: var(--grey);
+  padding: 20px 0;
+  margin-right: 10px;
+  background-color: #eee !important;
 }
 
 .main-note-container {
   display: grid;
   grid-template-columns: minmax(20px, 1fr) minmax(80vw, 980px) minmax(20px, 1fr);
-  background-color: var(--grey);
 }
 
-.main-note-container>*:not(:first-child) {
+.main-note-container > *:not(:first-child) {
   grid-column: 2;
 }
 

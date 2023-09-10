@@ -484,6 +484,36 @@ function _createMails() {
     mails.push(
       getEmptyMail(
         utilService.makeId(),
+        'Neew bank is coming',
+        'tamid itcha on the ride',
+        false,
+        1511933990594,
+        null,
+        'arialevy@gmail.com',
+        'Leumi',
+        ['inbox'],
+        true,
+        ['important', 'lovable']
+      )
+    )
+    mails.push(
+      getEmptyMail(
+        utilService.makeId(),
+        'xdxdxdxdxd',
+        'DD moving into her own apt today!',
+        false,
+        1511933990594,
+        null,
+        'arialevy@gmail.com',
+        'dd (Unix)',
+        ['inbox'],
+        true,
+        ['important', 'lovable']
+      )
+    )
+    mails.push(
+      getEmptyMail(
+        utilService.makeId(),
         'HELLO THERE',
         'Come and teach how to play football',
         false,
@@ -491,6 +521,36 @@ function _createMails() {
         null,
         'arialevy@gmail.com',
         'Football Meneger',
+        ['inbox'],
+        true,
+        ['important', 'lovable']
+      )
+    )
+    mails.push(
+      getEmptyMail(
+        utilService.makeId(),
+        'HOLA',
+        'Im a beautiful lady and i dont want to kill.',
+        false,
+        1511933990594,
+        null,
+        'arialevy@gmail.com',
+        'Hamas',
+        ['inbox'],
+        true,
+        ['important', 'lovable']
+      )
+    )
+    mails.push(
+      getEmptyMail(
+        utilService.makeId(),
+        'Eazy money Sniper',
+        'Durant was born on 1988, in Washington, D.C',
+        false,
+        1511933990594,
+        null,
+        'arialevy@gmail.com',
+        'Kevin Wayne Durant',
         ['inbox'],
         true,
         ['important', 'lovable']

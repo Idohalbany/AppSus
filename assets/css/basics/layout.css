@@ -3,7 +3,6 @@
   width: calc(100% - 60px);
   left: 60px;
   transition: all 0.3s ease;
-  background-color: white;
 }
 
 .app-open.content {

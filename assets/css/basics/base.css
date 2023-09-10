@@ -18,8 +18,8 @@ body::-webkit-scrollbar {
 }
 
 body.dark {
-  --light: #181a1e;
-  --dark: #fbfbfb;
+  --light: #202227;
+  --dark: #eee;
 }
 
 h1,

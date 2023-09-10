@@ -21,8 +21,8 @@ export function MenuNav() {
         </NavLink>
       </div>
       <div className='item'>
-        <NavLink to='/about'>
-          <i className='bx bxs-user-detail'></i>
+        <NavLink to='/book'>
+          <i className='fa-solid fa-book'></i>
         </NavLink>
       </div>
       <div className='item'>
