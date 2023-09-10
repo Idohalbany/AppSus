@@ -1,10 +1,19 @@
 .user-msg {
-    background-color: lightgray;
-    padding: 1em;
-    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--grey);
+    padding: 0 .6em;
+    border-radius: 6px;
+    position: fixed;
     bottom: 1em;
     right: 50%;
-    transform: translate(-50% 0);
+    transform: translate(50%, 0);
+    z-index: 300;
+}
+
+.user-msg>.btn {
+    background-color: transparent;
 }
 
 .user-msg.success {

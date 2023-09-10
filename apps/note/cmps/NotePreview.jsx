@@ -23,17 +23,39 @@ export function NotePreview({ note, onRemoveNote, onPinNote, onDuplicateNote, on
         navigate(`/note/edit/${note.id}`)
     }
 
-    return <li key={note.id} className={`note-preview ${backgroundColorClass} ${note.id}`} onClick={() => onEditNoteClick(note)}>
+    return <li key={note.id}
+        className={`note-preview ${backgroundColorClass} ${note.id}`}
+        onClick={() => onEditNoteClick(note)}>
+
         <div className="pin-card">
-            <i className={`fa-solid fa-thumbtack btn btn-pin`} title={note.isPinned ? 'Unpin note' : 'Pin note'} onClick={(ev) => onPinNote(ev, note.id)}></i>
+            <i className={`fa-solid fa-thumbtack btn btn-pin`}
+                title={note.isPinned ? 'Unpin note' : 'Pin note'}
+                onClick={(ev) => onPinNote(ev, note.id)}></i>
         </div>
+
         <DynamicCmp note={note} />
         <div className="note-controls">
-            <i className="fa-solid fa-trash btn btn-remove" title="Delete note" onClick={(ev) => onRemoveNote(ev, note.id)}></i>
-            <i className="fa-solid fa-copy btn btn-duplicate-note" title="Duplicate note" onClick={(ev) => onDuplicateNote(ev, note.id)}></i>
-            <i className="fa-solid fa-palette btn btn-clr-change" title="Change note color" onClick={(ev) => onChangeColorClick(ev)}></i>
-            {showColorModal && <NoteColorModal onCloseColorModal={onCloseColorModal} onSelectColor={onSelectColor} note={note} />}
+            <i className="fa-solid fa-trash btn btn-remove"
+                title="Delete note"
+                onClick={(ev) => onRemoveNote(ev, note.id)}>
+            </i>
+
+            <i className="fa-solid fa-copy btn btn-duplicate-note"
+                title="Duplicate note"
+                onClick={(ev) => onDuplicateNote(ev, note.id)}>
+            </i>
+
+            <i className="fa-solid fa-palette btn btn-clr-change"
+                title="Change note color"
+                onClick={(ev) => onChangeColorClick(ev)}>
+            </i>
+
+            {showColorModal &&
+                <NoteColorModal onCloseColorModal={onCloseColorModal}
+                    onSelectColor={onSelectColor}
+                    note={note} />}
         </div>
+
     </li>
 }
 
@@ -56,7 +78,11 @@ function NoteTodos({ note }) {
     return <div className="content">
         <h4>{note.info.title}</h4>
         <ul>
-            {note.info.todos.map((todo, idx) => <li key={`todos-${idx}`} className={todo.doneAt ? 'crossed' : ''}>{`${todo.txt} \n`}</li>)}
+            {note.info.todos.map((todo, idx) =>
+                <li
+                    key={`todos-${idx}`}
+                    className={todo.doneAt ? 'crossed' : ''}>{`${todo.txt} \n`}
+                </li>)}
         </ul>
     </div>
 }

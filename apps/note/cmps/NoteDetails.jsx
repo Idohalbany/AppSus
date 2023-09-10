@@ -136,18 +136,45 @@ export function NoteDetails({ noteId, onUpdateNote, onRemoveNote, onDuplicateNot
     return <section className="note-details">
 
         <div className="pin-card">
-            <i className="fa-solid fa-thumbtack btn btn-pin" onClick={(ev) => onPinNote(ev, note.id)}></i>
+            <i className="fa-solid fa-thumbtack btn btn-pin"
+                onClick={(ev) => onPinNote(ev, note.id)}>
+            </i>
         </div>
 
-        <DynamicCmp note={note} onInputText={onInputText} setNewTodoValue={setNewTodoValue} newTodoValue={newTodoValue} titleInputValue={titleInputValue} descriptionInputValue={descriptionInputValue} todos={todos} onChangeTodo={onChangeTodo} />
+        <DynamicCmp
+            note={note}
+            onInputText={onInputText}
+            setNewTodoValue={setNewTodoValue}
+            newTodoValue={newTodoValue}
+            titleInputValue={titleInputValue}
+            descriptionInputValue={descriptionInputValue}
+            todos={todos}
+            onChangeTodo={onChangeTodo} />
+
         <div className="note-options">
+
             <div className="note-controls">
-                <i className="fa-solid fa-trash btn btn-remove-note" title="Delete note" onClick={(ev) => onRemoveBtnClicked(ev, note.id)}></i>
-                <i className="fa-solid fa-copy btn btn-duplicate-note" title="Duplicate note" onClick={(ev) => onDuplicateNote(ev, note.id)}></i>
-                <i className="fa-solid fa-palette btn btn-clr-change" title="Select color" onClick={(ev) => onChangeColorClick(ev)}></i>
-                {showColorModal && <NoteColorModal onCloseColorModal={onCloseColorModal} onSelectColor={onSelectColor} note={note} />}
+                <i className="fa-solid fa-trash btn btn-remove-note"
+                    title="Delete note"
+                    onClick={(ev) => onRemoveBtnClicked(ev, note.id)}>
+                </i>
+                <i className="fa-solid fa-copy btn btn-duplicate-note"
+                    title="Duplicate note"
+                    onClick={(ev) => onDuplicateNote(ev, note.id)}>
+                </i>
+                <i className="fa-solid fa-palette btn btn-clr-change"
+                    title="Select color"
+                    onClick={(ev) => onChangeColorClick(ev)}>
+                </i>
+
+                {showColorModal && <NoteColorModal
+                    onCloseColorModal={onCloseColorModal}
+                    onSelectColor={onSelectColor}
+                    note={note} />}
             </div>
+
             {<div className="last-edited">{utilService.formatDate(note.editedAt || note.createdAt)}</div>}
+
         </div>
 
     </section>
@@ -184,6 +211,7 @@ function NoteImg({ note, onInputText, titleInputValue }) {
 }
 
 function NoteTodos({ note, onInputText, titleInputValue, todos, newTodoValue, setNewTodoValue, onChangeTodo }) {
+
     return <div className="content">
         <input
             type="text"
@@ -193,8 +221,20 @@ function NoteTodos({ note, onInputText, titleInputValue, todos, newTodoValue, se
         />
         <ul>
             <li>{note.info.todos.map((todo, idx) => {
-                return <div key={idx} className={`todo-item todo-item-${note.id}-${idx}`}>
-                    {todo.doneAt ? <i className="fa-solid fa-square-check" title="Mark unchecked" onClick={(ev) => onChangeTodo(ev, idx, false)}></i> : <i className="fa-regular fa-square-check" title="Mark checked" onClick={(ev) => onChangeTodo(ev, idx, true)}></i>}
+                return <div
+                    key={idx}
+                    className={`todo-item todo-item-${note.id}-${idx}`}>
+
+                    {todo.doneAt ?
+                        <i className="fa-solid fa-square-check"
+                            title="Mark unchecked"
+                            onClick={(ev) => onChangeTodo(ev, idx, false)}>
+                        </i>
+                        : <i className="fa-regular fa-square-check"
+                            title="Mark checked"
+                            onClick={(ev) => onChangeTodo(ev, idx, true)}>
+                        </i>}
+
                     <input
                         className={todo.doneAt ? 'crossed' : ''}
                         type="text"
@@ -202,11 +242,19 @@ function NoteTodos({ note, onInputText, titleInputValue, todos, newTodoValue, se
                         value={todos[idx].txt}
                         onChange={(ev) => onInputText(ev, 'todo', idx)}
                     />
+
                     <p className="date-completed">{`${todo.doneAt ? (utilService.formatDate(todo.doneAt)) : 'Uncompleted'}`}</p>
-                    <i className="fa-solid fa-trash btn btn-remove-todo" title="Delete Todo" onClick={(ev) => onChangeTodo(ev, idx, '', true)}></i>
+
+                    <i className="fa-solid fa-trash btn btn-remove-todo"
+                        title="Delete Todo"
+                        onClick={(ev) => onChangeTodo(ev, idx, '', true)}>
+                    </i>
+
                 </div>
+
             })}</li>
         </ul>
+
         <div className="new-todo">
             <i className='bx bx-plus'></i>
             <input type="text" placeholder="Add new TODO..." value={newTodoValue}
@@ -223,11 +271,21 @@ function DynamicCmp({ note, onInputText, titleInputValue, descriptionInputValue,
     switch (note.type) {
 
         case 'NoteTxt':
-            return <NoteTxt note={note} onInputText={onInputText} titleInputValue={titleInputValue} descriptionInputValue={descriptionInputValue} />
+            return <NoteTxt note={note}
+                onInputText={onInputText}
+                titleInputValue={titleInputValue}
+                descriptionInputValue={descriptionInputValue} />
         case 'NoteTodos':
-            return <NoteTodos note={note} onInputText={onInputText} titleInputValue={titleInputValue} todos={todos} newTodoValue={newTodoValue} setNewTodoValue={setNewTodoValue} onChangeTodo={onChangeTodo} />
+            return <NoteTodos note={note}
+                onInputText={onInputText}
+                titleInputValue={titleInputValue}
+                todos={todos}
+                newTodoValue={newTodoValue} setNewTodoValue={setNewTodoValue}
+                onChangeTodo={onChangeTodo} />
         case 'NoteImg':
-            return <NoteImg note={note} onInputText={onInputText} titleInputValue={titleInputValue} />
+            return <NoteImg note={note}
+                onInputText={onInputText}
+                titleInputValue={titleInputValue} />
     }
 }
 

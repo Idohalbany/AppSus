@@ -1,4 +1,3 @@
-import { utilService } from '../../../services/util.service.js'
 import { noteService } from '../services/note.service.js'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 
@@ -157,7 +156,6 @@ export function NoteIndex() {
   }
 
   function onFilterNotes({ target: { value } }) {
-    // console.log('value:', value)
     setFilterBy((prevFilter) => ({ ...prevFilter, type: value }))
   }
 
@@ -238,4 +236,3 @@ export function NoteIndex() {
   )
 }
 
-// className={`app-open ${isContentClass ? 'content' : ''}`

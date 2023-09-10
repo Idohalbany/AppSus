@@ -5,7 +5,13 @@ export function NoteList({ notes, onRemoveNote, onPinNote, onDuplicateNote, onSe
 
     return <ul className="note-list">
         {notes.map(note =>
-            <NotePreview key={note.id} note={note} onRemoveNote={onRemoveNote} onPinNote={onPinNote} onDuplicateNote={onDuplicateNote} onSelectColor={onSelectColor} />
+            <NotePreview
+                key={note.id}
+                note={note}
+                onRemoveNote={onRemoveNote}
+                onPinNote={onPinNote}
+                onDuplicateNote={onDuplicateNote}
+                onSelectColor={onSelectColor} />
         )}
     </ul>
 }

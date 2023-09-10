@@ -114,9 +114,6 @@ export function NoteAdd({ onAddNote }) {
     return <Fragment>
         <section className={`add-note ${addNoteColor}`}>
 
-            {/* <div className="pin-card">
-            </div> */}
-
             <input
                 type="text"
                 placeholder={
@@ -129,22 +126,38 @@ export function NoteAdd({ onAddNote }) {
                 onBlur={() => handleAddNote()}
             />
 
-            {/* <input
-                type="text"
-                placeholder="Enter note description..."
-                value={descriptionInputValue}
-                onChange={(ev) => onInputText(ev, 'description')}
-            /> */}
-
             <div className="note-controls">
-                <i className="fa-solid fa-font btn btn-add-note-txt" title="Add simple note" onClick={(ev) => onAddTextNoteClick(ev)}></i>
-                <i className="fa-solid fa-image btn btn-add-img" title="Add image note" onClick={(ev) => onAddImageClick(ev)}></i>
-                <i className="fa-solid fa-list btn btn-add-list" title="Add list note" onClick={(ev) => onAddTodosClick(ev)}></i>
-                <i className="fa-solid fa-thumbtack btn btn-pin" title="Pin note" onClick={(ev) => onPinClick(ev)}></i>
-                <i className="fa-solid fa-palette btn btn-clr-change" title="Select note color" onClick={(ev) => onChangeColorClick(ev)}></i>
-                {showColorModal && <NoteColorModal setShowColorModal={() => setShowColorModal(false)} onSelectColor={onSelectColor} />}
-            </div>
+                <i className="fa-solid fa-font btn btn-add-note-txt"
+                    title="Add simple note"
+                    onClick={(ev) => onAddTextNoteClick(ev)}>
+                </i>
 
+                <i className="fa-solid fa-image btn btn-add-img"
+                    title="Add image note"
+                    onClick={(ev) => onAddImageClick(ev)}>
+                </i>
+
+                <i className="fa-solid fa-list btn btn-add-list"
+                    title="Add list note"
+                    onClick={(ev) => onAddTodosClick(ev)}>
+                </i>
+
+                <i className="fa-solid fa-thumbtack btn btn-pin"
+                    title="Pin note"
+                    onClick={(ev) => onPinClick(ev)}>
+                </i>
+
+                <i className="fa-solid fa-palette btn btn-clr-change"
+                    title="Select note color"
+                    onClick={(ev) => onChangeColorClick(ev)}>
+                </i>
+
+                {showColorModal
+                    && <NoteColorModal
+                        setShowColorModal={() => setShowColorModal(false)}
+                        onSelectColor={onSelectColor} />}
+
+            </div>
         </section>
     </Fragment>
 }
