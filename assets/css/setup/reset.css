@@ -133,3 +133,17 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+.home-content {
+  padding: 25px 80px;
+  width: 100%;
+  max-height: calc(100vh - 56px);
+}
+
+.home-content > * {
+  grid-column: 2;
+}
+
+.home-content:first-child {
+  margin-block-start: 1em;
+}
